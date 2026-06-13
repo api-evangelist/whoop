@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-partnertokenrequest-schema.json",
+  "title": "PartnerTokenRequest",
+  "description": "WHOOP PartnerTokenRequest schema",
+  "required": [
+    "client_id",
+    "client_secret"
+  ],
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "type": "string",
+      "description": "client id for this partner"
+    },
+    "client_secret": {
+      "type": "string"
+    },
+    "scope": {
+      "type": "string",
+      "description": "scope for this token request"
+    },
+    "grant_type": {
+      "type": "string",
+      "description": "grant type for this token request"
+    }
+  }
+}

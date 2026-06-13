@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-cyclescore-schema.json",
+  "title": "CycleScore",
+  "description": "WHOOP's measurements and evaluation of the cycle. Only present if the score state is `SCORED`",
+  "required": [
+    "average_heart_rate",
+    "kilojoule",
+    "max_heart_rate",
+    "strain"
+  ],
+  "type": "object",
+  "properties": {
+    "strain": {
+      "type": "number",
+      "description": "WHOOP metric of the cardiovascular load - the level of strain  on the user's cardiovascular system based on the user's heart rate during the cycle. Strain is scored on a scale from 0 to 21.",
+      "format": "float",
+      "example": 5.2951527,
+      "externalDocs": {
+        "description": "WHOOP Strain",
+        "url": "https://api.prod.whoop.com/url-mapping-service/v1/STRAIN"
+      }
+    },
+    "kilojoule": {
+      "type": "number",
+      "description": "Kilojoules the user expended during the cycle.",
+      "format": "float",
+      "example": 8288.297
+    },
+    "average_heart_rate": {
+      "type": "integer",
+      "description": "The user's average heart rate during the cycle.",
+      "format": "int32",
+      "example": 68
+    },
+    "max_heart_rate": {
+      "type": "integer",
+      "description": "The user's max heart rate during the cycle.",
+      "format": "int32",
+      "example": 141
+    }
+  }
+}

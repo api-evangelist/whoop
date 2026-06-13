@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-unilabspatient-schema.json",
+  "title": "UnilabsPatient",
+  "description": "WHOOP UnilabsPatient schema",
+  "required": [
+    "birth_date",
+    "first_name",
+    "id",
+    "last_name"
+  ],
+  "type": "object",
+  "properties": {
+    "first_name": {
+      "type": "string",
+      "description": "First name of the patient"
+    },
+    "last_name": {
+      "type": "string",
+      "description": "Last name of the patient"
+    },
+    "birth_date": {
+      "type": "string",
+      "description": "Birth date of the patient",
+      "format": "date"
+    },
+    "gender": {
+      "type": "string",
+      "description": "Gender of the patient"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address of the patient"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number of the patient"
+    },
+    "nationality": {
+      "type": "string",
+      "description": "Nationality of the patient"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the patient",
+      "format": "uuid"
+    },
+    "emirates_id": {
+      "type": "string",
+      "description": "Emirates ID of the patient"
+    },
+    "passport_no": {
+      "type": "string",
+      "description": "Passport number of the patient"
+    }
+  }
+}

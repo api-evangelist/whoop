@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-labrequisition-schema.json",
+  "title": "LabRequisition",
+  "description": "WHOOP LabRequisition schema",
+  "required": [
+    "appointments",
+    "created_at",
+    "id",
+    "patient",
+    "service_requests",
+    "updated_at"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the lab requisition",
+      "format": "uuid"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "Timestamp when the lab requisition was created",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "Timestamp when the lab requisition was last updated",
+      "format": "date-time"
+    },
+    "service_requests": {
+      "type": "array",
+      "description": "The service requests associated with this lab requisition",
+      "items": {
+        "$ref": "#/components/schemas/ServiceRequest"
+      }
+    },
+    "patient": {
+      "$ref": "#/components/schemas/PatientCore"
+    },
+    "appointments": {
+      "type": "array",
+      "description": "The appointments associated with this lab requisition",
+      "items": {
+        "$ref": "#/components/schemas/Appointment"
+      }
+    }
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-sleepstagesummary-schema.json",
+  "title": "SleepStageSummary",
+  "description": "Summary of the sleep stages",
+  "required": [
+    "disturbance_count",
+    "sleep_cycle_count",
+    "total_awake_time_milli",
+    "total_in_bed_time_milli",
+    "total_light_sleep_time_milli",
+    "total_no_data_time_milli",
+    "total_rem_sleep_time_milli",
+    "total_slow_wave_sleep_time_milli"
+  ],
+  "type": "object",
+  "properties": {
+    "total_in_bed_time_milli": {
+      "type": "integer",
+      "description": "Total time the user spent in bed, in milliseconds",
+      "format": "int32",
+      "example": 30272735
+    },
+    "total_awake_time_milli": {
+      "type": "integer",
+      "description": "Total time the user spent awake, in milliseconds",
+      "format": "int32",
+      "example": 1403507
+    },
+    "total_no_data_time_milli": {
+      "type": "integer",
+      "description": "Total time WHOOP did not receive data from the user during the sleep, in milliseconds",
+      "format": "int32",
+      "example": 0
+    },
+    "total_light_sleep_time_milli": {
+      "type": "integer",
+      "description": "Total time the user spent in light sleep, in milliseconds",
+      "format": "int32",
+      "example": 14905851
+    },
+    "total_slow_wave_sleep_time_milli": {
+      "type": "integer",
+      "description": "Total time the user spent in Slow Wave Sleep (SWS), in milliseconds",
+      "format": "int32",
+      "example": 6630370
+    },
+    "total_rem_sleep_time_milli": {
+      "type": "integer",
+      "description": "Total time the user spent in Rapid Eye Movement (REM) sleep, in milliseconds",
+      "format": "int32",
+      "example": 5879573
+    },
+    "sleep_cycle_count": {
+      "type": "integer",
+      "description": "Number of sleep cycles during the user's sleep",
+      "format": "int32",
+      "example": 3
+    },
+    "disturbance_count": {
+      "type": "integer",
+      "description": "Number of times the user was disturbed during sleep",
+      "format": "int32",
+      "example": 12
+    }
+  },
+  "externalDocs": {
+    "description": "Sleep Consistency and Sleep Stages",
+    "url": "https://support.whoop.com/hc/en-us/articles/360019623493-Sleep-Consistency-and-Sleep-Stages"
+  }
+}

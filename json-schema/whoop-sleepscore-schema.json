@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-sleepscore-schema.json",
+  "title": "SleepScore",
+  "description": "WHOOP's measurements and evaluation of the sleep activity. Only present if the Sleep State is `SCORED`",
+  "required": [
+    "sleep_needed",
+    "stage_summary"
+  ],
+  "type": "object",
+  "properties": {
+    "stage_summary": {
+      "$ref": "#/components/schemas/SleepStageSummary"
+    },
+    "sleep_needed": {
+      "$ref": "#/components/schemas/SleepNeeded"
+    },
+    "respiratory_rate": {
+      "type": "number",
+      "description": "The user's respiratory rate during the sleep.",
+      "format": "float",
+      "example": 16.11328125
+    },
+    "sleep_performance_percentage": {
+      "type": "number",
+      "description": "A percentage (0-100%) of the time a user is asleep over the amount of sleep the user needed. May not be reported if WHOOP does not have enough data about a user yet to calculate Sleep Need.",
+      "format": "float",
+      "example": 98.0
+    },
+    "sleep_consistency_percentage": {
+      "type": "number",
+      "description": "Percentage (0-100%) of how similar this sleep and wake times compared to the previous day. May not be reported if WHOOP does not have enough sleep data about a user yet to understand consistency.",
+      "format": "float",
+      "example": 90.0,
+      "externalDocs": {
+        "description": "WHOOP Locker - What is Sleep Consistency?",
+        "url": "https://www.whoop.com/thelocker/new-feature-sleep-consistency-why-we-track-it/"
+      }
+    },
+    "sleep_efficiency_percentage": {
+      "type": "number",
+      "description": "A percentage (0-100%) of the time you spend in bed that you are actually asleep.",
+      "format": "float",
+      "example": 91.69533848,
+      "externalDocs": {
+        "description": "WHOOP Locker - Sleep Efficiency: What is It, How Do You Stack Up & How Can You Improve?",
+        "url": "https://www.whoop.com/thelocker/app-feature-improve-sleep-efficiency/"
+      }
+    }
+  }
+}

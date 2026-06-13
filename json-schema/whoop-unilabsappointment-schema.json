@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-unilabsappointment-schema.json",
+  "title": "UnilabsAppointment",
+  "description": "WHOOP UnilabsAppointment schema",
+  "required": [
+    "service_request_ids",
+    "start_time"
+  ],
+  "type": "object",
+  "properties": {
+    "slot_id": {
+      "type": "string",
+      "description": "External slot identifier used when booking the appointment"
+    },
+    "collection_address": {
+      "$ref": "#/components/schemas/UnilabsCollectionAddress"
+    },
+    "service_request_ids": {
+      "type": "array",
+      "description": "The service request IDs associated with this appointment",
+      "items": {
+        "type": "string",
+        "description": "The service request IDs associated with this appointment",
+        "format": "uuid"
+      }
+    },
+    "start_time": {
+      "type": "string",
+      "description": "The start time of the appointment",
+      "format": "date-time"
+    }
+  }
+}

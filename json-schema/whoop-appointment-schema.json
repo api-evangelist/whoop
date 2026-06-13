@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-appointment-schema.json",
+  "title": "Appointment",
+  "description": "Appointment information",
+  "required": [
+    "service_request_ids",
+    "start_time"
+  ],
+  "type": "object",
+  "properties": {
+    "service_request_ids": {
+      "type": "array",
+      "description": "The service request IDs associated with this appointment",
+      "items": {
+        "type": "string",
+        "description": "The service request IDs associated with this appointment",
+        "format": "uuid"
+      }
+    },
+    "start_time": {
+      "type": "string",
+      "description": "The start time of the appointment",
+      "format": "date-time"
+    }
+  },
+  "oneOf": [
+    {
+      "$ref": "#/components/schemas/UnilabsAppointment"
+    }
+  ]
+}

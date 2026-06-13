@@ -1,0 +1,11 @@
+{
+  "description": "Example WHOOP user basic profile response",
+  "endpoint": "/v2/user/profile/basic",
+  "method": "GET",
+  "response": {
+    "user_id": 10129,
+    "email": "jsmith@whoop.com",
+    "first_name": "John",
+    "last_name": "Smith"
+  }
+}

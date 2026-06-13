@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-workoutv2-schema.json",
+  "title": "WorkoutV2",
+  "description": "A WHOOP workout activity with full details and scoring information",
+  "required": [
+    "created_at",
+    "end",
+    "id",
+    "score_state",
+    "sport_name",
+    "start",
+    "timezone_offset",
+    "updated_at",
+    "user_id"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the workout activity",
+      "format": "uuid",
+      "example": "ecfc6a15-4661-442f-a9a4-f160dd7afae8"
+    },
+    "v1_id": {
+      "type": "integer",
+      "description": "Previous generation identifier for the activity. Will not exist past 09/01/2025",
+      "format": "int64",
+      "example": 1043
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "The WHOOP User who performed the workout",
+      "format": "int64",
+      "example": 9012
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The time the workout activity was recorded in WHOOP",
+      "format": "date-time",
+      "example": "2022-04-24T11:25:44.774Z"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "The time the workout activity was last updated in WHOOP",
+      "format": "date-time",
+      "example": "2022-04-24T14:25:44.774Z"
+    },
+    "start": {
+      "type": "string",
+      "description": "Start time bound of the workout",
+      "format": "date-time",
+      "example": "2022-04-24T02:25:44.774Z"
+    },
+    "end": {
+      "type": "string",
+      "description": "End time bound of the workout",
+      "format": "date-time",
+      "example": "2022-04-24T10:25:44.774Z"
+    },
+    "timezone_offset": {
+      "type": "string",
+      "description": "The user's timezone offset at the time the workout was recorded. Follows format for Time Zone Designator (TZD) - '+hh:mm', '-hh:mm', or 'Z'.",
+      "example": "-05:00",
+      "externalDocs": {
+        "description": "Learn more about the Time Zone Designator from the W3C Standard",
+        "url": "https://www.w3.org/TR/NOTE-datetime"
+      }
+    },
+    "sport_name": {
+      "type": "string",
+      "description": "Name of the WHOOP Sport performed during the workout",
+      "example": "running"
+    },
+    "score_state": {
+      "type": "string",
+      "description": "`SCORED` means the workout activity was scored and the measurement values will be present. `PENDING_SCORE` means WHOOP is currently evaluating the workout activity. `UNSCORABLE` means this activity could not be scored for some reason - commonly because there is not enough user metric data for the time range.",
+      "example": "SCORED",
+      "enum": [
+        "SCORED",
+        "PENDING_SCORE",
+        "UNSCORABLE"
+      ]
+    },
+    "score": {
+      "$ref": "#/components/schemas/WorkoutScore"
+    },
+    "sport_id": {
+      "type": "integer",
+      "description": "ID of the WHOOP Sport performed during the workout. Will not exist past 09/01/2025",
+      "format": "int32",
+      "example": 1
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-paginatedsleepresponse-schema.json",
+  "title": "PaginatedSleepResponse",
+  "description": "WHOOP PaginatedSleepResponse schema",
+  "type": "object",
+  "properties": {
+    "records": {
+      "type": "array",
+      "description": "The collection of records in this page.",
+      "items": {
+        "$ref": "#/components/schemas/Sleep"
+      }
+    },
+    "next_token": {
+      "type": "string",
+      "description": "A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.",
+      "example": "MTIzOjEyMzEyMw"
+    }
+  }
+}

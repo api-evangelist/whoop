@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-sleepneeded-schema.json",
+  "title": "SleepNeeded",
+  "description": "Breakdown of the amount of sleep a user needed before the sleep activity. Summing all individual components results in the amount of sleep the user needed prior to this sleep activity",
+  "required": [
+    "baseline_milli",
+    "need_from_recent_nap_milli",
+    "need_from_recent_strain_milli",
+    "need_from_sleep_debt_milli"
+  ],
+  "type": "object",
+  "properties": {
+    "baseline_milli": {
+      "type": "integer",
+      "description": "The amount of sleep a user needed based on historical trends",
+      "format": "int64",
+      "example": 27395716
+    },
+    "need_from_sleep_debt_milli": {
+      "type": "integer",
+      "description": "The difference between the amount of sleep the user's body required and the amount the user actually got",
+      "format": "int64",
+      "example": 352230,
+      "externalDocs": {
+        "description": "WHOOP Locker - What is Sleep Debt & How Do You Catch Up on Sleep?",
+        "url": "https://www.whoop.com/thelocker/what-is-sleep-debt-catch-up/"
+      }
+    },
+    "need_from_recent_strain_milli": {
+      "type": "integer",
+      "description": "Additional sleep need accrued based on the user's strain",
+      "format": "int64",
+      "example": 208595
+    },
+    "need_from_recent_nap_milli": {
+      "type": "integer",
+      "description": "Reduction in sleep need accrued based on the user's recent nap activity (negative value or zero)",
+      "format": "int64",
+      "example": -12312
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-recoveryscore-schema.json",
+  "title": "RecoveryScore",
+  "description": "WHOOP's measurements and evaluation of the recovery. Only present if the Recovery State is `SCORED`",
+  "required": [
+    "hrv_rmssd_milli",
+    "recovery_score",
+    "resting_heart_rate",
+    "user_calibrating"
+  ],
+  "type": "object",
+  "properties": {
+    "user_calibrating": {
+      "type": "boolean",
+      "description": "True if the user is still calibrating and not enough data is available in WHOOP to provide an accurate recovery.",
+      "example": false
+    },
+    "recovery_score": {
+      "type": "number",
+      "description": "Percentage (0-100%) that reflects how well prepared the user's body is to take on Strain. The Recovery score is a measure of the user body's \"return to baseline\" after a stressor.",
+      "format": "float",
+      "example": 44.0,
+      "externalDocs": {
+        "description": "WHOOP Recovery",
+        "url": "https://api.prod.whoop.com/url-mapping-service/v1/RECOVERY"
+      }
+    },
+    "resting_heart_rate": {
+      "type": "number",
+      "description": "The user's resting heart rate.",
+      "format": "float",
+      "example": 64.0
+    },
+    "hrv_rmssd_milli": {
+      "type": "number",
+      "description": "The user's Heart Rate Variability measured using Root Mean Square of Successive Differences (RMSSD), in milliseconds.",
+      "format": "float",
+      "example": 31.813562
+    },
+    "spo2_percentage": {
+      "type": "number",
+      "description": "The percentage of oxygen in the user's blood. Only present if the user is on 4.0 or greater.",
+      "format": "float",
+      "example": 95.6875
+    },
+    "skin_temp_celsius": {
+      "type": "number",
+      "description": "The user's skin temperature, in Celsius. Only present if the user is on 4.0 or greater.",
+      "format": "float",
+      "example": 33.7
+    }
+  }
+}

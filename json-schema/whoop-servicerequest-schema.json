@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-servicerequest-schema.json",
+  "title": "ServiceRequest",
+  "description": "WHOOP ServiceRequest schema",
+  "required": [
+    "code",
+    "id",
+    "intent",
+    "status"
+  ],
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the service request",
+      "format": "uuid"
+    },
+    "status": {
+      "type": "string",
+      "description": "FHIR status of the service request"
+    },
+    "intent": {
+      "type": "string",
+      "description": "FHIR intent of the service request"
+    },
+    "code": {
+      "type": "string",
+      "description": "Code identifying the specific service or procedure requested"
+    },
+    "task_business_status": {
+      "type": "string",
+      "description": "Task business status for workflow tracking (e.g., 'Specimen collected', 'Results pending')"
+    },
+    "task_description": {
+      "type": "string",
+      "description": "Task description - free text explanation of what needs to be performed"
+    }
+  }
+}

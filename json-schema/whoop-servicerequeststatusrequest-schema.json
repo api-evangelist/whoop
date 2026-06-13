@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-servicerequeststatusrequest-schema.json",
+  "title": "ServiceRequestStatusRequest",
+  "description": "WHOOP ServiceRequestStatusRequest schema",
+  "type": "object",
+  "properties": {
+    "task_business_status": {
+      "type": "string",
+      "description": "Task business status for workflow tracking (e.g., 'Specimen collected', 'Results pending')"
+    },
+    "reason": {
+      "type": "string",
+      "description": "Optional reason for the task business status change"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-sleepstreamdatapoint-schema.json",
+  "title": "SleepStreamDataPoint",
+  "description": "WHOOP SleepStreamDataPoint schema",
+  "type": "object",
+  "properties": {
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "hr": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "skin_temp": {
+      "type": "number",
+      "format": "float"
+    },
+    "board_temp": {
+      "type": "number",
+      "format": "float"
+    },
+    "battery_temp": {
+      "type": "number",
+      "format": "float"
+    },
+    "is_sleeping": {
+      "type": "boolean"
+    },
+    "is_charging": {
+      "type": "boolean"
+    }
+  }
+}

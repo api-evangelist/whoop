@@ -45,6 +45,14 @@ apis:
         url: https://developer.whoop.com/docs/developing/overview/
       - type: OpenAPI
         url: https://developer.whoop.com/api/
+      - type: OpenAPISource
+        url: https://api.prod.whoop.com/developer/doc/openapi.json
+      - type: OpenAPIArtifact
+        url: openapi/whoop-openapi.yml
+      - type: Vocabulary
+        url: vocabulary/whoop-vocabulary.yml
+      - type: JSONLDContext
+        url: json-ld/whoop-context.jsonld
       - type: Authentication
         url: https://developer.whoop.com/docs/developing/oauth/
       - type: RateLimits

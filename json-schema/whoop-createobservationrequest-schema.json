@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-createobservationrequest-schema.json",
+  "title": "CreateObservationRequest",
+  "description": "optional list of observations to attach to the diagnostic report",
+  "type": "object",
+  "properties": {
+    "value_numeric": {
+      "type": "number",
+      "description": "the decimal value for this observation, if there is one",
+      "format": "double"
+    },
+    "value_text": {
+      "type": "string",
+      "description": "the text value for this observation, if there is one"
+    },
+    "unit": {
+      "type": "string",
+      "description": "the unit of this observation value, if there is one"
+    },
+    "status": {
+      "type": "string",
+      "description": "the status of this observation"
+    },
+    "code": {
+      "type": "string",
+      "description": "the code for this observation"
+    }
+  }
+}

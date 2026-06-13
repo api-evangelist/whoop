@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-diagnosticreportcreaterequest-schema.json",
+  "title": "DiagnosticReportCreateRequest",
+  "description": "WHOOP DiagnosticReportCreateRequest schema",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "description": "the status of the diagnostic report"
+    },
+    "observations": {
+      "type": "array",
+      "description": "optional list of observations to attach to the diagnostic report",
+      "items": {
+        "$ref": "#/components/schemas/CreateObservationRequest"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-partnertokenresponse-schema.json",
+  "title": "PartnerTokenResponse",
+  "description": "WHOOP PartnerTokenResponse schema",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string"
+    },
+    "expires_in": {
+      "type": "integer",
+      "format": "int32"
+    },
+    "token_type": {
+      "type": "string"
+    }
+  }
+}

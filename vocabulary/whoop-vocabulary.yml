@@ -1,0 +1,324 @@
+vocabulary:
+  name: WHOOP API Vocabulary
+  description: >-
+    Domain vocabulary for the WHOOP fitness and recovery platform API,
+    covering physiological data concepts including sleep, recovery, strain,
+    workouts, and health metrics from the WHOOP wearable band.
+  url: https://developer.whoop.com/api/
+  version: '2.0'
+
+terms:
+
+  # Core Data Types
+  - term: cycle
+    label: Physiological Cycle
+    type: object
+    description: >-
+      A WHOOP physiological cycle representing a single day's worth of data,
+      typically spanning from one sleep period to the next. Contains strain,
+      heart rate, and kilojoule data.
+    properties:
+      - id
+      - user_id
+      - created_at
+      - updated_at
+      - start
+      - end
+      - timezone_offset
+      - score_state
+      - score
+
+  - term: recovery
+    label: Recovery Score
+    type: object
+    description: >-
+      Daily recovery metric indicating how well the body has recovered from
+      previous strain. Includes HRV, resting heart rate, SpO2, and skin
+      temperature readings.
+    properties:
+      - cycle_id
+      - sleep_id
+      - user_id
+      - score_state
+      - score
+
+  - term: sleep
+    label: Sleep Activity
+    type: object
+    description: >-
+      A recorded sleep session including detailed stage breakdowns (light,
+      slow wave, REM), sleep performance, consistency and efficiency metrics.
+    properties:
+      - id
+      - user_id
+      - start
+      - end
+      - nap
+      - score_state
+      - score
+
+  - term: workout
+    label: Workout Activity
+    type: object
+    description: >-
+      A recorded exercise or physical activity session with strain, heart rate
+      zones, distance, altitude, and kilojoule expenditure data.
+    properties:
+      - id
+      - user_id
+      - sport_id
+      - start
+      - end
+      - score_state
+      - score
+
+  # Score Fields
+  - term: strain
+    label: Strain Score
+    type: number
+    format: float
+    description: >-
+      Cardiovascular load metric on a 0-21 scale measuring how hard the body
+      worked during a cycle or workout. Combines intensity and duration of
+      elevated heart rate.
+
+  - term: recovery_score
+    label: Recovery Score Value
+    type: integer
+    description: >-
+      Overall recovery percentage (0-100) indicating readiness to perform.
+      Derived from HRV, resting heart rate, sleep performance and SpO2.
+
+  - term: hrv_rmssd_milli
+    label: Heart Rate Variability (RMSSD)
+    type: number
+    format: float
+    description: >-
+      Root mean square of successive differences in milliseconds between
+      heartbeats. A key input to the recovery score; higher values indicate
+      better parasympathetic tone and recovery readiness.
+
+  - term: resting_heart_rate
+    label: Resting Heart Rate
+    type: integer
+    description: >-
+      Lowest heart rate measured during a sleep period, in beats per minute
+      (bpm). A lower resting heart rate generally correlates with better recovery.
+
+  - term: spo2_percentage
+    label: Blood Oxygen Saturation (SpO2)
+    type: number
+    format: float
+    description: >-
+      Peripheral oxygen saturation percentage measured during sleep.
+      Normal values are typically above 95%.
+
+  - term: skin_temp_celsius
+    label: Skin Temperature
+    type: number
+    format: float
+    description: >-
+      Skin temperature in degrees Celsius measured by the WHOOP sensor.
+      Deviations from baseline can indicate illness or physiological stress.
+
+  - term: kilojoule
+    label: Energy Expenditure
+    type: number
+    format: float
+    description: >-
+      Total energy expended in kilojoules during a workout or cycle period.
+
+  - term: average_heart_rate
+    label: Average Heart Rate
+    type: integer
+    description: Average heart rate in beats per minute during the activity or cycle period.
+
+  - term: max_heart_rate
+    label: Maximum Heart Rate
+    type: integer
+    description: Peak heart rate in beats per minute recorded during the activity or cycle.
+
+  # Sleep Stage Fields
+  - term: total_in_bed_time_milli
+    label: Total Time in Bed
+    type: integer
+    description: Total time spent in bed in milliseconds, including awake time.
+
+  - term: total_light_sleep_time_milli
+    label: Total Light Sleep Time
+    type: integer
+    description: Duration of light sleep stage in milliseconds during a sleep session.
+
+  - term: total_slow_wave_sleep_time_milli
+    label: Total Slow Wave Sleep Time
+    type: integer
+    description: >-
+      Duration of slow wave (deep) sleep in milliseconds. This restorative
+      stage is critical for physical recovery and memory consolidation.
+
+  - term: total_rem_sleep_time_milli
+    label: Total REM Sleep Time
+    type: integer
+    description: >-
+      Duration of rapid eye movement (REM) sleep in milliseconds. Important
+      for cognitive function, emotional regulation, and learning.
+
+  - term: sleep_performance_percentage
+    label: Sleep Performance
+    type: integer
+    description: >-
+      Percentage of sleep need fulfilled during the session. Calculated by
+      comparing actual sleep time to the recommended sleep need.
+
+  - term: sleep_consistency_percentage
+    label: Sleep Consistency
+    type: integer
+    description: >-
+      Measure of how consistent the user's sleep schedule is, comparing
+      current sleep timing to recent sleep patterns.
+
+  - term: sleep_efficiency_percentage
+    label: Sleep Efficiency
+    type: number
+    format: float
+    description: >-
+      Percentage of time in bed that was actually spent sleeping (not awake).
+      Higher values indicate better sleep quality.
+
+  - term: respiratory_rate
+    label: Respiratory Rate
+    type: number
+    format: float
+    description: Average breaths per minute during sleep, measured by the WHOOP sensor.
+
+  - term: disturbance_count
+    label: Sleep Disturbances
+    type: integer
+    description: Number of times sleep was disrupted or interrupted during the session.
+
+  - term: sleep_cycle_count
+    label: Sleep Cycles
+    type: integer
+    description: Number of complete sleep cycles (typically 90 minutes each) completed during the session.
+
+  # Heart Rate Zones
+  - term: zone_duration
+    label: Heart Rate Zone Durations
+    type: object
+    description: >-
+      Time spent in each heart rate zone (0-5) during a workout, measured
+      in milliseconds. Zones range from zone 0 (minimal effort) to zone 5 (maximum effort).
+
+  # Sleep Need
+  - term: sleep_needed
+    label: Sleep Need
+    type: object
+    description: >-
+      Calculated sleep need in milliseconds, accounting for baseline requirement,
+      sleep debt, recent strain, and any naps taken.
+
+  - term: baseline_milli
+    label: Baseline Sleep Need
+    type: integer
+    description: Individual baseline sleep requirement in milliseconds based on historical data.
+
+  - term: need_from_sleep_debt_milli
+    label: Additional Sleep from Debt
+    type: integer
+    description: Additional sleep needed in milliseconds to pay off accumulated sleep debt.
+
+  - term: need_from_recent_strain_milli
+    label: Additional Sleep from Strain
+    type: integer
+    description: Additional sleep needed in milliseconds due to recent physical strain levels.
+
+  # Common Fields
+  - term: score_state
+    label: Score State
+    type: string
+    enum:
+      - SCORED
+      - PENDING_SCORE
+      - UNSCORABLE
+    description: >-
+      Indicates whether a record has been fully scored (SCORED), is awaiting
+      scoring (PENDING_SCORE), or cannot be scored due to insufficient data (UNSCORABLE).
+
+  - term: nap
+    label: Nap Indicator
+    type: boolean
+    description: Boolean flag indicating whether a sleep session is classified as a nap (true) or a full night's sleep (false).
+
+  - term: timezone_offset
+    label: Timezone Offset
+    type: string
+    description: The UTC offset for the timezone in which the activity was recorded (e.g., "-05:00").
+
+  - term: sport_id
+    label: Sport Identifier
+    type: integer
+    description: >-
+      Numeric identifier for the type of sport or activity recorded during a workout.
+      Maps to a sport/activity type such as running, cycling, strength training, etc.
+
+  # User Fields
+  - term: user_id
+    label: User Identifier
+    type: integer
+    description: Unique numeric identifier for the WHOOP member.
+
+  - term: user_calibrating
+    label: User Calibrating
+    type: boolean
+    description: >-
+      Indicates whether the WHOOP system is still in the process of calibrating
+      to the user's baseline. Recovery scores during calibration may be less accurate.
+
+  # Body Measurements
+  - term: height_meter
+    label: Height
+    type: number
+    format: float
+    description: User's height in meters.
+
+  - term: weight_kilogram
+    label: Weight
+    type: number
+    format: float
+    description: User's weight in kilograms.
+
+  - term: max_heart_rate_bpm
+    label: Maximum Heart Rate (BPM)
+    type: integer
+    description: User's estimated or measured maximum heart rate in beats per minute.
+
+  # Auth Scopes
+  - term: read_recovery
+    label: Read Recovery Scope
+    type: string
+    description: OAuth 2.0 scope permitting read access to recovery data including HRV and resting heart rate.
+
+  - term: read_cycles
+    label: Read Cycles Scope
+    type: string
+    description: OAuth 2.0 scope permitting read access to physiological cycle data.
+
+  - term: read_workout
+    label: Read Workout Scope
+    type: string
+    description: OAuth 2.0 scope permitting read access to workout and strain data.
+
+  - term: read_sleep
+    label: Read Sleep Scope
+    type: string
+    description: OAuth 2.0 scope permitting read access to sleep stage and performance data.
+
+  - term: read_profile
+    label: Read Profile Scope
+    type: string
+    description: OAuth 2.0 scope permitting read access to basic user profile information.
+
+  - term: read_body_measurement
+    label: Read Body Measurement Scope
+    type: string
+    description: OAuth 2.0 scope permitting read access to user body measurements (height, weight, max heart rate).

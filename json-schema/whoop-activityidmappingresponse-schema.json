@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-activityidmappingresponse-schema.json",
+  "title": "ActivityIdMappingResponse",
+  "description": "WHOOP ActivityIdMappingResponse schema",
+  "required": [
+    "v2_activity_id"
+  ],
+  "type": "object",
+  "properties": {
+    "v2_activity_id": {
+      "type": "string",
+      "description": "V2 Unique identifier for the activity",
+      "format": "uuid",
+      "example": "ecfc6a15-4661-442f-a9a4-f160dd7afae8"
+    }
+  }
+}

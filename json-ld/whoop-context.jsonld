@@ -1,0 +1,191 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "whoop": "https://developer.whoop.com/api/#",
+    "id": "@id",
+    "type": "@type",
+
+    "WhoopCycle": {
+      "@id": "whoop:Cycle",
+      "@type": "@id",
+      "@context": {
+        "id": {"@id": "whoop:id", "@type": "xsd:integer"},
+        "user_id": {"@id": "whoop:user_id", "@type": "xsd:integer"},
+        "created_at": {"@id": "schema:dateCreated", "@type": "xsd:dateTime"},
+        "updated_at": {"@id": "schema:dateModified", "@type": "xsd:dateTime"},
+        "start": {"@id": "schema:startDate", "@type": "xsd:dateTime"},
+        "end": {"@id": "schema:endDate", "@type": "xsd:dateTime"},
+        "timezone_offset": {"@id": "whoop:timezone_offset", "@type": "xsd:string"},
+        "score_state": {"@id": "whoop:score_state", "@type": "xsd:string"},
+        "score": {"@id": "whoop:CycleScore", "@type": "@id"}
+      }
+    },
+
+    "CycleScore": {
+      "@id": "whoop:CycleScore",
+      "@type": "@id",
+      "@context": {
+        "strain": {"@id": "whoop:strain", "@type": "xsd:float"},
+        "kilojoule": {"@id": "whoop:kilojoule", "@type": "xsd:float"},
+        "average_heart_rate": {"@id": "whoop:average_heart_rate", "@type": "xsd:integer"},
+        "max_heart_rate": {"@id": "whoop:max_heart_rate", "@type": "xsd:integer"}
+      }
+    },
+
+    "WhoopRecovery": {
+      "@id": "whoop:Recovery",
+      "@type": "@id",
+      "@context": {
+        "cycle_id": {"@id": "whoop:cycle_id", "@type": "xsd:integer"},
+        "sleep_id": {"@id": "whoop:sleep_id", "@type": "xsd:integer"},
+        "user_id": {"@id": "whoop:user_id", "@type": "xsd:integer"},
+        "created_at": {"@id": "schema:dateCreated", "@type": "xsd:dateTime"},
+        "updated_at": {"@id": "schema:dateModified", "@type": "xsd:dateTime"},
+        "score_state": {"@id": "whoop:score_state", "@type": "xsd:string"},
+        "score": {"@id": "whoop:RecoveryScore", "@type": "@id"}
+      }
+    },
+
+    "RecoveryScore": {
+      "@id": "whoop:RecoveryScore",
+      "@type": "@id",
+      "@context": {
+        "user_calibrating": {"@id": "whoop:user_calibrating", "@type": "xsd:boolean"},
+        "recovery_score": {"@id": "whoop:recovery_score", "@type": "xsd:integer"},
+        "resting_heart_rate": {"@id": "whoop:resting_heart_rate", "@type": "xsd:integer"},
+        "hrv_rmssd_milli": {"@id": "whoop:hrv_rmssd_milli", "@type": "xsd:float"},
+        "spo2_percentage": {"@id": "whoop:spo2_percentage", "@type": "xsd:float"},
+        "skin_temp_celsius": {"@id": "whoop:skin_temp_celsius", "@type": "xsd:float"}
+      }
+    },
+
+    "WhoopSleep": {
+      "@id": "whoop:Sleep",
+      "@type": "@id",
+      "@context": {
+        "id": {"@id": "whoop:id", "@type": "xsd:integer"},
+        "user_id": {"@id": "whoop:user_id", "@type": "xsd:integer"},
+        "created_at": {"@id": "schema:dateCreated", "@type": "xsd:dateTime"},
+        "updated_at": {"@id": "schema:dateModified", "@type": "xsd:dateTime"},
+        "start": {"@id": "schema:startDate", "@type": "xsd:dateTime"},
+        "end": {"@id": "schema:endDate", "@type": "xsd:dateTime"},
+        "timezone_offset": {"@id": "whoop:timezone_offset", "@type": "xsd:string"},
+        "nap": {"@id": "whoop:nap", "@type": "xsd:boolean"},
+        "score_state": {"@id": "whoop:score_state", "@type": "xsd:string"},
+        "score": {"@id": "whoop:SleepScore", "@type": "@id"}
+      }
+    },
+
+    "SleepScore": {
+      "@id": "whoop:SleepScore",
+      "@type": "@id",
+      "@context": {
+        "stage_summary": {"@id": "whoop:SleepStageSummary", "@type": "@id"},
+        "sleep_needed": {"@id": "whoop:SleepNeeded", "@type": "@id"},
+        "respiratory_rate": {"@id": "whoop:respiratory_rate", "@type": "xsd:float"},
+        "sleep_performance_percentage": {"@id": "whoop:sleep_performance_percentage", "@type": "xsd:integer"},
+        "sleep_consistency_percentage": {"@id": "whoop:sleep_consistency_percentage", "@type": "xsd:integer"},
+        "sleep_efficiency_percentage": {"@id": "whoop:sleep_efficiency_percentage", "@type": "xsd:float"}
+      }
+    },
+
+    "SleepStageSummary": {
+      "@id": "whoop:SleepStageSummary",
+      "@type": "@id",
+      "@context": {
+        "total_in_bed_time_milli": {"@id": "whoop:total_in_bed_time_milli", "@type": "xsd:integer"},
+        "total_awake_time_milli": {"@id": "whoop:total_awake_time_milli", "@type": "xsd:integer"},
+        "total_no_data_time_milli": {"@id": "whoop:total_no_data_time_milli", "@type": "xsd:integer"},
+        "total_light_sleep_time_milli": {"@id": "whoop:total_light_sleep_time_milli", "@type": "xsd:integer"},
+        "total_slow_wave_sleep_time_milli": {"@id": "whoop:total_slow_wave_sleep_time_milli", "@type": "xsd:integer"},
+        "total_rem_sleep_time_milli": {"@id": "whoop:total_rem_sleep_time_milli", "@type": "xsd:integer"},
+        "sleep_cycle_count": {"@id": "whoop:sleep_cycle_count", "@type": "xsd:integer"},
+        "disturbance_count": {"@id": "whoop:disturbance_count", "@type": "xsd:integer"}
+      }
+    },
+
+    "SleepNeeded": {
+      "@id": "whoop:SleepNeeded",
+      "@type": "@id",
+      "@context": {
+        "baseline_milli": {"@id": "whoop:baseline_milli", "@type": "xsd:integer"},
+        "need_from_sleep_debt_milli": {"@id": "whoop:need_from_sleep_debt_milli", "@type": "xsd:integer"},
+        "need_from_recent_strain_milli": {"@id": "whoop:need_from_recent_strain_milli", "@type": "xsd:integer"},
+        "need_from_recent_nap_milli": {"@id": "whoop:need_from_recent_nap_milli", "@type": "xsd:integer"}
+      }
+    },
+
+    "WhoopWorkout": {
+      "@id": "whoop:WorkoutV2",
+      "@type": "@id",
+      "@context": {
+        "id": {"@id": "whoop:id", "@type": "xsd:integer"},
+        "user_id": {"@id": "whoop:user_id", "@type": "xsd:integer"},
+        "created_at": {"@id": "schema:dateCreated", "@type": "xsd:dateTime"},
+        "updated_at": {"@id": "schema:dateModified", "@type": "xsd:dateTime"},
+        "start": {"@id": "schema:startDate", "@type": "xsd:dateTime"},
+        "end": {"@id": "schema:endDate", "@type": "xsd:dateTime"},
+        "timezone_offset": {"@id": "whoop:timezone_offset", "@type": "xsd:string"},
+        "sport_id": {"@id": "whoop:sport_id", "@type": "xsd:integer"},
+        "score_state": {"@id": "whoop:score_state", "@type": "xsd:string"},
+        "score": {"@id": "whoop:WorkoutScore", "@type": "@id"}
+      }
+    },
+
+    "WorkoutScore": {
+      "@id": "whoop:WorkoutScore",
+      "@type": "@id",
+      "@context": {
+        "strain": {"@id": "whoop:strain", "@type": "xsd:float"},
+        "average_heart_rate": {"@id": "whoop:average_heart_rate", "@type": "xsd:integer"},
+        "max_heart_rate": {"@id": "whoop:max_heart_rate", "@type": "xsd:integer"},
+        "kilojoule": {"@id": "whoop:kilojoule", "@type": "xsd:float"},
+        "percent_recorded": {"@id": "whoop:percent_recorded", "@type": "xsd:float"},
+        "distance_meter": {"@id": "whoop:distance_meter", "@type": "xsd:float"},
+        "altitude_gain_meter": {"@id": "whoop:altitude_gain_meter", "@type": "xsd:float"},
+        "altitude_change_meter": {"@id": "whoop:altitude_change_meter", "@type": "xsd:float"},
+        "zone_duration": {"@id": "whoop:ZoneDurations", "@type": "@id"}
+      }
+    },
+
+    "ZoneDurations": {
+      "@id": "whoop:ZoneDurations",
+      "@type": "@id",
+      "@context": {
+        "zone_zero_milli": {"@id": "whoop:zone_zero_milli", "@type": "xsd:integer"},
+        "zone_one_milli": {"@id": "whoop:zone_one_milli", "@type": "xsd:integer"},
+        "zone_two_milli": {"@id": "whoop:zone_two_milli", "@type": "xsd:integer"},
+        "zone_three_milli": {"@id": "whoop:zone_three_milli", "@type": "xsd:integer"},
+        "zone_four_milli": {"@id": "whoop:zone_four_milli", "@type": "xsd:integer"},
+        "zone_five_milli": {"@id": "whoop:zone_five_milli", "@type": "xsd:integer"}
+      }
+    },
+
+    "WhoopUserProfile": {
+      "@id": "whoop:UserBasicProfile",
+      "@type": "@id",
+      "@context": {
+        "user_id": {"@id": "whoop:user_id", "@type": "xsd:integer"},
+        "email": {"@id": "schema:email", "@type": "xsd:string"},
+        "first_name": {"@id": "schema:givenName", "@type": "xsd:string"},
+        "last_name": {"@id": "schema:familyName", "@type": "xsd:string"}
+      }
+    },
+
+    "WhoopBodyMeasurement": {
+      "@id": "whoop:UserBodyMeasurement",
+      "@type": "@id",
+      "@context": {
+        "height_meter": {"@id": "schema:height", "@type": "xsd:float"},
+        "weight_kilogram": {"@id": "schema:weight", "@type": "xsd:float"},
+        "max_heart_rate_bpm": {"@id": "whoop:max_heart_rate_bpm", "@type": "xsd:integer"}
+      }
+    },
+
+    "score_state": {"@id": "whoop:score_state", "@type": "xsd:string"},
+    "next_token": {"@id": "whoop:next_token", "@type": "xsd:string"},
+    "records": {"@id": "whoop:records", "@container": "@list"}
+  }
+}

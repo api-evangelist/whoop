@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/whoop/main/json-schema/whoop-recovery-schema.json",
+  "title": "Recovery",
+  "description": "WHOOP Recovery schema",
+  "required": [
+    "created_at",
+    "cycle_id",
+    "score_state",
+    "sleep_id",
+    "updated_at",
+    "user_id"
+  ],
+  "type": "object",
+  "properties": {
+    "cycle_id": {
+      "type": "integer",
+      "description": "The Recovery represents how recovered the user is for this physiological cycle",
+      "format": "int64",
+      "example": 93845
+    },
+    "sleep_id": {
+      "type": "string",
+      "description": "ID of the Sleep associated with the Recovery",
+      "format": "uuid",
+      "example": "123e4567-e89b-12d3-a456-426614174000"
+    },
+    "user_id": {
+      "type": "integer",
+      "description": "The WHOOP User for the recovery",
+      "format": "int64",
+      "example": 10129
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The time the recovery was recorded in WHOOP",
+      "format": "date-time",
+      "example": "2022-04-24T11:25:44.774Z"
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "The time the recovery was last updated in WHOOP",
+      "format": "date-time",
+      "example": "2022-04-24T14:25:44.774Z"
+    },
+    "score_state": {
+      "type": "string",
+      "description": "`SCORED` means the recovery was scored and the measurement values will be present. `PENDING_SCORE` means WHOOP is currently evaluating the cycle. `UNSCORABLE` means this activity could not be scored for some reason - commonly because there is not enough user metric data for the time range.",
+      "example": "SCORED",
+      "enum": [
+        "SCORED",
+        "PENDING_SCORE",
+        "UNSCORABLE"
+      ]
+    },
+    "score": {
+      "$ref": "#/components/schemas/RecoveryScore"
+    }
+  }
+}
