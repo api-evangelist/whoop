@@ -1,0 +1,56 @@
+name: WHOOP API FinOps
+description: >-
+  FinOps Framework 1.0 FOCUS-aligned cost and usage profile for the WHOOP
+  Developer API. The WHOOP API is currently provided free of charge to
+  developers with an active WHOOP membership. Cost considerations are primarily
+  related to the required WHOOP hardware and membership subscription, not
+  direct API call charges.
+specificationVersion: '1.0'
+url: https://developer.whoop.com/docs/developing/getting-started/
+provider: WHOOP
+service: WHOOP Developer API
+focusVersion: '1.0'
+costModel:
+  type: free
+  description: >-
+    API access is provided at no additional cost. There are no per-call charges,
+    data transfer fees, or API subscription tiers. Access requires an active
+    WHOOP membership which covers both hardware and platform subscription costs.
+charges:
+  - chargeType: API Access
+    chargePeriod: monthly
+    amount: 0
+    currency: USD
+    description: No charge for API access itself.
+  - chargeType: WHOOP Membership (prerequisite)
+    chargePeriod: monthly
+    amount: null
+    currency: USD
+    description: >-
+      An active WHOOP membership (device + subscription) is required to
+      register as a developer. Membership pricing is set by WHOOP and
+      is separate from API developer access. Visit whoop.com for current
+      membership pricing.
+    url: https://www.whoop.com
+usage:
+  billableMetrics: []
+  freeTierIncludes:
+    - 100 API requests per minute
+    - 10000 API requests per day
+    - Up to 5 registered applications
+    - All API endpoints (cycles, sleep, recovery, workout, profile, body measurements)
+    - Webhook notifications (v2)
+optimization:
+  recommendations:
+    - description: >-
+        Implement token caching and refresh logic to avoid unnecessary
+        re-authorization calls that count against rate limits.
+    - description: >-
+        Use pagination parameters (nextToken, limit) efficiently to retrieve
+        only the data needed and minimize API calls.
+    - description: >-
+        Leverage webhooks (v2) for event-driven data updates rather than
+        polling endpoints repeatedly, which preserves rate limit budget.
+    - description: >-
+        If building a high-volume application, proactively request rate limit
+        increases from WHOOP before launching to avoid 429 errors in production.

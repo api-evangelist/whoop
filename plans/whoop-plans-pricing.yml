@@ -1,0 +1,35 @@
+name: WHOOP API Plans and Pricing
+description: >-
+  The WHOOP Developer Platform API access is currently free of charge. Developers
+  must have an active WHOOP membership (which includes the WHOOP hardware device
+  and subscription) to register and use the API. There is no separate API pricing
+  tier; API access is provided to any developer with an active WHOOP account.
+specificationVersion: '0.1'
+url: https://developer.whoop.com/docs/developing/getting-started/
+plans:
+  - name: Developer (Free)
+    description: >-
+      Free access to the WHOOP API for developers with an active WHOOP membership.
+      Developers can create up to 5 applications in the Developer Dashboard.
+      Additional apps are available upon request via a submission form.
+    pricing:
+      model: free
+      amount: 0
+      currency: USD
+      period: month
+    features:
+      - Access to all WHOOP v2 REST API endpoints
+      - Sleep, recovery, strain, workout, and cycle data
+      - User profile and body measurement endpoints
+      - OAuth 2.0 authorization code flow
+      - Webhook support (v2)
+      - Up to 5 registered applications
+      - Default rate limits (100 req/min, 10,000 req/day)
+    rateLimits:
+      requestsPerMinute: 100
+      requestsPerDay: 10000
+    notes: >-
+      WHOOP membership (device + subscription) is required to access the
+      Developer Platform. Rate limit increases are available upon request
+      by submitting a use-case description via the provided Typeform link.
+      Apps must be submitted for approval before public launch.

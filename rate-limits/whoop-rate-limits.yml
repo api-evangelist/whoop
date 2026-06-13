@@ -1,0 +1,46 @@
+name: WHOOP API Rate Limits
+description: >-
+  The WHOOP API enforces two concurrent rate limit windows for all API clients:
+  a per-minute limit and a per-day limit. Rate limit status is communicated via
+  standard response headers on every API response. Clients that exceed either
+  limit receive a 429 Too Many Requests HTTP response. Higher limits are
+  available upon request.
+specificationVersion: '0.1'
+url: https://developer.whoop.com/docs/developing/rate-limiting/
+limits:
+  - name: Per-Minute Rate Limit
+    description: Maximum number of API requests allowed per 60-second window.
+    limit: 100
+    window: 60
+    windowUnit: seconds
+    scope: application
+  - name: Per-Day Rate Limit
+    description: Maximum number of API requests allowed per 24-hour window.
+    limit: 10000
+    window: 86400
+    windowUnit: seconds
+    scope: application
+headers:
+  - name: X-RateLimit-Limit
+    description: >-
+      Shows current rate limit values and their time windows.
+      Example: "100;window=60, 10000;window=86400"
+  - name: X-RateLimit-Remaining
+    description: >-
+      The number of requests your application may execute within the current
+      time window before WHOOP will reject subsequent requests.
+  - name: X-RateLimit-Reset
+    description: >-
+      The number of seconds that need to elapse before the X-RateLimit-Remaining
+      header resets to its maximum value.
+errorResponse:
+  statusCode: 429
+  description: >-
+    Returned when either the per-minute or per-day rate limit has been exceeded.
+    The X-RateLimit-Reset header indicates when the limit resets.
+increasedLimits:
+  available: true
+  description: >-
+    WHOOP can increase rate limits upon request. Developers should submit a
+    request including their use case details via the Typeform link provided
+    in the rate limiting documentation at developer.whoop.com/docs/developing/rate-limiting/

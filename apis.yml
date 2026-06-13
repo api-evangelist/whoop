@@ -1,0 +1,82 @@
+aid: whoop
+name: WHOOP
+description: >-
+  WHOOP is a fitness and recovery wearable platform providing a REST API for
+  accessing sleep, recovery, strain, and workout metrics from the WHOOP band.
+  The API uses OAuth 2.0 authorization code flow with Bearer tokens to allow
+  developers to build applications that access member health and performance
+  data including physiological cycles, sleep stages, recovery scores, strain,
+  heart rate, body measurements, and workout records.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/whoop/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Fitness
+  - Wearables
+  - Health
+  - Recovery
+  - Sleep
+  - Workout
+  - Strain
+  - Heart Rate
+  - Performance
+apis:
+  - name: WHOOP API
+    description: >-
+      The WHOOP REST API provides access to member health and performance data
+      including physiological cycles, sleep, recovery, strain, workouts, body
+      measurements, and basic profile information. Authentication is handled via
+      OAuth 2.0 authorization code flow.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.whoop.com/api/
+    baseURL: https://api.prod.whoop.com
+    tags:
+      - Fitness
+      - Wearables
+      - Health
+      - Sleep
+      - Recovery
+      - Workout
+    properties:
+      - type: Documentation
+        url: https://developer.whoop.com/docs/developing/overview/
+      - type: OpenAPI
+        url: https://developer.whoop.com/api/
+      - type: Authentication
+        url: https://developer.whoop.com/docs/developing/oauth/
+      - type: RateLimits
+        url: https://developer.whoop.com/docs/developing/rate-limiting/
+      - type: GettingStarted
+        url: https://developer.whoop.com/docs/developing/getting-started/
+    contact:
+      - FN: WHOOP Developer Support
+        url: https://developer.whoop.com/docs/developing/support/
+common:
+  - type: Website
+    url: https://www.whoop.com
+  - type: Documentation
+    url: https://developer.whoop.com
+  - type: GitHubOrg
+    url: https://github.com/WhoopInc
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/whoop
+  - type: Blog
+    url: https://engineering.prod.whoop.com
+  - type: Pricing
+    url: https://developer.whoop.com/docs/developing/getting-started/
+  - type: StatusPage
+    url: https://status.whoop.com
+  - type: X
+    url: https://x.com/whoop
+  - type: Plans
+    url: plans/whoop-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/whoop-rate-limits.yml
+  - type: FinOps
+    url: finops/whoop-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
