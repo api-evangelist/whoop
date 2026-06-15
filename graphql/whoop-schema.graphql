@@ -1,0 +1,637 @@
+"""
+WHOOP GraphQL Schema
+Conceptual schema derived from the WHOOP REST API.
+WHOOP is a fitness wearable platform providing access to sleep, recovery,
+strain, and workout metrics through OAuth 2.0 authorization.
+"""
+
+# ─── Scalars ───────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar UUID
+scalar Float32
+
+# ─── Enums ─────────────────────────────────────────────────────────────────────
+
+"""Score state for a physiological entity."""
+enum ScoreState {
+  SCORED
+  PENDING_SCORE
+  UNSCORABLE
+}
+
+"""Heart-rate signal types available in a sleep stream."""
+enum SleepStreamSignalType {
+  HR
+  SKIN_TEMP
+  BOARD_TEMP
+  BATTERY_TEMP
+  SLEEP_CLASSIFICATION
+  CHARGING_STATUS
+}
+
+"""FHIR status values for a service request."""
+enum ServiceRequestStatus {
+  DRAFT
+  ACTIVE
+  ON_HOLD
+  REVOKED
+  COMPLETED
+  ENTERED_IN_ERROR
+  UNKNOWN
+}
+
+"""FHIR intent values for a service request."""
+enum ServiceRequestIntent {
+  PROPOSAL
+  PLAN
+  DIRECTIVE
+  ORDER
+  ORIGINAL_ORDER
+  REFLEX_ORDER
+  FILLER_ORDER
+  INSTANCE_ORDER
+  OPTION
+}
+
+"""Observation status values."""
+enum ObservationStatus {
+  REGISTERED
+  PRELIMINARY
+  FINAL
+  AMENDED
+  CANCELLED
+  ENTERED_IN_ERROR
+  UNKNOWN
+}
+
+"""Diagnostic report status values."""
+enum DiagnosticReportStatus {
+  REGISTERED
+  PARTIAL
+  PRELIMINARY
+  FINAL
+  AMENDED
+  CORRECTED
+  APPENDED
+  CANCELLED
+  ENTERED_IN_ERROR
+  UNKNOWN
+}
+
+"""OAuth scopes available for WHOOP API access."""
+enum OAuthScope {
+  READ_RECOVERY
+  READ_CYCLES
+  READ_WORKOUT
+  READ_SLEEP
+  READ_PROFILE
+  READ_BODY_MEASUREMENT
+}
+
+"""Heart rate zones for workout analysis."""
+enum HeartRateZone {
+  ZONE_ZERO
+  ZONE_ONE
+  ZONE_TWO
+  ZONE_THREE
+  ZONE_FOUR
+  ZONE_FIVE
+}
+
+# ─── Core Types ────────────────────────────────────────────────────────────────
+
+"""Basic profile information for a WHOOP member."""
+type UserBasicProfile {
+  userId: Int!
+  email: String!
+  firstName: String!
+  lastName: String!
+}
+
+"""Body measurements for a WHOOP member."""
+type UserBodyMeasurement {
+  heightMeter: Float!
+  weightKilogram: Float!
+  maxHeartRate: Int!
+}
+
+"""A physiological cycle representing one day of a WHOOP member's activity."""
+type Cycle {
+  id: Int!
+  userId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  start: DateTime!
+  end: DateTime
+  timezoneOffset: String!
+  scoreState: ScoreState!
+  score: CycleScore
+  sleep: Sleep
+  recovery: Recovery
+}
+
+"""Scoring metrics for a physiological cycle."""
+type CycleScore {
+  strain: Float!
+  kilojoule: Float!
+  averageHeartRate: Int!
+  maxHeartRate: Int!
+}
+
+"""A sleep activity recorded by the WHOOP band."""
+type Sleep {
+  id: UUID!
+  cycleId: Int!
+  v1Id: Int
+  userId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  start: DateTime!
+  end: DateTime!
+  timezoneOffset: String!
+  nap: Boolean!
+  scoreState: ScoreState!
+  score: SleepScore
+  stream(types: [SleepStreamSignalType!]): SleepStreamResponse
+}
+
+"""Scoring and analysis of a sleep activity."""
+type SleepScore {
+  stageSummary: SleepStageSummary!
+  sleepNeeded: SleepNeeded!
+  respiratoryRate: Float
+  sleepPerformancePercentage: Float
+  sleepConsistencyPercentage: Float
+  sleepEfficiencyPercentage: Float
+}
+
+"""Breakdown of time spent in each sleep stage."""
+type SleepStageSummary {
+  totalInBedTimeMilli: Int!
+  totalAwakeTimeMilli: Int!
+  totalNoDataTimeMilli: Int!
+  totalLightSleepTimeMilli: Int!
+  totalSlowWaveSleepTimeMilli: Int!
+  totalRemSleepTimeMilli: Int!
+  sleepCycleCount: Int!
+  disturbanceCount: Int!
+}
+
+"""Sleep need breakdown for a given sleep activity."""
+type SleepNeeded {
+  baselineMilli: Int!
+  needFromSleepDebtMilli: Int!
+  needFromRecentStrainMilli: Int!
+  needFromRecentNapMilli: Int!
+}
+
+"""Raw signal stream data for a sleep activity."""
+type SleepStreamResponse {
+  stream: [SleepStreamDataPoint!]!
+  algorithmVersion: String
+}
+
+"""A single data point within a sleep signal stream."""
+type SleepStreamDataPoint {
+  timestamp: DateTime!
+  hr: Int
+  skinTemp: Float
+  boardTemp: Float
+  batteryTemp: Float
+  isSleeping: Boolean
+  isCharging: Boolean
+}
+
+"""Recovery data representing how prepared a user is for strain."""
+type Recovery {
+  cycleId: Int!
+  sleepId: UUID!
+  userId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  scoreState: ScoreState!
+  score: RecoveryScore
+  sleep: Sleep
+  cycle: Cycle
+}
+
+"""Scoring metrics for a recovery period."""
+type RecoveryScore {
+  userCalibrating: Boolean!
+  recoveryScore: Float!
+  restingHeartRate: Float!
+  hrvRmssdMilli: Float!
+  spo2Percentage: Float
+  skinTempCelsius: Float
+}
+
+"""A workout activity performed by a WHOOP member."""
+type Workout {
+  id: UUID!
+  v1Id: Int
+  userId: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  start: DateTime!
+  end: DateTime!
+  timezoneOffset: String!
+  sportName: String!
+  sportId: Int
+  scoreState: ScoreState!
+  score: WorkoutScore
+}
+
+"""Scoring and analysis of a workout activity."""
+type WorkoutScore {
+  strain: Float!
+  averageHeartRate: Int!
+  maxHeartRate: Int!
+  kilojoule: Float!
+  percentRecorded: Float!
+  distanceMeter: Float
+  altitudeGainMeter: Float
+  altitudeChangeMeter: Float
+  zoneDurations: ZoneDurations!
+}
+
+"""Time spent in each heart rate zone during a workout."""
+type ZoneDurations {
+  zoneZeroMilli: Int!
+  zoneOneMilli: Int!
+  zoneTwoMilli: Int!
+  zoneThreeMilli: Int!
+  zoneFourMilli: Int!
+  zoneFiveMilli: Int!
+}
+
+"""Activity ID mapping between v1 and v2 identifiers."""
+type ActivityIdMapping {
+  v2ActivityId: UUID!
+}
+
+# ─── Partner / Lab Types ───────────────────────────────────────────────────────
+
+"""A lab requisition managed through the WHOOP Partner API."""
+type LabRequisition {
+  id: UUID!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  patient: PatientCore!
+  serviceRequests: [ServiceRequest!]!
+  appointments: [Appointment!]!
+}
+
+"""Core patient information associated with a lab requisition."""
+type PatientCore {
+  id: UUID!
+}
+
+"""Detailed patient information for Unilabs integration."""
+type UnilabsPatient {
+  id: UUID!
+  firstName: String!
+  lastName: String!
+  birthDate: String!
+  gender: String
+  email: String
+  phone: String
+  nationality: String
+  emiratesId: String
+  passportNo: String
+}
+
+"""A service request within a lab requisition."""
+type ServiceRequest {
+  id: UUID!
+  status: String!
+  intent: String!
+  code: String!
+  taskBusinessStatus: String
+  taskDescription: String
+}
+
+"""An appointment linked to one or more service requests."""
+type Appointment {
+  serviceRequestIds: [UUID!]!
+  startTime: DateTime!
+}
+
+"""A Unilabs-specific appointment including collection address."""
+type UnilabsAppointment {
+  serviceRequestIds: [UUID!]!
+  startTime: DateTime!
+  slotId: String
+  collectionAddress: UnilabsCollectionAddress
+}
+
+"""Physical address for a Unilabs specimen collection appointment."""
+type UnilabsCollectionAddress {
+  building: String!
+  area: String!
+  emirate: String!
+  landmark: String
+  flatNo: String
+}
+
+"""A diagnostic report with observations for a service request."""
+type DiagnosticReport {
+  status: DiagnosticReportStatus!
+  observations: [Observation!]
+}
+
+"""A single clinical observation attached to a diagnostic report."""
+type Observation {
+  code: String!
+  status: ObservationStatus!
+  valueNumeric: Float
+  valueText: String
+  unit: String
+}
+
+# ─── Heart Rate & Physiological Signal Types ──────────────────────────────────
+
+"""Aggregated heart rate statistics over a time window."""
+type HeartRateStats {
+  averageBpm: Int!
+  maxBpm: Int!
+  minBpm: Int
+  restingBpm: Float
+}
+
+"""Heart Rate Variability metrics for a recovery period."""
+type HRVMetrics {
+  rmssdMilli: Float!
+  sdnn: Float
+  pnn50: Float
+}
+
+"""Blood oxygen saturation (SpO2) measurement."""
+type SpO2Measurement {
+  percentage: Float!
+  recordedAt: DateTime!
+}
+
+"""Skin temperature reading from the WHOOP band."""
+type SkinTemperature {
+  celsius: Float!
+  recordedAt: DateTime!
+}
+
+"""Respiratory rate observation during sleep."""
+type RespiratoryRate {
+  breathsPerMinute: Float!
+  recordedAt: DateTime!
+}
+
+"""Aggregated strain metrics over a day or activity."""
+type StrainMetrics {
+  strainScore: Float!
+  kilojoule: Float!
+  averageHeartRate: Int!
+  maxHeartRate: Int!
+}
+
+"""A named WHOOP sport/activity type."""
+type Sport {
+  id: Int!
+  name: String!
+  category: SportCategory
+}
+
+"""Category grouping for WHOOP sport types."""
+type SportCategory {
+  id: Int!
+  name: String!
+}
+
+"""Summary of activity during a physiological cycle."""
+type CycleSummary {
+  cycleId: Int!
+  strain: StrainMetrics
+  recovery: RecoveryScore
+  sleep: SleepScore
+  workouts: [Workout!]
+}
+
+"""A webhook event emitted by WHOOP when data changes."""
+type WebhookEvent {
+  id: UUID!
+  userId: Int!
+  eventType: WebhookEventType!
+  traceId: String
+  payload: WebhookPayload
+}
+
+"""Payload included with a WHOOP webhook event."""
+type WebhookPayload {
+  id: String!
+  userId: Int!
+}
+
+"""OAuth token information returned after authorization."""
+type OAuthToken {
+  accessToken: String!
+  refreshToken: String
+  tokenType: String!
+  expiresIn: Int!
+  scope: String
+}
+
+"""Pagination metadata for a collection response."""
+type PageInfo {
+  hasNextPage: Boolean!
+  nextToken: String
+  totalCount: Int
+}
+
+"""A WHOOP member's subscription and device information."""
+type MemberStatus {
+  userId: Int!
+  memberSince: DateTime
+  deviceModel: String
+  firmwareVersion: String
+  batteryLevel: Int
+}
+
+"""Configuration for an OAuth application registered with WHOOP."""
+type OAuthApplication {
+  clientId: String!
+  name: String!
+  scopes: [OAuthScope!]!
+  webhookEnabled: Boolean!
+  redirectUris: [String!]
+}
+
+"""Enum for types of webhook events WHOOP can emit."""
+enum WebhookEventType {
+  RECOVERY_CREATED
+  RECOVERY_UPDATED
+  SLEEP_CREATED
+  SLEEP_UPDATED
+  SLEEP_DELETED
+  WORKOUT_CREATED
+  WORKOUT_UPDATED
+  WORKOUT_DELETED
+  CYCLE_CREATED
+  CYCLE_UPDATED
+}
+
+# ─── Auth / Partner Token Types ───────────────────────────────────────────────
+
+"""Partner access token response."""
+type PartnerTokenResponse {
+  accessToken: String!
+  expiresIn: Int!
+  tokenType: String!
+}
+
+# ─── Pagination Types ──────────────────────────────────────────────────────────
+
+"""Paginated collection of cycle records."""
+type PaginatedCycleResponse {
+  records: [Cycle!]!
+  nextToken: String
+}
+
+"""Paginated collection of sleep records."""
+type PaginatedSleepResponse {
+  records: [Sleep!]!
+  nextToken: String
+}
+
+"""Paginated collection of recovery records."""
+type PaginatedRecoveryResponse {
+  records: [Recovery!]!
+  nextToken: String
+}
+
+"""Paginated collection of workout records."""
+type PaginatedWorkoutResponse {
+  records: [Workout!]!
+  nextToken: String
+}
+
+# ─── Input Types ──────────────────────────────────────────────────────────────
+
+"""Filter parameters for time-range queries on paginated collections."""
+input DateRangeInput {
+  start: DateTime
+  end: DateTime
+  limit: Int
+  nextToken: String
+}
+
+"""Input for requesting a partner access token."""
+input PartnerTokenInput {
+  clientId: String!
+  clientSecret: String!
+  scope: String
+  grantType: String
+}
+
+"""Input for updating the status of a service request."""
+input ServiceRequestStatusInput {
+  taskBusinessStatus: String!
+  reason: String
+}
+
+"""Input for a single observation within a diagnostic report."""
+input CreateObservationInput {
+  code: String!
+  status: String!
+  valueNumeric: Float
+  valueText: String
+  unit: String
+}
+
+"""Input for creating a diagnostic report with optional observations."""
+input DiagnosticReportCreateInput {
+  status: String!
+  observations: [CreateObservationInput!]
+}
+
+"""Input for filtering sleep stream signals by type."""
+input SleepStreamFilterInput {
+  types: [SleepStreamSignalType!]
+}
+
+# ─── Query Root ───────────────────────────────────────────────────────────────
+
+type Query {
+  """Get the basic profile for the authenticated user."""
+  userProfile: UserBasicProfile!
+
+  """Get the body measurements for the authenticated user."""
+  userBodyMeasurement: UserBodyMeasurement!
+
+  """Get a single physiological cycle by its numeric ID."""
+  cycle(id: Int!): Cycle
+
+  """Get a paginated list of physiological cycles for the authenticated user."""
+  cycles(filter: DateRangeInput): PaginatedCycleResponse!
+
+  """Get the sleep activity associated with a specific cycle."""
+  sleepForCycle(cycleId: Int!): Sleep
+
+  """Get a single sleep activity by UUID."""
+  sleep(id: UUID!): Sleep
+
+  """Get a paginated list of sleep activities for the authenticated user."""
+  sleeps(filter: DateRangeInput): PaginatedSleepResponse!
+
+  """Get the raw signal stream for a sleep activity."""
+  sleepStream(sleepId: UUID!, filter: SleepStreamFilterInput): SleepStreamResponse
+
+  """Get the recovery associated with a specific cycle."""
+  recoveryForCycle(cycleId: Int!): Recovery
+
+  """Get a paginated list of recoveries for the authenticated user."""
+  recoveries(filter: DateRangeInput): PaginatedRecoveryResponse!
+
+  """Get a single workout activity by UUID."""
+  workout(id: UUID!): Workout
+
+  """Get a paginated list of workouts for the authenticated user."""
+  workouts(filter: DateRangeInput): PaginatedWorkoutResponse!
+
+  """Look up the v2 UUID for a legacy v1 activity ID."""
+  activityIdMapping(v1Id: Int!): ActivityIdMapping
+
+  """Get a lab requisition by UUID (partner-authenticated)."""
+  labRequisition(id: UUID!): LabRequisition
+
+  """Get a service request by UUID (partner-authenticated)."""
+  serviceRequest(id: UUID!): ServiceRequest
+}
+
+# ─── Mutation Root ────────────────────────────────────────────────────────────
+
+type Mutation {
+  """Revoke the OAuth access token for the authenticated user."""
+  revokeUserAccess: Boolean!
+
+  """Request a partner client access token using client credentials."""
+  requestPartnerToken(input: PartnerTokenInput!): PartnerTokenResponse!
+
+  """Update the task business status on all service requests in a requisition."""
+  updateLabRequisitionStatus(
+    id: UUID!
+    input: ServiceRequestStatusInput!
+  ): Boolean!
+
+  """Update the task business status of a single service request."""
+  updateServiceRequestStatus(
+    id: UUID!
+    input: ServiceRequestStatusInput!
+  ): ServiceRequest!
+
+  """Upload diagnostic report results for a service request."""
+  uploadDiagnosticReport(
+    serviceRequestId: UUID!
+    input: DiagnosticReportCreateInput!
+  ): Boolean!
+
+  """Generate test data for partner development (non-production only)."""
+  generatePartnerTestData: Boolean!
+}
