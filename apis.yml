@@ -7,7 +7,7 @@ description: WHOOP is a fitness and recovery wearable platform providing a REST 
   cycles, sleep stages, recovery scores, strain, heart rate, body measurements, and
   workout records.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/whoop/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -28,7 +28,7 @@ apis:
     data including physiological cycles, sleep, recovery, strain, workouts, body measurements,
     and basic profile information. Authentication is handled via OAuth 2.0 authorization
     code flow.
-  image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
   humanURL: https://developer.whoop.com/api/
   baseURL: https://api.prod.whoop.com
   tags:
