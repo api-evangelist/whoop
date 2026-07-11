@@ -1,0 +1,60 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/whoop-openapi.yml
+schemes:
+- name: OAuth
+  source: openapi/whoop-openapi.yml
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.prod.whoop.com/oauth/oauth2/auth
+    tokenUrl: https://api.prod.whoop.com/oauth/oauth2/token
+- name: Trusted Partner
+  source: openapi/whoop-openapi.yml
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.prod.whoop.com/developer/v2/partner/token
+scopes:
+- scope: read:body_measurement
+  description: Read body measurements data, including height, weight, and max heart rate.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/whoop-openapi.yml
+- scope: read:cycles
+  description: Read cycles data, including day Strain and average heart rate during a physiological
+    cycle.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/whoop-openapi.yml
+- scope: read:profile
+  description: Read profile data, including name and email.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/whoop-openapi.yml
+- scope: read:recovery
+  description: Read Recovery data, including score, heart rate variability, and resting heart
+    rate.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/whoop-openapi.yml
+- scope: read:sleep
+  description: Read sleep data, including performance % and duration per sleep stage.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/whoop-openapi.yml
+- scope: read:workout
+  description: Read workout data, including activity Strain and average heart rate.
+  flows:
+  - authorizationCode
+  sources:
+  - openapi/whoop-openapi.yml
+- scope: whoop-partner/token
+  description: Read service requests and upload results.
+  flows:
+  - clientCredentials
+  sources:
+  - openapi/whoop-openapi.yml
