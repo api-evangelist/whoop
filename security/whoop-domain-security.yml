@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.whoop.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  4 14:39:54 2026 GMT
+  hsts: false
+- host: developer.whoop.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Dec  8 23:59:59 2026 GMT
+  hsts: false
+- host: api.prod.whoop.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 16 00:33:36 2026 GMT
+  hsts: null
+domains:
+- domain: whoop.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

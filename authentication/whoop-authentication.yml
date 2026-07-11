@@ -1,0 +1,27 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/whoop-openapi.yml
+summary:
+  types:
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: OAuth
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://api.prod.whoop.com/oauth/oauth2/auth
+    tokenUrl: https://api.prod.whoop.com/oauth/oauth2/token
+    scopes: 6
+  sources:
+  - openapi/whoop-openapi.yml
+- name: Trusted Partner
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://api.prod.whoop.com/developer/v2/partner/token
+    scopes: 1
+  sources:
+  - openapi/whoop-openapi.yml
