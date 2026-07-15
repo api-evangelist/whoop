@@ -63,6 +63,8 @@ apis:
   - FN: WHOOP Developer Support
     url: https://developer.whoop.com/docs/developing/support/
 common:
+- type: AgenticAccess
+  url: agentic-access/whoop-agentic-access.yml
 - type: DomainSecurity
   url: security/whoop-domain-security.yml
 - type: Authentication

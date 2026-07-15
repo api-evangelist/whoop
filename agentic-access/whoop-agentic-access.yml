@@ -1,0 +1,283 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/whoop-openapi.yml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 21
+  by_action_class:
+    connected: 15
+    acting: 6
+  by_consequence:
+    read: 15
+    write: 5
+    safety-critical: 1
+  human_in_the_loop_required: 1
+operations:
+- path: /v1/activity-mapping/{activityV1Id}
+  method: get
+  operationId: getActivityMapping
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/cycle/{cycleId}
+  method: get
+  operationId: getCycleById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:cycles
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/cycle
+  method: get
+  operationId: getCycleCollection
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:cycles
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/cycle/{cycleId}/sleep
+  method: get
+  operationId: getSleepForCycle
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/partner/development/add-test-data
+  method: post
+  operationId: addTestData
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/partner/requisition/{id}
+  method: get
+  operationId: getLabRequisitionById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/partner/service-request/{id}
+  method: get
+  operationId: getServiceRequestById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/partner/token
+  method: post
+  operationId: requestToken
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/partner/requisition/{id}/status
+  method: patch
+  operationId: updateLabRequisitionStatus
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/partner/service-request/{id}/status
+  method: patch
+  operationId: updateServiceRequestStatus
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/partner/service-request/{id}/results
+  method: post
+  operationId: uploadDiagnosticReportResults
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /v2/recovery
+  method: get
+  operationId: getRecoveryCollection
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:recovery
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/cycle/{cycleId}/recovery
+  method: get
+  operationId: getRecoveryForCycle
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:recovery
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/activity/sleep/{sleepId}
+  method: get
+  operationId: getSleepById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:sleep
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/activity/sleep
+  method: get
+  operationId: getSleepCollection
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:sleep
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/activity/sleep/{sleepId}/stream
+  method: get
+  operationId: getSleepStream
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/user/measurement/body
+  method: get
+  operationId: getBodyMeasurement
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:body_measurement
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/user/profile/basic
+  method: get
+  operationId: getProfileBasic
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:profile
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/user/access
+  method: delete
+  operationId: revokeUserOAuthAccess
+  x-agentic-access:
+    action-class: acting
+    consequence: safety-critical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 120
+      exchange: true
+      purpose-required: true
+      proof-of-possession: true
+    escalation:
+      human-in-the-loop: required
+    audit: required
+- path: /v2/activity/workout/{workoutId}
+  method: get
+  operationId: getWorkoutById
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:workout
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /v2/activity/workout
+  method: get
+  operationId: getWorkoutCollection
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    scope:
+    - read:workout
+    token:
+      max-ttl: 3600
+    audit: none
