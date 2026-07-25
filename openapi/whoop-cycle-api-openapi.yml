@@ -1,0 +1,451 @@
+openapi: 3.0.1
+info:
+  title: WHOOP Activity ID Mapping Cycle API
+  description: Utility endpoints for activity ID mapping
+servers:
+- url: https://api.prod.whoop.com/developer
+tags:
+- name: Cycle
+paths:
+  /v2/cycle/{cycleId}:
+    get:
+      tags:
+      - Cycle
+      description: Get the cycle for the specified ID
+      operationId: getCycleById
+      parameters:
+      - name: cycleId
+        in: path
+        description: ID of the cycle to retrieve
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cycle'
+        '400':
+          description: Client error constructing the request
+        '404':
+          description: No resource found
+        '401':
+          description: Invalid authorization
+        '429':
+          description: Request rejected due to rate limiting
+        '500':
+          description: Server error occurred while making request
+      security:
+      - OAuth:
+        - read:cycles
+  /v2/cycle:
+    get:
+      tags:
+      - Cycle
+      description: Get all physiological cycles for a user, paginated. Results are sorted by start time in descending order.
+      operationId: getCycleCollection
+      parameters:
+      - name: limit
+        in: query
+        description: Limit on the number of cycles returned
+        schema:
+          maximum: 25
+          type: integer
+          format: int32
+          default: 10
+      - name: start
+        in: query
+        description: Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time.
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        description: Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.
+        schema:
+          type: string
+          format: date-time
+      - name: nextToken
+        in: query
+        description: Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedCycleResponse'
+        '400':
+          description: Client error constructing the request
+        '401':
+          description: Invalid authorization
+        '429':
+          description: Request rejected due to rate limiting
+        '500':
+          description: Server error occurred while making request
+      security:
+      - OAuth:
+        - read:cycles
+  /v2/cycle/{cycleId}/sleep:
+    get:
+      tags:
+      - Cycle
+      description: Get the sleep for the specified cycle ID
+      operationId: getSleepForCycle
+      parameters:
+      - name: cycleId
+        in: path
+        description: ID of the cycle to retrieve sleep for
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Sleep'
+        '400':
+          description: Client error constructing the request
+        '404':
+          description: No resource found
+        '401':
+          description: Invalid authorization
+        '429':
+          description: Request rejected due to rate limiting
+        '500':
+          description: Server error occurred while making request
+components:
+  schemas:
+    SleepNeeded:
+      required:
+      - baseline_milli
+      - need_from_recent_nap_milli
+      - need_from_recent_strain_milli
+      - need_from_sleep_debt_milli
+      type: object
+      properties:
+        baseline_milli:
+          type: integer
+          description: The amount of sleep a user needed based on historical trends
+          format: int64
+          example: 27395716
+        need_from_sleep_debt_milli:
+          type: integer
+          description: The difference between the amount of sleep the user's body required and the amount the user actually got
+          format: int64
+          example: 352230
+          externalDocs:
+            description: WHOOP Locker - What is Sleep Debt & How Do You Catch Up on Sleep?
+            url: https://www.whoop.com/thelocker/what-is-sleep-debt-catch-up/
+        need_from_recent_strain_milli:
+          type: integer
+          description: Additional sleep need accrued based on the user's strain
+          format: int64
+          example: 208595
+        need_from_recent_nap_milli:
+          type: integer
+          description: Reduction in sleep need accrued based on the user's recent nap activity (negative value or zero)
+          format: int64
+          example: -12312
+      description: Breakdown of the amount of sleep a user needed before the sleep activity. Summing all individual components results in the amount of sleep the user needed prior to this sleep activity
+    SleepStageSummary:
+      required:
+      - disturbance_count
+      - sleep_cycle_count
+      - total_awake_time_milli
+      - total_in_bed_time_milli
+      - total_light_sleep_time_milli
+      - total_no_data_time_milli
+      - total_rem_sleep_time_milli
+      - total_slow_wave_sleep_time_milli
+      type: object
+      properties:
+        total_in_bed_time_milli:
+          type: integer
+          description: Total time the user spent in bed, in milliseconds
+          format: int32
+          example: 30272735
+        total_awake_time_milli:
+          type: integer
+          description: Total time the user spent awake, in milliseconds
+          format: int32
+          example: 1403507
+        total_no_data_time_milli:
+          type: integer
+          description: Total time WHOOP did not receive data from the user during the sleep, in milliseconds
+          format: int32
+          example: 0
+        total_light_sleep_time_milli:
+          type: integer
+          description: Total time the user spent in light sleep, in milliseconds
+          format: int32
+          example: 14905851
+        total_slow_wave_sleep_time_milli:
+          type: integer
+          description: Total time the user spent in Slow Wave Sleep (SWS), in milliseconds
+          format: int32
+          example: 6630370
+        total_rem_sleep_time_milli:
+          type: integer
+          description: Total time the user spent in Rapid Eye Movement (REM) sleep, in milliseconds
+          format: int32
+          example: 5879573
+        sleep_cycle_count:
+          type: integer
+          description: Number of sleep cycles during the user's sleep
+          format: int32
+          example: 3
+        disturbance_count:
+          type: integer
+          description: Number of times the user was disturbed during sleep
+          format: int32
+          example: 12
+      description: Summary of the sleep stages
+      externalDocs:
+        description: Sleep Consistency and Sleep Stages
+        url: https://support.whoop.com/hc/en-us/articles/360019623493-Sleep-Consistency-and-Sleep-Stages
+    Cycle:
+      required:
+      - created_at
+      - id
+      - score_state
+      - start
+      - timezone_offset
+      - updated_at
+      - user_id
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the physiological cycle
+          format: int64
+          example: 93845
+        user_id:
+          type: integer
+          description: The WHOOP User for the physiological cycle
+          format: int64
+          example: 10129
+        created_at:
+          type: string
+          description: The time the cycle was recorded in WHOOP
+          format: date-time
+          example: '2022-04-24T11:25:44.774Z'
+        updated_at:
+          type: string
+          description: The time the cycle was last updated in WHOOP
+          format: date-time
+          example: '2022-04-24T14:25:44.774Z'
+        start:
+          type: string
+          description: Start time bound of the cycle
+          format: date-time
+          example: '2022-04-24T02:25:44.774Z'
+        end:
+          type: string
+          description: End time bound of the cycle. If not present, the user is currently in this cycle
+          format: date-time
+          example: '2022-04-24T10:25:44.774Z'
+        timezone_offset:
+          type: string
+          description: The user's timezone offset at the time the cycle was recorded. Follows format for Time Zone Designator (TZD) - '+hh:mm', '-hh:mm', or 'Z'.
+          example: -05:00
+          externalDocs:
+            description: Learn more about the Time Zone Designator from the W3C Standard
+            url: https://www.w3.org/TR/NOTE-datetime
+        score_state:
+          type: string
+          description: '`SCORED` means the cycle was scored and the measurement values will be present. `PENDING_SCORE` means WHOOP is currently evaluating the cycle. `UNSCORABLE` means this activity could not be scored for some reason - commonly because there is not enough user metric data for the time range.'
+          example: SCORED
+          enum:
+          - SCORED
+          - PENDING_SCORE
+          - UNSCORABLE
+        score:
+          $ref: '#/components/schemas/CycleScore'
+      description: The collection of records in this page.
+    PaginatedCycleResponse:
+      type: object
+      properties:
+        records:
+          type: array
+          description: The collection of records in this page.
+          items:
+            $ref: '#/components/schemas/Cycle'
+        next_token:
+          type: string
+          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
+          example: MTIzOjEyMzEyMw
+    CycleScore:
+      required:
+      - average_heart_rate
+      - kilojoule
+      - max_heart_rate
+      - strain
+      type: object
+      properties:
+        strain:
+          type: number
+          description: WHOOP metric of the cardiovascular load - the level of strain  on the user's cardiovascular system based on the user's heart rate during the cycle. Strain is scored on a scale from 0 to 21.
+          format: float
+          example: 5.2951527
+          externalDocs:
+            description: WHOOP Strain
+            url: https://api.prod.whoop.com/url-mapping-service/v1/STRAIN
+        kilojoule:
+          type: number
+          description: Kilojoules the user expended during the cycle.
+          format: float
+          example: 8288.297
+        average_heart_rate:
+          type: integer
+          description: The user's average heart rate during the cycle.
+          format: int32
+          example: 68
+        max_heart_rate:
+          type: integer
+          description: The user's max heart rate during the cycle.
+          format: int32
+          example: 141
+      description: WHOOP's measurements and evaluation of the cycle. Only present if the score state is `SCORED`
+    Sleep:
+      required:
+      - created_at
+      - cycle_id
+      - end
+      - id
+      - nap
+      - score_state
+      - start
+      - timezone_offset
+      - updated_at
+      - user_id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the sleep activity
+          format: uuid
+          example: ecfc6a15-4661-442f-a9a4-f160dd7afae8
+        cycle_id:
+          type: integer
+          description: Unique identifier for the cycle this sleep belongs to
+          format: int64
+          example: 93845
+        v1_id:
+          type: integer
+          description: Previous generation identifier for the activity. Will not exist past 09/01/2025
+          format: int64
+          example: 93845
+        user_id:
+          type: integer
+          description: The WHOOP User who performed the sleep activity
+          format: int64
+          example: 10129
+        created_at:
+          type: string
+          description: The time the sleep activity was recorded in WHOOP
+          format: date-time
+          example: '2022-04-24T11:25:44.774Z'
+        updated_at:
+          type: string
+          description: The time the sleep activity was last updated in WHOOP
+          format: date-time
+          example: '2022-04-24T14:25:44.774Z'
+        start:
+          type: string
+          description: Start time bound of the sleep
+          format: date-time
+          example: '2022-04-24T02:25:44.774Z'
+        end:
+          type: string
+          description: End time bound of the sleep
+          format: date-time
+          example: '2022-04-24T10:25:44.774Z'
+        timezone_offset:
+          type: string
+          description: The user's timezone offset at the time the sleep was recorded. Follows format for Time Zone Designator (TZD) - '+hh:mm', '-hh:mm', or 'Z'.
+          example: -05:00
+          externalDocs:
+            description: Learn more about the Time Zone Designator from the W3C Standard
+            url: https://www.w3.org/TR/NOTE-datetime
+        nap:
+          type: boolean
+          description: If true, this sleep activity was a nap for the user
+          example: false
+        score_state:
+          type: string
+          description: '`SCORED` means the sleep activity was scored and the measurement values will be present. `PENDING_SCORE` means WHOOP is currently evaluating the sleep activity. `UNSCORABLE` means this activity could not be scored for some reason - commonly because there is not enough user metric data for the time range.'
+          example: SCORED
+          enum:
+          - SCORED
+          - PENDING_SCORE
+          - UNSCORABLE
+        score:
+          $ref: '#/components/schemas/SleepScore'
+      description: The collection of records in this page.
+    SleepScore:
+      required:
+      - sleep_needed
+      - stage_summary
+      type: object
+      properties:
+        stage_summary:
+          $ref: '#/components/schemas/SleepStageSummary'
+        sleep_needed:
+          $ref: '#/components/schemas/SleepNeeded'
+        respiratory_rate:
+          type: number
+          description: The user's respiratory rate during the sleep.
+          format: float
+          example: 16.11328125
+        sleep_performance_percentage:
+          type: number
+          description: A percentage (0-100%) of the time a user is asleep over the amount of sleep the user needed. May not be reported if WHOOP does not have enough data about a user yet to calculate Sleep Need.
+          format: float
+          example: 98.0
+        sleep_consistency_percentage:
+          type: number
+          description: Percentage (0-100%) of how similar this sleep and wake times compared to the previous day. May not be reported if WHOOP does not have enough sleep data about a user yet to understand consistency.
+          format: float
+          example: 90.0
+          externalDocs:
+            description: WHOOP Locker - What is Sleep Consistency?
+            url: https://www.whoop.com/thelocker/new-feature-sleep-consistency-why-we-track-it/
+        sleep_efficiency_percentage:
+          type: number
+          description: A percentage (0-100%) of the time you spend in bed that you are actually asleep.
+          format: float
+          example: 91.69533848
+          externalDocs:
+            description: 'WHOOP Locker - Sleep Efficiency: What is It, How Do You Stack Up & How Can You Improve?'
+            url: https://www.whoop.com/thelocker/app-feature-improve-sleep-efficiency/
+      description: WHOOP's measurements and evaluation of the sleep activity. Only present if the Sleep State is `SCORED`
+  securitySchemes:
+    OAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.prod.whoop.com/oauth/oauth2/auth
+          tokenUrl: https://api.prod.whoop.com/oauth/oauth2/token
+          scopes:
+            read:recovery: Read Recovery data, including score, heart rate variability, and resting heart rate.
+            read:cycles: Read cycles data, including day Strain and average heart rate during a physiological cycle.
+            read:workout: Read workout data, including activity Strain and average heart rate.
+            read:sleep: Read sleep data, including performance % and duration per sleep stage.
+            read:profile: Read profile data, including name and email.
+            read:body_measurement: Read body measurements data, including height, weight, and max heart rate.
+    Trusted Partner:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.prod.whoop.com/developer/v2/partner/token
+          scopes:
+            whoop-partner/token: Read service requests and upload results.

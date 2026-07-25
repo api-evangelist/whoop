@@ -1,0 +1,215 @@
+openapi: 3.0.1
+info:
+  title: WHOOP Activity ID Mapping Recovery API
+  description: Utility endpoints for activity ID mapping
+servers:
+- url: https://api.prod.whoop.com/developer
+tags:
+- name: Recovery
+paths:
+  /v2/recovery:
+    get:
+      tags:
+      - Recovery
+      description: Get all recoveries for a user, paginated. Results are sorted by start time of the related sleep in descending order.
+      operationId: getRecoveryCollection
+      parameters:
+      - name: limit
+        in: query
+        description: Limit on the number of recoveries returned
+        schema:
+          maximum: 25
+          type: integer
+          format: int32
+          default: 10
+      - name: start
+        in: query
+        description: Return recoveries that occurred after or during (inclusive) this time. If not specified, the response will not filter recoveries by a minimum time.
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        description: Return recoveries that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.
+        schema:
+          type: string
+          format: date-time
+      - name: nextToken
+        in: query
+        description: Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecoveryCollection'
+        '400':
+          description: Client error constructing the request
+        '401':
+          description: Invalid authorization
+        '429':
+          description: Request rejected due to rate limiting
+        '500':
+          description: Server error occurred while making request
+      security:
+      - OAuth:
+        - read:recovery
+  /v2/cycle/{cycleId}/recovery:
+    get:
+      tags:
+      - Recovery
+      description: Get the recovery for a cycle
+      operationId: getRecoveryForCycle
+      parameters:
+      - name: cycleId
+        in: path
+        description: ID of the cycle to retrieve
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recovery'
+        '400':
+          description: Client error constructing the request
+        '404':
+          description: No resource found
+        '401':
+          description: Invalid authorization
+        '429':
+          description: Request rejected due to rate limiting
+        '500':
+          description: Server error occurred while making request
+      security:
+      - OAuth:
+        - read:recovery
+components:
+  schemas:
+    RecoveryCollection:
+      type: object
+      properties:
+        records:
+          type: array
+          description: The collection of records in this page.
+          items:
+            $ref: '#/components/schemas/Recovery'
+        next_token:
+          type: string
+          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
+          example: MTIzOjEyMzEyMw
+      description: Paginated collection of recovery activities with next token for pagination
+    RecoveryScore:
+      required:
+      - hrv_rmssd_milli
+      - recovery_score
+      - resting_heart_rate
+      - user_calibrating
+      type: object
+      properties:
+        user_calibrating:
+          type: boolean
+          description: True if the user is still calibrating and not enough data is available in WHOOP to provide an accurate recovery.
+          example: false
+        recovery_score:
+          type: number
+          description: Percentage (0-100%) that reflects how well prepared the user's body is to take on Strain. The Recovery score is a measure of the user body's "return to baseline" after a stressor.
+          format: float
+          example: 44.0
+          externalDocs:
+            description: WHOOP Recovery
+            url: https://api.prod.whoop.com/url-mapping-service/v1/RECOVERY
+        resting_heart_rate:
+          type: number
+          description: The user's resting heart rate.
+          format: float
+          example: 64.0
+        hrv_rmssd_milli:
+          type: number
+          description: The user's Heart Rate Variability measured using Root Mean Square of Successive Differences (RMSSD), in milliseconds.
+          format: float
+          example: 31.813562
+        spo2_percentage:
+          type: number
+          description: The percentage of oxygen in the user's blood. Only present if the user is on 4.0 or greater.
+          format: float
+          example: 95.6875
+        skin_temp_celsius:
+          type: number
+          description: The user's skin temperature, in Celsius. Only present if the user is on 4.0 or greater.
+          format: float
+          example: 33.7
+      description: WHOOP's measurements and evaluation of the recovery. Only present if the Recovery State is `SCORED`
+    Recovery:
+      required:
+      - created_at
+      - cycle_id
+      - score_state
+      - sleep_id
+      - updated_at
+      - user_id
+      type: object
+      properties:
+        cycle_id:
+          type: integer
+          description: The Recovery represents how recovered the user is for this physiological cycle
+          format: int64
+          example: 93845
+        sleep_id:
+          type: string
+          description: ID of the Sleep associated with the Recovery
+          format: uuid
+          example: 123e4567-e89b-12d3-a456-426614174000
+        user_id:
+          type: integer
+          description: The WHOOP User for the recovery
+          format: int64
+          example: 10129
+        created_at:
+          type: string
+          description: The time the recovery was recorded in WHOOP
+          format: date-time
+          example: '2022-04-24T11:25:44.774Z'
+        updated_at:
+          type: string
+          description: The time the recovery was last updated in WHOOP
+          format: date-time
+          example: '2022-04-24T14:25:44.774Z'
+        score_state:
+          type: string
+          description: '`SCORED` means the recovery was scored and the measurement values will be present. `PENDING_SCORE` means WHOOP is currently evaluating the cycle. `UNSCORABLE` means this activity could not be scored for some reason - commonly because there is not enough user metric data for the time range.'
+          example: SCORED
+          enum:
+          - SCORED
+          - PENDING_SCORE
+          - UNSCORABLE
+        score:
+          $ref: '#/components/schemas/RecoveryScore'
+  securitySchemes:
+    OAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.prod.whoop.com/oauth/oauth2/auth
+          tokenUrl: https://api.prod.whoop.com/oauth/oauth2/token
+          scopes:
+            read:recovery: Read Recovery data, including score, heart rate variability, and resting heart rate.
+            read:cycles: Read cycles data, including day Strain and average heart rate during a physiological cycle.
+            read:workout: Read workout data, including activity Strain and average heart rate.
+            read:sleep: Read sleep data, including performance % and duration per sleep stage.
+            read:profile: Read profile data, including name and email.
+            read:body_measurement: Read body measurements data, including height, weight, and max heart rate.
+    Trusted Partner:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.prod.whoop.com/developer/v2/partner/token
+          scopes:
+            whoop-partner/token: Read service requests and upload results.

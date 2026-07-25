@@ -1,0 +1,70 @@
+openapi: 3.0.1
+info:
+  title: WHOOP Activity ID Mapping API
+  description: Utility endpoints for activity ID mapping
+servers:
+- url: https://api.prod.whoop.com/developer
+tags:
+- name: Activity ID Mapping
+  description: Utility endpoints for activity ID mapping
+paths:
+  /v1/activity-mapping/{activityV1Id}:
+    get:
+      tags:
+      - Activity ID Mapping
+      summary: Get V2 UUID for V1 Activity ID
+      description: Lookup the V2 UUID for a given V1 activity ID
+      operationId: getActivityMapping
+      parameters:
+      - name: activityV1Id
+        in: path
+        description: V1 Activity ID
+        required: true
+        schema:
+          type: integer
+          format: int64
+        example: 12345678
+      responses:
+        '200':
+          description: Successfully retrieved mapping
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ActivityIdMappingResponse'
+        '404':
+          description: Activity mapping not found
+        '500':
+          description: Server error
+components:
+  schemas:
+    ActivityIdMappingResponse:
+      required:
+      - v2_activity_id
+      type: object
+      properties:
+        v2_activity_id:
+          type: string
+          description: V2 Unique identifier for the activity
+          format: uuid
+          example: ecfc6a15-4661-442f-a9a4-f160dd7afae8
+  securitySchemes:
+    OAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.prod.whoop.com/oauth/oauth2/auth
+          tokenUrl: https://api.prod.whoop.com/oauth/oauth2/token
+          scopes:
+            read:recovery: Read Recovery data, including score, heart rate variability, and resting heart rate.
+            read:cycles: Read cycles data, including day Strain and average heart rate during a physiological cycle.
+            read:workout: Read workout data, including activity Strain and average heart rate.
+            read:sleep: Read sleep data, including performance % and duration per sleep stage.
+            read:profile: Read profile data, including name and email.
+            read:body_measurement: Read body measurements data, including height, weight, and max heart rate.
+    Trusted Partner:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.prod.whoop.com/developer/v2/partner/token
+          scopes:
+            whoop-partner/token: Read service requests and upload results.

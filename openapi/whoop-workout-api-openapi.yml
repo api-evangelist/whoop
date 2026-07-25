@@ -1,0 +1,304 @@
+openapi: 3.0.1
+info:
+  title: WHOOP Activity ID Mapping Workout API
+  description: Utility endpoints for activity ID mapping
+servers:
+- url: https://api.prod.whoop.com/developer
+tags:
+- name: Workout
+paths:
+  /v2/activity/workout/{workoutId}:
+    get:
+      tags:
+      - Workout
+      description: Get the workout for the specified ID
+      operationId: getWorkoutById
+      parameters:
+      - name: workoutId
+        in: path
+        description: ID of the workout to retrieve
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkoutV2'
+        '400':
+          description: Client error constructing the request
+        '404':
+          description: No resource found
+        '401':
+          description: Invalid authorization
+        '429':
+          description: Request rejected due to rate limiting
+        '500':
+          description: Server error occurred while making request
+      security:
+      - OAuth:
+        - read:workout
+  /v2/activity/workout:
+    get:
+      tags:
+      - Workout
+      description: Get all workouts for a user, paginated. Results are sorted by start time in descending order.
+      operationId: getWorkoutCollection
+      parameters:
+      - name: limit
+        in: query
+        description: Limit on the number of workouts returned
+        schema:
+          maximum: 25
+          type: integer
+          format: int32
+          default: 10
+      - name: start
+        in: query
+        description: Return workouts that occurred after or during (inclusive) this time. If not specified, the response will not filter workouts by a minimum time.
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        description: Return workouts that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.
+        schema:
+          type: string
+          format: date-time
+      - name: nextToken
+        in: query
+        description: Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WorkoutCollection'
+        '400':
+          description: Client error constructing the request
+        '401':
+          description: Invalid authorization
+        '429':
+          description: Request rejected due to rate limiting
+        '500':
+          description: Server error occurred while making request
+      security:
+      - OAuth:
+        - read:workout
+components:
+  schemas:
+    ZoneDurations:
+      required:
+      - zone_five_milli
+      - zone_four_milli
+      - zone_one_milli
+      - zone_three_milli
+      - zone_two_milli
+      - zone_zero_milli
+      type: object
+      properties:
+        zone_zero_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 0 (very light activity)
+          format: int64
+          example: 300000
+        zone_one_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 1 (light activity)
+          format: int64
+          example: 600000
+        zone_two_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 2 (moderate activity)
+          format: int64
+          example: 900000
+        zone_three_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 3 (hard activity)
+          format: int64
+          example: 900000
+        zone_four_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 4 (very hard activity)
+          format: int64
+          example: 600000
+        zone_five_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 5 (maximum effort)
+          format: int64
+          example: 300000
+      description: Breakdown of time spent in each heart rate zone during the workout.
+      externalDocs:
+        description: WHOOP Locker - Training with Heart Rate Zones
+        url: https://www.whoop.com/thelocker/max-heart-rate-training-zones/
+    WorkoutV2:
+      required:
+      - created_at
+      - end
+      - id
+      - score_state
+      - sport_name
+      - start
+      - timezone_offset
+      - updated_at
+      - user_id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the workout activity
+          format: uuid
+          example: ecfc6a15-4661-442f-a9a4-f160dd7afae8
+        v1_id:
+          type: integer
+          description: Previous generation identifier for the activity. Will not exist past 09/01/2025
+          format: int64
+          example: 1043
+        user_id:
+          type: integer
+          description: The WHOOP User who performed the workout
+          format: int64
+          example: 9012
+        created_at:
+          type: string
+          description: The time the workout activity was recorded in WHOOP
+          format: date-time
+          example: '2022-04-24T11:25:44.774Z'
+        updated_at:
+          type: string
+          description: The time the workout activity was last updated in WHOOP
+          format: date-time
+          example: '2022-04-24T14:25:44.774Z'
+        start:
+          type: string
+          description: Start time bound of the workout
+          format: date-time
+          example: '2022-04-24T02:25:44.774Z'
+        end:
+          type: string
+          description: End time bound of the workout
+          format: date-time
+          example: '2022-04-24T10:25:44.774Z'
+        timezone_offset:
+          type: string
+          description: The user's timezone offset at the time the workout was recorded. Follows format for Time Zone Designator (TZD) - '+hh:mm', '-hh:mm', or 'Z'.
+          example: -05:00
+          externalDocs:
+            description: Learn more about the Time Zone Designator from the W3C Standard
+            url: https://www.w3.org/TR/NOTE-datetime
+        sport_name:
+          type: string
+          description: Name of the WHOOP Sport performed during the workout
+          example: running
+        score_state:
+          type: string
+          description: '`SCORED` means the workout activity was scored and the measurement values will be present. `PENDING_SCORE` means WHOOP is currently evaluating the workout activity. `UNSCORABLE` means this activity could not be scored for some reason - commonly because there is not enough user metric data for the time range.'
+          example: SCORED
+          enum:
+          - SCORED
+          - PENDING_SCORE
+          - UNSCORABLE
+        score:
+          $ref: '#/components/schemas/WorkoutScore'
+        sport_id:
+          type: integer
+          description: ID of the WHOOP Sport performed during the workout. Will not exist past 09/01/2025
+          format: int32
+          example: 1
+      description: A WHOOP workout activity with full details and scoring information
+    WorkoutCollection:
+      type: object
+      properties:
+        records:
+          type: array
+          description: The collection of records in this page.
+          items:
+            $ref: '#/components/schemas/WorkoutV2'
+        next_token:
+          type: string
+          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
+          example: MTIzOjEyMzEyMw
+      description: Paginated collection of workout activities with next token for pagination
+    WorkoutScore:
+      required:
+      - average_heart_rate
+      - kilojoule
+      - max_heart_rate
+      - percent_recorded
+      - strain
+      - zone_durations
+      type: object
+      properties:
+        strain:
+          type: number
+          description: WHOOP metric of the cardiovascular load - the level of strain the workout had on the user's cardiovascular system based on the user's heart rate. Strain is scored on a scale from 0 to 21.
+          format: float
+          example: 8.2463
+          externalDocs:
+            description: WHOOP Strain
+            url: https://api.prod.whoop.com/url-mapping-service/v1/STRAIN
+        average_heart_rate:
+          type: integer
+          description: The user's average heart rate (beats per minute) during the workout.
+          format: int32
+          example: 123
+        max_heart_rate:
+          type: integer
+          description: The user's max heart rate (beats per minute) during the workout.
+          format: int32
+          example: 146
+        kilojoule:
+          type: number
+          description: Kilojoules the user expended during the workout.
+          format: float
+          example: 1569.34033203125
+        percent_recorded:
+          type: number
+          description: Percentage (0-100%) of heart rate data WHOOP received during the workout.
+          format: float
+          example: 100.0
+        distance_meter:
+          type: number
+          description: The distance the user travelled during the workout. Only present if distance data sent to WHOOP
+          format: float
+          example: 1772.77035916
+        altitude_gain_meter:
+          type: number
+          description: The altitude gained during the workout. This measurement does not account for downward travel - it is strictly a measure of altitude climbed. If a member climbed up and down a 1,000 meter mountain, ending at the same altitude, this measurement would be 1,000 meters. Only present if altitude data is included as part of the workout
+          format: float
+          example: 46.64384460449
+        altitude_change_meter:
+          type: number
+          description: The altitude difference between the start and end points of the workout. If a member climbed up and down a mountain, ending at the same altitude, this measurement would be 0. Only present if altitude data is included as part of the workout
+          format: float
+          example: -0.781372010707855
+        zone_durations:
+          $ref: '#/components/schemas/ZoneDurations'
+      description: WHOOP's measurements and evaluation of the workout activity. Only present if the Workout State is `SCORED`
+  securitySchemes:
+    OAuth:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: https://api.prod.whoop.com/oauth/oauth2/auth
+          tokenUrl: https://api.prod.whoop.com/oauth/oauth2/token
+          scopes:
+            read:recovery: Read Recovery data, including score, heart rate variability, and resting heart rate.
+            read:cycles: Read cycles data, including day Strain and average heart rate during a physiological cycle.
+            read:workout: Read workout data, including activity Strain and average heart rate.
+            read:sleep: Read sleep data, including performance % and duration per sleep stage.
+            read:profile: Read profile data, including name and email.
+            read:body_measurement: Read body measurements data, including height, weight, and max heart rate.
+    Trusted Partner:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://api.prod.whoop.com/developer/v2/partner/token
+          scopes:
+            whoop-partner/token: Read service requests and upload results.
