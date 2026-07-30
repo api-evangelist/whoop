@@ -7,7 +7,20 @@ description: WHOOP is a fitness and recovery wearable platform providing a REST 
   cycles, sleep stages, recovery scores, strain, heart rate, body measurements, and
   workout records.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/whoop.png
 url: https://raw.githubusercontent.com/api-evangelist/whoop/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -23,26 +36,18 @@ tags:
 - Heart Rate
 - Performance
 apis:
-- name: WHOOP API
-  description: The WHOOP REST API provides access to member health and performance
-    data including physiological cycles, sleep, recovery, strain, workouts, body measurements,
-    and basic profile information. Authentication is handled via OAuth 2.0 authorization
-    code flow.
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: whoop:whoop-activity-id-mapping-api
+  name: WHOOP Activity ID Mapping API
+  description: Utility endpoints for activity ID mapping
   humanURL: https://developer.whoop.com/api/
   baseURL: https://api.prod.whoop.com
   tags:
-  - Fitness
-  - Wearables
-  - Health
-  - Sleep
-  - Recovery
-  - Workout
+  - Activity ID Mapping
   properties:
+  - type: OpenAPI
+    url: openapi/whoop-activity-id-mapping-api-openapi.yml
   - type: Documentation
     url: https://developer.whoop.com/docs/developing/overview/
-  - type: OpenAPI
-    url: https://developer.whoop.com/api/
   - type: OpenAPISource
     url: https://api.prod.whoop.com/developer/doc/openapi.json
   - type: OpenAPIArtifact
@@ -57,11 +62,176 @@ apis:
     url: https://developer.whoop.com/docs/developing/rate-limiting/
   - type: GettingStarted
     url: https://developer.whoop.com/docs/developing/getting-started/
-  - url: graphql/whoop-graphql.md
-    type: GraphQL
-  contact:
-  - FN: WHOOP Developer Support
-    url: https://developer.whoop.com/docs/developing/support/
+  - type: GraphQL
+    url: graphql/whoop-graphql.md
+- aid: whoop:whoop-cycle-api
+  name: WHOOP Cycle API
+  description: The Cycle API from WHOOP — 3 operation(s) for cycle.
+  humanURL: https://developer.whoop.com/api/
+  baseURL: https://api.prod.whoop.com
+  tags:
+  - Cycle
+  properties:
+  - type: OpenAPI
+    url: openapi/whoop-cycle-api-openapi.yml
+  - type: Documentation
+    url: https://developer.whoop.com/docs/developing/overview/
+  - type: OpenAPISource
+    url: https://api.prod.whoop.com/developer/doc/openapi.json
+  - type: OpenAPIArtifact
+    url: openapi/whoop-openapi.yml
+  - type: Vocabulary
+    url: vocabulary/whoop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/whoop-context.jsonld
+  - type: Authentication
+    url: https://developer.whoop.com/docs/developing/oauth/
+  - type: RateLimits
+    url: https://developer.whoop.com/docs/developing/rate-limiting/
+  - type: GettingStarted
+    url: https://developer.whoop.com/docs/developing/getting-started/
+  - type: GraphQL
+    url: graphql/whoop-graphql.md
+- aid: whoop:whoop-partner-api
+  name: WHOOP Partner API
+  description: Endpoints for trusted WHOOP partner operations
+  humanURL: https://developer.whoop.com/api/
+  baseURL: https://api.prod.whoop.com
+  tags:
+  - Partner
+  properties:
+  - type: OpenAPI
+    url: openapi/whoop-partner-api-openapi.yml
+  - type: Documentation
+    url: https://developer.whoop.com/docs/developing/overview/
+  - type: OpenAPISource
+    url: https://api.prod.whoop.com/developer/doc/openapi.json
+  - type: OpenAPIArtifact
+    url: openapi/whoop-openapi.yml
+  - type: Vocabulary
+    url: vocabulary/whoop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/whoop-context.jsonld
+  - type: Authentication
+    url: https://developer.whoop.com/docs/developing/oauth/
+  - type: RateLimits
+    url: https://developer.whoop.com/docs/developing/rate-limiting/
+  - type: GettingStarted
+    url: https://developer.whoop.com/docs/developing/getting-started/
+  - type: GraphQL
+    url: graphql/whoop-graphql.md
+- aid: whoop:whoop-recovery-api
+  name: WHOOP Recovery API
+  description: The Recovery API from WHOOP — 2 operation(s) for recovery.
+  humanURL: https://developer.whoop.com/api/
+  baseURL: https://api.prod.whoop.com
+  tags:
+  - Recovery
+  properties:
+  - type: OpenAPI
+    url: openapi/whoop-recovery-api-openapi.yml
+  - type: Documentation
+    url: https://developer.whoop.com/docs/developing/overview/
+  - type: OpenAPISource
+    url: https://api.prod.whoop.com/developer/doc/openapi.json
+  - type: OpenAPIArtifact
+    url: openapi/whoop-openapi.yml
+  - type: Vocabulary
+    url: vocabulary/whoop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/whoop-context.jsonld
+  - type: Authentication
+    url: https://developer.whoop.com/docs/developing/oauth/
+  - type: RateLimits
+    url: https://developer.whoop.com/docs/developing/rate-limiting/
+  - type: GettingStarted
+    url: https://developer.whoop.com/docs/developing/getting-started/
+  - type: GraphQL
+    url: graphql/whoop-graphql.md
+- aid: whoop:whoop-sleep-api
+  name: WHOOP Sleep API
+  description: The Sleep API from WHOOP — 3 operation(s) for sleep.
+  humanURL: https://developer.whoop.com/api/
+  baseURL: https://api.prod.whoop.com
+  tags:
+  - Sleep
+  properties:
+  - type: OpenAPI
+    url: openapi/whoop-sleep-api-openapi.yml
+  - type: Documentation
+    url: https://developer.whoop.com/docs/developing/overview/
+  - type: OpenAPISource
+    url: https://api.prod.whoop.com/developer/doc/openapi.json
+  - type: OpenAPIArtifact
+    url: openapi/whoop-openapi.yml
+  - type: Vocabulary
+    url: vocabulary/whoop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/whoop-context.jsonld
+  - type: Authentication
+    url: https://developer.whoop.com/docs/developing/oauth/
+  - type: RateLimits
+    url: https://developer.whoop.com/docs/developing/rate-limiting/
+  - type: GettingStarted
+    url: https://developer.whoop.com/docs/developing/getting-started/
+  - type: GraphQL
+    url: graphql/whoop-graphql.md
+- aid: whoop:whoop-user-api
+  name: WHOOP User API
+  description: Endpoints for retrieving user profile and measurement data.
+  humanURL: https://developer.whoop.com/api/
+  baseURL: https://api.prod.whoop.com
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/whoop-user-api-openapi.yml
+  - type: Documentation
+    url: https://developer.whoop.com/docs/developing/overview/
+  - type: OpenAPISource
+    url: https://api.prod.whoop.com/developer/doc/openapi.json
+  - type: OpenAPIArtifact
+    url: openapi/whoop-openapi.yml
+  - type: Vocabulary
+    url: vocabulary/whoop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/whoop-context.jsonld
+  - type: Authentication
+    url: https://developer.whoop.com/docs/developing/oauth/
+  - type: RateLimits
+    url: https://developer.whoop.com/docs/developing/rate-limiting/
+  - type: GettingStarted
+    url: https://developer.whoop.com/docs/developing/getting-started/
+  - type: GraphQL
+    url: graphql/whoop-graphql.md
+- aid: whoop:whoop-workout-api
+  name: WHOOP Workout API
+  description: The Workout API from WHOOP — 2 operation(s) for workout.
+  humanURL: https://developer.whoop.com/api/
+  baseURL: https://api.prod.whoop.com
+  tags:
+  - Workout
+  properties:
+  - type: OpenAPI
+    url: openapi/whoop-workout-api-openapi.yml
+  - type: Documentation
+    url: https://developer.whoop.com/docs/developing/overview/
+  - type: OpenAPISource
+    url: https://api.prod.whoop.com/developer/doc/openapi.json
+  - type: OpenAPIArtifact
+    url: openapi/whoop-openapi.yml
+  - type: Vocabulary
+    url: vocabulary/whoop-vocabulary.yml
+  - type: JSONLDContext
+    url: json-ld/whoop-context.jsonld
+  - type: Authentication
+    url: https://developer.whoop.com/docs/developing/oauth/
+  - type: RateLimits
+    url: https://developer.whoop.com/docs/developing/rate-limiting/
+  - type: GettingStarted
+    url: https://developer.whoop.com/docs/developing/getting-started/
+  - type: GraphQL
+    url: graphql/whoop-graphql.md
 common:
 - type: AgenticAccess
   url: agentic-access/whoop-agentic-access.yml
