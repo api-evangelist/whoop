@@ -1,0 +1,34 @@
+{
+  "provider": "whoop",
+  "sources": [
+    "whoop-activity-id-mapping-api-openapi.yml",
+    "whoop-cycle-api-openapi.yml",
+    "whoop-partner-api-openapi.yml",
+    "whoop-recovery-api-openapi.yml",
+    "whoop-sleep-api-openapi.yml",
+    "whoop-user-api-openapi.yml",
+    "whoop-workout-api-openapi.yml"
+  ],
+  "outputs": [
+    "whoop-activity-id-mapping-api-openapi.yml",
+    "whoop-cycle-api-openapi.yml",
+    "whoop-partner-api-openapi.yml",
+    "whoop-recovery-api-openapi.yml",
+    "whoop-sleep-api-openapi.yml",
+    "whoop-user-api-openapi.yml",
+    "whoop-workout-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [
+    "whoop-activity-id-mapping-api-openapi.yml: info.version missing",
+    "whoop-cycle-api-openapi.yml: info.version missing",
+    "whoop-partner-api-openapi.yml: info.version missing",
+    "whoop-recovery-api-openapi.yml: info.version missing",
+    "whoop-sleep-api-openapi.yml: info.version missing",
+    "whoop-user-api-openapi.yml: info.version missing",
+    "whoop-workout-api-openapi.yml: info.version missing"
+  ],
+  "notes": [],
+  "skipped": []
+}
