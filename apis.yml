@@ -51,7 +51,7 @@ apis:
   - type: OpenAPISource
     url: https://api.prod.whoop.com/developer/doc/openapi.json
   - type: OpenAPIArtifact
-    url: openapi/whoop-openapi.yml
+    url: openapi/_original/whoop-openapi.yml
   - type: Vocabulary
     url: vocabulary/whoop-vocabulary.yml
   - type: JSONLDContext
@@ -79,7 +79,7 @@ apis:
   - type: OpenAPISource
     url: https://api.prod.whoop.com/developer/doc/openapi.json
   - type: OpenAPIArtifact
-    url: openapi/whoop-openapi.yml
+    url: openapi/_original/whoop-openapi.yml
   - type: Vocabulary
     url: vocabulary/whoop-vocabulary.yml
   - type: JSONLDContext
@@ -107,7 +107,7 @@ apis:
   - type: OpenAPISource
     url: https://api.prod.whoop.com/developer/doc/openapi.json
   - type: OpenAPIArtifact
-    url: openapi/whoop-openapi.yml
+    url: openapi/_original/whoop-openapi.yml
   - type: Vocabulary
     url: vocabulary/whoop-vocabulary.yml
   - type: JSONLDContext
@@ -135,7 +135,7 @@ apis:
   - type: OpenAPISource
     url: https://api.prod.whoop.com/developer/doc/openapi.json
   - type: OpenAPIArtifact
-    url: openapi/whoop-openapi.yml
+    url: openapi/_original/whoop-openapi.yml
   - type: Vocabulary
     url: vocabulary/whoop-vocabulary.yml
   - type: JSONLDContext
@@ -163,7 +163,7 @@ apis:
   - type: OpenAPISource
     url: https://api.prod.whoop.com/developer/doc/openapi.json
   - type: OpenAPIArtifact
-    url: openapi/whoop-openapi.yml
+    url: openapi/_original/whoop-openapi.yml
   - type: Vocabulary
     url: vocabulary/whoop-vocabulary.yml
   - type: JSONLDContext
@@ -191,7 +191,7 @@ apis:
   - type: OpenAPISource
     url: https://api.prod.whoop.com/developer/doc/openapi.json
   - type: OpenAPIArtifact
-    url: openapi/whoop-openapi.yml
+    url: openapi/_original/whoop-openapi.yml
   - type: Vocabulary
     url: vocabulary/whoop-vocabulary.yml
   - type: JSONLDContext
@@ -219,7 +219,7 @@ apis:
   - type: OpenAPISource
     url: https://api.prod.whoop.com/developer/doc/openapi.json
   - type: OpenAPIArtifact
-    url: openapi/whoop-openapi.yml
+    url: openapi/_original/whoop-openapi.yml
   - type: Vocabulary
     url: vocabulary/whoop-vocabulary.yml
   - type: JSONLDContext
