@@ -1,0 +1,807 @@
+{
+  "info": {
+    "_postman_id": "127925d5-09cf-4705-9362-b2d309fbab12",
+    "name": "WHOOP Activity ID Mapping User API",
+    "description": "The WHOOP API exposes member fitness, strain, recovery, sleep, workout, and body measurement data captured by the WHOOP wrist-worn wearable. OAuth 2.0 protected; v2 endpoints use UUID identifiers and webhook notifications keep integrations current.\n\nContact Support:\n Name: WHOOP Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:50.000Z",
+    "updatedAt": "2026-07-28T03:29:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-127925d5-09cf-4705-9362-b2d309fbab12"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "user",
+          "item": [
+            {
+              "name": "measurement",
+              "item": [
+                {
+                  "name": "body",
+                  "item": [
+                    {
+                      "name": "Get User Body Measurements",
+                      "id": "9f99a491-12d7-4749-8d92-20b1d58ed61c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/user/measurement/body",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "user",
+                            "measurement",
+                            "body"
+                          ]
+                        },
+                        "description": "Retrieves the body measurements (height, weight, max heart rate) for the authenticated user."
+                      },
+                      "response": [
+                        {
+                          "id": "4efa247c-12b7-4a8f-b468-c6ea4a7abf6a",
+                          "name": "Successfully retrieved body measurements",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/measurement/body",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "measurement",
+                                "body"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"height_meter\": \"<float>\",\n  \"max_heart_rate\": \"<integer>\",\n  \"weight_kilogram\": \"<float>\"\n}",
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-4efa247c-12b7-4a8f-b468-c6ea4a7abf6a"
+                        },
+                        {
+                          "id": "9e2afeed-5fbf-4472-8d1d-e09e81816456",
+                          "name": "Invalid authorization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/measurement/body",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "measurement",
+                                "body"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-9e2afeed-5fbf-4472-8d1d-e09e81816456"
+                        },
+                        {
+                          "id": "9b85f25b-fff1-461b-8f04-eaaa05c49702",
+                          "name": "Requested resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/measurement/body",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "measurement",
+                                "body"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-9b85f25b-fff1-461b-8f04-eaaa05c49702"
+                        },
+                        {
+                          "id": "4cb2aa6f-8354-43c7-b935-fbe056cc9653",
+                          "name": "Request rejected due to rate limiting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/measurement/body",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "measurement",
+                                "body"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-4cb2aa6f-8354-43c7-b935-fbe056cc9653"
+                        },
+                        {
+                          "id": "f4f097be-f274-4553-b87e-2d768bf885b8",
+                          "name": "Server error occurred while making request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/measurement/body",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "measurement",
+                                "body"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-f4f097be-f274-4553-b87e-2d768bf885b8"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:29:50.000Z",
+                      "updatedAt": "2026-07-28T03:29:50.000Z",
+                      "uid": "35240-9f99a491-12d7-4749-8d92-20b1d58ed61c"
+                    }
+                  ],
+                  "id": "56b79683-4774-48be-82d6-305c161df575",
+                  "createdAt": "2026-07-28T03:29:50.000Z",
+                  "updatedAt": "2026-07-28T03:29:50.000Z",
+                  "uid": "35240-56b79683-4774-48be-82d6-305c161df575"
+                }
+              ],
+              "id": "2f5e6b08-669f-4d47-a0bc-8f9cd884769c",
+              "createdAt": "2026-07-28T03:29:50.000Z",
+              "updatedAt": "2026-07-28T03:29:50.000Z",
+              "uid": "35240-2f5e6b08-669f-4d47-a0bc-8f9cd884769c"
+            },
+            {
+              "name": "profile",
+              "item": [
+                {
+                  "name": "basic",
+                  "item": [
+                    {
+                      "name": "Get Basic User Profile",
+                      "id": "eff85a2c-29ad-45be-a2bc-4cd83a43771d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/user/profile/basic",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "user",
+                            "profile",
+                            "basic"
+                          ]
+                        },
+                        "description": "Retrieves the basic profile information (name, email) for the authenticated user."
+                      },
+                      "response": [
+                        {
+                          "id": "74b8955e-4438-4585-a6ca-d7fa32816ff6",
+                          "name": "Successfully retrieved user profile",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/profile/basic",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "profile",
+                                "basic"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"email\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"user_id\": \"<long>\"\n}",
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-74b8955e-4438-4585-a6ca-d7fa32816ff6"
+                        },
+                        {
+                          "id": "21b79ea1-8ea1-4d7b-a660-36ccda89a296",
+                          "name": "Invalid authorization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/profile/basic",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "profile",
+                                "basic"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-21b79ea1-8ea1-4d7b-a660-36ccda89a296"
+                        },
+                        {
+                          "id": "2fcb79cc-f837-4c3d-a34c-089d2ad29ab2",
+                          "name": "Requested resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/profile/basic",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "profile",
+                                "basic"
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-2fcb79cc-f837-4c3d-a34c-089d2ad29ab2"
+                        },
+                        {
+                          "id": "f443eda4-1d77-43de-b414-0a44ba53efba",
+                          "name": "Request rejected due to rate limiting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/profile/basic",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "profile",
+                                "basic"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-f443eda4-1d77-43de-b414-0a44ba53efba"
+                        },
+                        {
+                          "id": "ced554b7-d4aa-4bbc-9e1a-da69a97a7ba1",
+                          "name": "Server error occurred while making request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/user/profile/basic",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "user",
+                                "profile",
+                                "basic"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:50.000Z",
+                          "updatedAt": "2026-07-28T03:29:50.000Z",
+                          "uid": "35240-ced554b7-d4aa-4bbc-9e1a-da69a97a7ba1"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:29:50.000Z",
+                      "updatedAt": "2026-07-28T03:29:50.000Z",
+                      "uid": "35240-eff85a2c-29ad-45be-a2bc-4cd83a43771d"
+                    }
+                  ],
+                  "id": "6f48a932-e5bc-451b-8740-e6d5cbc04941",
+                  "createdAt": "2026-07-28T03:29:50.000Z",
+                  "updatedAt": "2026-07-28T03:29:50.000Z",
+                  "uid": "35240-6f48a932-e5bc-451b-8740-e6d5cbc04941"
+                }
+              ],
+              "id": "9078f60e-5ede-4e8e-a30a-3b9bcaa5bae4",
+              "createdAt": "2026-07-28T03:29:50.000Z",
+              "updatedAt": "2026-07-28T03:29:50.000Z",
+              "uid": "35240-9078f60e-5ede-4e8e-a30a-3b9bcaa5bae4"
+            },
+            {
+              "name": "access",
+              "item": [
+                {
+                  "name": "Delete Access",
+                  "id": "e9f7c810-4518-4b78-97db-39de54659d5b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/user/access",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "user",
+                        "access"
+                      ]
+                    },
+                    "description": "Revoke the access token granted by the user. If the associated OAuth client is configured to receive webhooks, it will no longer receive them for this user."
+                  },
+                  "response": [
+                    {
+                      "id": "0551d5a1-d5c7-4fe5-b270-5ad06293663a",
+                      "name": "Successful request; no response body",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/user/access",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "user",
+                            "access"
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:50.000Z",
+                      "updatedAt": "2026-07-28T03:29:50.000Z",
+                      "uid": "35240-0551d5a1-d5c7-4fe5-b270-5ad06293663a"
+                    },
+                    {
+                      "id": "c585557f-cf72-4ce3-bbcb-c91dbc90fa5d",
+                      "name": "Client error constructing the request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/user/access",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "user",
+                            "access"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:50.000Z",
+                      "updatedAt": "2026-07-28T03:29:50.000Z",
+                      "uid": "35240-c585557f-cf72-4ce3-bbcb-c91dbc90fa5d"
+                    },
+                    {
+                      "id": "3515f676-1941-42c4-81c2-0bde19a311d3",
+                      "name": "Invalid authorization",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/user/access",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "user",
+                            "access"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:50.000Z",
+                      "updatedAt": "2026-07-28T03:29:50.000Z",
+                      "uid": "35240-3515f676-1941-42c4-81c2-0bde19a311d3"
+                    },
+                    {
+                      "id": "0a2b28b0-c57f-44a5-8665-8aa4a9bdd278",
+                      "name": "Request rejected due to rate limiting",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/user/access",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "user",
+                            "access"
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:50.000Z",
+                      "updatedAt": "2026-07-28T03:29:50.000Z",
+                      "uid": "35240-0a2b28b0-c57f-44a5-8665-8aa4a9bdd278"
+                    },
+                    {
+                      "id": "cc2b8e4a-3a07-4b63-9d65-1944aad0731f",
+                      "name": "Server error occurred while making request",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/user/access",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "user",
+                            "access"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:50.000Z",
+                      "updatedAt": "2026-07-28T03:29:50.000Z",
+                      "uid": "35240-cc2b8e4a-3a07-4b63-9d65-1944aad0731f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:50.000Z",
+                  "updatedAt": "2026-07-28T03:29:50.000Z",
+                  "uid": "35240-e9f7c810-4518-4b78-97db-39de54659d5b"
+                }
+              ],
+              "id": "bcf0efd4-5bda-4e4f-80c5-f28db15940cf",
+              "createdAt": "2026-07-28T03:29:50.000Z",
+              "updatedAt": "2026-07-28T03:29:50.000Z",
+              "uid": "35240-bcf0efd4-5bda-4e4f-80c5-f28db15940cf"
+            }
+          ],
+          "id": "f80892ad-f2c2-4967-a693-d1142629ae0e",
+          "createdAt": "2026-07-28T03:29:50.000Z",
+          "updatedAt": "2026-07-28T03:29:50.000Z",
+          "uid": "35240-f80892ad-f2c2-4967-a693-d1142629ae0e"
+        }
+      ],
+      "id": "eba4b820-c8a4-4ff2-b190-39dbe5e9201e",
+      "createdAt": "2026-07-28T03:29:50.000Z",
+      "updatedAt": "2026-07-28T03:29:50.000Z",
+      "uid": "35240-eba4b820-c8a4-4ff2-b190-39dbe5e9201e"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.whoop.com/developer"
+    }
+  ]
+}

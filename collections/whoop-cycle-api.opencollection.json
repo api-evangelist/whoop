@@ -1,0 +1,113 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WHOOP Activity ID Mapping Cycle API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cycle",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Cycle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.whoop.com/developer/v2/cycle/:cycleId",
+            "params": [
+              {
+                "name": "cycleId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the cycle to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://api.prod.whoop.com/oauth/oauth2/auth",
+              "accessTokenUrl": "https://api.prod.whoop.com/oauth/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the cycle for the specified ID"
+        },
+        {
+          "info": {
+            "name": "List Cycle",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.whoop.com/developer/v2/cycle",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit on the number of cycles returned"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://api.prod.whoop.com/oauth/oauth2/auth",
+              "accessTokenUrl": "https://api.prod.whoop.com/oauth/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get all physiological cycles for a user, paginated. Results are sorted by start time in descending order."
+        },
+        {
+          "info": {
+            "name": "List Sleep",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.whoop.com/developer/v2/cycle/:cycleId/sleep",
+            "params": [
+              {
+                "name": "cycleId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the cycle to retrieve sleep for"
+              }
+            ]
+          },
+          "docs": "Get the sleep for the specified cycle ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

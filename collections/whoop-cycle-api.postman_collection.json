@@ -1,0 +1,1057 @@
+{
+  "item": [
+    {
+      "id": "32d9e306-d642-45fc-bb20-9e9e2031ba42",
+      "name": "Cycle",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac17fc70-2f5d-4a24-bcc6-5a96a211f66a",
+          "name": "Get Cycle",
+          "request": {
+            "name": "Get Cycle",
+            "description": {
+              "content": "Get the cycle for the specified ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "cycle",
+                ":cycleId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "cycleId",
+                  "description": "(Required) ID of the cycle to retrieve"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.prod.whoop.com/oauth/oauth2/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://api.prod.whoop.com/oauth/oauth2/auth"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3ea3db68-2334-40df-bf42-02157cc5eab9",
+              "name": "Successful request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2022-04-24T11:25:44.774Z\",\n  \"id\": 93845,\n  \"score_state\": \"SCORED\",\n  \"start\": \"2022-04-24T02:25:44.774Z\",\n  \"timezone_offset\": \"-05:00\",\n  \"updated_at\": \"2022-04-24T14:25:44.774Z\",\n  \"user_id\": 10129,\n  \"end\": \"2022-04-24T10:25:44.774Z\",\n  \"score\": {\n    \"average_heart_rate\": 68,\n    \"kilojoule\": 8288.297,\n    \"max_heart_rate\": 141,\n    \"strain\": 5.2951527\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b579b01-8993-4ae6-9cd1-d3fce4beb808",
+              "name": "Client error constructing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cc73d2a8-caef-48bb-9fd4-7099e5f3d399",
+              "name": "Invalid authorization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "623b409b-1f4f-4966-a9ba-7a37419c2d10",
+              "name": "No resource found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3ee65e6c-9747-4407-8640-ce508a18a8f6",
+              "name": "Request rejected due to rate limiting",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a59a0a39-eaf7-41c6-9af9-6dba9baa220b",
+              "name": "Server error occurred while making request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe052464-18ae-4002-88b5-e2e424ab1bc6",
+          "name": "List Cycle",
+          "request": {
+            "name": "List Cycle",
+            "description": {
+              "content": "Get all physiological cycles for a user, paginated. Results are sorted by start time in descending order.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "cycle"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Limit on the number of cycles returned"
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time."
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`."
+                },
+                {
+                  "disabled": false,
+                  "key": "nextToken",
+                  "value": "<string>",
+                  "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "oauth2",
+              "oauth2": [
+                {
+                  "key": "scope",
+                  "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement"
+                },
+                {
+                  "key": "accessTokenUrl",
+                  "value": "https://api.prod.whoop.com/oauth/oauth2/token"
+                },
+                {
+                  "key": "authUrl",
+                  "value": "https://api.prod.whoop.com/oauth/oauth2/auth"
+                },
+                {
+                  "key": "grant_type",
+                  "value": "authorization_code"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b0aa5d22-be62-447d-8a9f-0bf083a89fb7",
+              "name": "Successful request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"records\": [\n    {\n      \"created_at\": \"2022-04-24T11:25:44.774Z\",\n      \"id\": 93845,\n      \"score_state\": \"SCORED\",\n      \"start\": \"2022-04-24T02:25:44.774Z\",\n      \"timezone_offset\": \"-05:00\",\n      \"updated_at\": \"2022-04-24T14:25:44.774Z\",\n      \"user_id\": 10129,\n      \"end\": \"2022-04-24T10:25:44.774Z\",\n      \"score\": {\n        \"average_heart_rate\": 68,\n        \"kilojoule\": 8288.297,\n        \"max_heart_rate\": 141,\n        \"strain\": 5.2951527\n      }\n    },\n    {\n      \"created_at\": \"2022-04-24T11:25:44.774Z\",\n      \"id\": 93845,\n      \"score_state\": \"SCORED\",\n      \"start\": \"2022-04-24T02:25:44.774Z\",\n      \"timezone_offset\": \"-05:00\",\n      \"updated_at\": \"2022-04-24T14:25:44.774Z\",\n      \"user_id\": 10129,\n      \"end\": \"2022-04-24T10:25:44.774Z\",\n      \"score\": {\n        \"average_heart_rate\": 68,\n        \"kilojoule\": 8288.297,\n        \"max_heart_rate\": 141,\n        \"strain\": 5.2951527\n      }\n    }\n  ],\n  \"next_token\": \"MTIzOjEyMzEyMw\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a316bb6-3696-42d8-a64a-31806ec112b9",
+              "name": "Client error constructing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e5873cd8-8cbf-4925-bfbc-f0a869a4bf37",
+              "name": "Invalid authorization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "74f8ef87-43b4-4b4c-b915-235f93fcc086",
+              "name": "Request rejected due to rate limiting",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "bb051dae-680b-4b55-ac52-dad5e7055ab2",
+              "name": "Server error occurred while making request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6df72ac7-1351-4cdc-b2f5-be5893613237",
+          "name": "List Sleep",
+          "request": {
+            "name": "List Sleep",
+            "description": {
+              "content": "Get the sleep for the specified cycle ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "cycle",
+                ":cycleId",
+                "sleep"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "cycleId",
+                  "description": "(Required) ID of the cycle to retrieve sleep for"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86e68efa-f31c-4325-b6e8-7064e86d6245",
+              "name": "Successful request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId",
+                    "sleep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve sleep for"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2022-04-24T11:25:44.774Z\",\n  \"cycle_id\": 93845,\n  \"end\": \"2022-04-24T10:25:44.774Z\",\n  \"id\": \"ecfc6a15-4661-442f-a9a4-f160dd7afae8\",\n  \"nap\": false,\n  \"score_state\": \"SCORED\",\n  \"start\": \"2022-04-24T02:25:44.774Z\",\n  \"timezone_offset\": \"-05:00\",\n  \"updated_at\": \"2022-04-24T14:25:44.774Z\",\n  \"user_id\": 10129,\n  \"v1_id\": 93845,\n  \"score\": {\n    \"sleep_needed\": {\n      \"baseline_milli\": 27395716,\n      \"need_from_recent_nap_milli\": -12312,\n      \"need_from_recent_strain_milli\": 208595,\n      \"need_from_sleep_debt_milli\": 352230\n    },\n    \"stage_summary\": {\n      \"disturbance_count\": 12,\n      \"sleep_cycle_count\": 3,\n      \"total_awake_time_milli\": 1403507,\n      \"total_in_bed_time_milli\": 30272735,\n      \"total_light_sleep_time_milli\": 14905851,\n      \"total_no_data_time_milli\": 0,\n      \"total_rem_sleep_time_milli\": 5879573,\n      \"total_slow_wave_sleep_time_milli\": 6630370\n    },\n    \"respiratory_rate\": 16.11328125,\n    \"sleep_performance_percentage\": 98,\n    \"sleep_consistency_percentage\": 90,\n    \"sleep_efficiency_percentage\": 91.69533848\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "52919c42-0771-41d3-a3b8-52a2669fe6f5",
+              "name": "Client error constructing the request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId",
+                    "sleep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve sleep for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "76ff8bf1-76b6-4ea1-9206-8f6e38e2daf4",
+              "name": "Invalid authorization",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId",
+                    "sleep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve sleep for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "938a5d36-692e-4830-842b-fc5a227ca9c7",
+              "name": "No resource found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId",
+                    "sleep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve sleep for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "22f0454b-a4b2-4e2b-9011-75942cfca918",
+              "name": "Request rejected due to rate limiting",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId",
+                    "sleep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve sleep for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "5d9f7db8-d339-4de0-95fe-36681ee0d507",
+              "name": "Server error occurred while making request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "cycle",
+                    ":cycleId",
+                    "sleep"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "cycleId",
+                      "description": "(Required) ID of the cycle to retrieve sleep for"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.whoop.com/developer",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "112dc707-e31e-41b3-ace5-5da9907df79b",
+    "name": "WHOOP Activity ID Mapping Cycle API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The WHOOP API exposes member fitness, strain, recovery, sleep, workout, and body measurement data captured by the WHOOP wrist-worn wearable. OAuth 2.0 protected; v2 endpoints use UUID identifiers and webhook notifications keep integrations current.\n\nContact Support:\n Name: WHOOP Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

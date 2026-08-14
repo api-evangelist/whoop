@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WHOOP Activity ID Mapping User API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Body Measurements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.whoop.com/developer/v2/user/measurement/body",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://api.prod.whoop.com/oauth/oauth2/auth",
+              "accessTokenUrl": "https://api.prod.whoop.com/oauth/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves the body measurements (height, weight, max heart rate) for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Get Basic User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.whoop.com/developer/v2/user/profile/basic",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://api.prod.whoop.com/oauth/oauth2/auth",
+              "accessTokenUrl": "https://api.prod.whoop.com/oauth/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Retrieves the basic profile information (name, email) for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Delete Access",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.prod.whoop.com/developer/v2/user/access",
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://api.prod.whoop.com/oauth/oauth2/auth",
+              "accessTokenUrl": "https://api.prod.whoop.com/oauth/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Revoke the access token granted by the user. If the associated OAuth client is configured to receive webhooks, it will no longer receive them for this user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

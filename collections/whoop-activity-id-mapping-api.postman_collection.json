@@ -1,0 +1,200 @@
+{
+  "item": [
+    {
+      "id": "1bc10280-8c95-4647-92e6-777562f4c397",
+      "name": "Activity ID Mapping",
+      "description": {
+        "content": "Utility endpoints for activity ID mapping",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "aa9d7085-9c96-42ac-be9f-88a66019462f",
+          "name": "Get V2 UUID for V1 Activity ID",
+          "request": {
+            "name": "Get V2 UUID for V1 Activity ID",
+            "description": {
+              "content": "Lookup the V2 UUID for a given V1 activity ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "activity-mapping",
+                ":activityV1Id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "activityV1Id",
+                  "description": "(Required) V1 Activity ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2dc90166-c432-42f5-8366-df5bd40f10c7",
+              "name": "Successfully retrieved mapping",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "activity-mapping",
+                    ":activityV1Id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "activityV1Id",
+                      "description": "(Required) V1 Activity ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"v2_activity_id\": \"ecfc6a15-4661-442f-a9a4-f160dd7afae8\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d340a605-8f7b-4d26-b9ed-79493995137f",
+              "name": "Activity mapping not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "activity-mapping",
+                    ":activityV1Id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "activityV1Id",
+                      "description": "(Required) V1 Activity ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f343c911-520f-452f-aff9-519f33acf747",
+              "name": "Server error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "activity-mapping",
+                    ":activityV1Id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "activityV1Id",
+                      "description": "(Required) V1 Activity ID"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.prod.whoop.com/developer",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0c5df75b-cea9-46af-baf2-8445d782f113",
+    "name": "WHOOP Activity ID Mapping API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The WHOOP API exposes member fitness, strain, recovery, sleep, workout, and body measurement data captured by the WHOOP wrist-worn wearable. OAuth 2.0 protected; v2 endpoints use UUID identifiers and webhook notifications keep integrations current.\n\nContact Support:\n Name: WHOOP Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

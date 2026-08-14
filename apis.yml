@@ -1,11 +1,10 @@
 aid: whoop
 name: WHOOP
-description: WHOOP is a fitness and recovery wearable platform providing a REST API
-  for accessing sleep, recovery, strain, and workout metrics from the WHOOP band.
-  The API uses OAuth 2.0 authorization code flow with Bearer tokens to allow developers
-  to build applications that access member health and performance data including physiological
-  cycles, sleep stages, recovery scores, strain, heart rate, body measurements, and
-  workout records.
+description: WHOOP is a fitness and recovery wearable platform providing a REST API for accessing sleep,
+  recovery, strain, and workout metrics from the WHOOP band. The API uses OAuth 2.0 authorization code
+  flow with Bearer tokens to allow developers to build applications that access member health and performance
+  data including physiological cycles, sleep stages, recovery scores, strain, heart rate, body measurements,
+  and workout records.
 type: Index
 accessModel:
   pricing: free
@@ -263,6 +262,109 @@ common:
   url: rate-limits/whoop-rate-limits.yml
 - type: FinOps
   url: finops/whoop-finops.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/whoop/overview
+- type: AgenticAccess
+  url: agentic-access/whoop-agentic-access.yml
+- type: DomainSecurity
+  url: security/whoop-domain-security.yml
+- type: Authentication
+  url: authentication/whoop-authentication.yml
+- type: OAuthScopes
+  url: scopes/whoop-scopes.yml
+- type: Portal
+  url: https://www.whoop.com/
+- type: Documentation
+  url: https://developer.whoop.com/
+- type: Documentation
+  url: https://developer.whoop.com/docs/introduction/
+- type: GettingStarted
+  url: https://developer.whoop.com/docs/developing/oauth/
+- type: Authentication
+  url: https://developer.whoop.com/docs/developing/oauth/
+- type: RateLimits
+  url: https://developer.whoop.com/docs/developing/rate-limiting/
+- type: Webhooks
+  url: https://developer.whoop.com/docs/developing/webhooks/
+- type: Support
+  url: https://developer.whoop.com/docs/developing/support/
+- type: Migration
+  url: https://developer.whoop.com/docs/developing/v1-v2-migration/
+- type: DeveloperDashboard
+  url: https://developer-dashboard.whoop.com/
+- type: Pricing
+  url: https://www.whoop.com/us/en/membership/
+- type: Support
+  url: https://support.whoop.com/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/whoop/
+- type: Twitter
+  url: https://twitter.com/whoop
+- type: ContactUs
+  url: https://www.whoop.com/us/en/contact-us/
+- type: PrivacyPolicy
+  url: https://www.whoop.com/legal/privacy-policy/
+- type: TermsOfService
+  url: https://www.whoop.com/legal/terms-of-use/
+- type: APITerms
+  url: https://www.whoop.com/legal/api-terms/
+- url: plans/whoop-plans-pricing.yml
+  type: Plans
+- url: rate-limits/whoop-rate-limits.yml
+  type: RateLimits
+- url: finops/whoop-finops.yml
+  type: FinOps
+- url: vocabulary/whoop-vocabulary.yml
+  type: Vocabulary
+- url: https://www.whoop.com/us/en/thelocker/
+  type: Blog
+- type: Features
+  data:
+  - WHOOP 5.0 — fifth-generation wrist-worn strap with 14-day battery life and on-skin sensor improvements
+  - WHOOP MG — medical-grade variant adding ECG and blood-pressure readings
+  - Continuous 24/7 monitoring of heart rate, HRV, respiratory rate, skin temperature, and SpO2
+  - Daily Recovery score based on HRV, resting heart rate, and sleep performance
+  - Daily Strain score capturing cardiovascular load across all activities
+  - Sleep coaching with stage-by-stage analysis (light, deep, REM) and Sleep Performance %
+  - Workout auto-detection with heart-rate zone breakdowns
+  - Stress Monitor and Daily Outlook AI coaching
+  - Health Monitor with vitals trends and abnormality alerts
+  - WHOOP Coach generative AI assistant for personalized insights
+  - Three subscription tiers — ONE ($199/yr), PEAK ($239/yr), LIFE ($359/yr)
+  - Developer Platform with OAuth 2.0 (authorization code) member-data API
+  - Trusted Partner program with client-credentials OAuth for lab and diagnostics integrations
+  - v2 REST API with UUID resource identifiers and pagination cursors
+  - Webhooks for recovery, sleep, and workout updated/deleted events with HMAC SHA-256 signing
+  - Six member-data scopes — read:recovery, read:cycles, read:workout, read:sleep, read:profile, read:body_measurement
+  - Rate limits — 100 requests/minute and 10,000 requests/day per client, with X-RateLimit-* headers
+  - v1-to-v2 activity-mapping endpoint for migration
+  - Mobile apps for iOS, Android, and Wear OS / Apple Watch companion experience
+  - Garmin, Strava, TrainingPeaks, Apple Health, and Google Health Connect integrations
+  - Community SDKs (Python `hedgertronic/whoop`, MCP server `shashankswe2020-ux/whoop-mcp`)
+  sources:
+  - https://developer.whoop.com/api/
+  - https://developer.whoop.com/docs/introduction/
+  - https://developer.whoop.com/docs/developing/oauth/
+  - https://developer.whoop.com/docs/developing/rate-limiting/
+  - https://developer.whoop.com/docs/developing/webhooks/
+  - https://www.whoop.com/us/en/membership/
+  updated: '2026-05-25'
+- type: AgenticAccess
+  url: agentic-access/whoop-agentic-access.yml
+- type: DomainSecurity
+  url: security/whoop-domain-security.yml
+- type: Authentication
+  url: authentication/whoop-authentication.yml
+- type: OAuthScopes
+  url: scopes/whoop-scopes.yml
+- url: plans/whoop-plans-pricing.yml
+  type: Plans
+- url: rate-limits/whoop-rate-limits.yml
+  type: RateLimits
+- url: finops/whoop-finops.yml
+  type: FinOps
+- url: vocabulary/whoop-vocabulary.yml
+  type: Vocabulary
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

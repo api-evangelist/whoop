@@ -1,0 +1,67 @@
+extends:
+  - "spectral:oas"
+formats:
+  - oas3
+rules:
+  whoop-server-host:
+    description: The single canonical WHOOP API server is https://api.prod.whoop.com/developer.
+    message: "Server URL must be https://api.prod.whoop.com/developer."
+    severity: error
+    given: $.servers[*]
+    then:
+      field: url
+      function: pattern
+      functionOptions:
+        match: "^https://api\\.prod\\.whoop\\.com/developer$"
+
+  whoop-version-prefix:
+    description: WHOOP paths must be under /v1/ (legacy mapping) or /v2/ (current).
+    message: "Path must begin with /v1/ or /v2/."
+    severity: error
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/v[12]/"
+
+  whoop-snake-case-properties:
+    description: WHOOP JSON property names use snake_case.
+    message: "Schema property '{{property}}' must use snake_case."
+    severity: warn
+    given: $.components.schemas[*].properties[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-z0-9_]*$"
+
+  whoop-title-case-summaries:
+    description: Operation summaries should use Title Case.
+    message: "Summary should use Title Case: '{{value}}'."
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z0-9]"
+
+  whoop-oauth-scopes:
+    description: Member-data OAuth scopes must follow the read:<resource> pattern.
+    message: "Scope name '{{property}}' must match read:<resource>."
+    severity: warn
+    given: $.components.securitySchemes.OAuth.flows.authorizationCode.scopes
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match: "^read:[a-z_]+$"
+
+  whoop-uuid-id-format:
+    description: v2 resource IDs (sleep, workout) must use the uuid format.
+    message: "id field should declare format: uuid."
+    severity: info
+    given: $.components.schemas[Sleep,WorkoutV2].properties.id
+    then:
+      field: format
+      function: enumeration
+      functionOptions:
+        values: ["uuid"]

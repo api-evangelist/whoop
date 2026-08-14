@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WHOOP Activity ID Mapping API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Activity ID Mapping",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get V2 UUID for V1 Activity ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.whoop.com/developer/v1/activity-mapping/:activityV1Id",
+            "params": [
+              {
+                "name": "activityV1Id",
+                "value": "12345678",
+                "type": "path",
+                "description": "V1 Activity ID"
+              }
+            ]
+          },
+          "docs": "Lookup the V2 UUID for a given V1 activity ID"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

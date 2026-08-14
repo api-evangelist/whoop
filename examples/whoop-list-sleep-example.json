@@ -1,0 +1,52 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://api.prod.whoop.com/developer/v2/activity/sleep?limit=5",
+    "headers": {
+      "Authorization": "Bearer <oauth_access_token>",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "records": [
+        {
+          "id": "ecfc6a15-4661-442f-a9a4-f160dd7afae8",
+          "cycle_id": 93845,
+          "user_id": 10129,
+          "created_at": "2026-05-25T07:14:01.137Z",
+          "updated_at": "2026-05-25T07:14:01.137Z",
+          "start": "2026-05-24T23:18:00.000Z",
+          "end": "2026-05-25T06:51:00.000Z",
+          "timezone_offset": "-04:00",
+          "nap": false,
+          "score_state": "SCORED",
+          "score": {
+            "stage_summary": {
+              "total_in_bed_time_milli": 27180000,
+              "total_awake_time_milli": 1380000,
+              "total_no_data_time_milli": 0,
+              "total_light_sleep_time_milli": 13560000,
+              "total_slow_wave_sleep_time_milli": 6120000,
+              "total_rem_sleep_time_milli": 6120000,
+              "sleep_cycle_count": 4,
+              "disturbance_count": 6
+            },
+            "sleep_needed": {
+              "baseline_milli": 27395716,
+              "need_from_sleep_debt_milli": 1200000,
+              "need_from_recent_strain_milli": 850000,
+              "need_from_recent_nap_milli": 0
+            },
+            "respiratory_rate": 15.86,
+            "sleep_performance_percentage": 94.1,
+            "sleep_consistency_percentage": 78.0,
+            "sleep_efficiency_percentage": 94.9
+          }
+        }
+      ],
+      "next_token": null
+    }
+  }
+}

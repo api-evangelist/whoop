@@ -1,0 +1,1001 @@
+{
+  "info": {
+    "_postman_id": "3dfd212b-eeeb-4745-a861-0512f846e02b",
+    "name": "WHOOP Activity ID Mapping Cycle API",
+    "description": "The WHOOP API exposes member fitness, strain, recovery, sleep, workout, and body measurement data captured by the WHOOP wrist-worn wearable. OAuth 2.0 protected; v2 endpoints use UUID identifiers and webhook notifications keep integrations current.\n\nContact Support:\n Name: WHOOP Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:45.000Z",
+    "updatedAt": "2026-07-28T03:29:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3dfd212b-eeeb-4745-a861-0512f846e02b"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "cycle",
+          "item": [
+            {
+              "name": "{cycleId}",
+              "item": [
+                {
+                  "name": "sleep",
+                  "item": [
+                    {
+                      "name": "List Sleep",
+                      "id": "5965fbd1-17ba-487a-aeb1-6ba619fa9e1c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/cycle/:cycleId/sleep",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "cycle",
+                            ":cycleId",
+                            "sleep"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4d322997-5d00-404d-8076-6b16d02bb0fa",
+                              "key": "cycleId",
+                              "value": "<long>",
+                              "description": "(Required) ID of the cycle to retrieve sleep for"
+                            }
+                          ]
+                        },
+                        "description": "Get the sleep for the specified cycle ID"
+                      },
+                      "response": [
+                        {
+                          "id": "287dc13f-d023-4df3-800b-f58f2c998484",
+                          "name": "Successful request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/cycle/:cycleId/sleep",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "cycle",
+                                ":cycleId",
+                                "sleep"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cycleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"created_at\": \"<dateTime>\",\n  \"cycle_id\": \"<long>\",\n  \"end\": \"<dateTime>\",\n  \"id\": \"<uuid>\",\n  \"nap\": \"<boolean>\",\n  \"score_state\": \"UNSCORABLE\",\n  \"start\": \"<dateTime>\",\n  \"timezone_offset\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"user_id\": \"<long>\",\n  \"v1_id\": \"<long>\",\n  \"score\": {\n    \"sleep_needed\": {\n      \"baseline_milli\": \"<long>\",\n      \"need_from_recent_nap_milli\": \"<long>\",\n      \"need_from_recent_strain_milli\": \"<long>\",\n      \"need_from_sleep_debt_milli\": \"<long>\"\n    },\n    \"stage_summary\": {\n      \"disturbance_count\": \"<integer>\",\n      \"sleep_cycle_count\": \"<integer>\",\n      \"total_awake_time_milli\": \"<integer>\",\n      \"total_in_bed_time_milli\": \"<integer>\",\n      \"total_light_sleep_time_milli\": \"<integer>\",\n      \"total_no_data_time_milli\": \"<integer>\",\n      \"total_rem_sleep_time_milli\": \"<integer>\",\n      \"total_slow_wave_sleep_time_milli\": \"<integer>\"\n    },\n    \"respiratory_rate\": \"<float>\",\n    \"sleep_performance_percentage\": \"<float>\",\n    \"sleep_consistency_percentage\": \"<float>\",\n    \"sleep_efficiency_percentage\": \"<float>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:29:46.000Z",
+                          "updatedAt": "2026-07-28T03:29:46.000Z",
+                          "uid": "35240-287dc13f-d023-4df3-800b-f58f2c998484"
+                        },
+                        {
+                          "id": "a7e66839-b680-4de5-8d88-c1766f8d85d4",
+                          "name": "Client error constructing the request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/cycle/:cycleId/sleep",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "cycle",
+                                ":cycleId",
+                                "sleep"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cycleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:46.000Z",
+                          "updatedAt": "2026-07-28T03:29:46.000Z",
+                          "uid": "35240-a7e66839-b680-4de5-8d88-c1766f8d85d4"
+                        },
+                        {
+                          "id": "455ee030-591d-41c6-8c91-c4f649b82bd0",
+                          "name": "Invalid authorization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/cycle/:cycleId/sleep",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "cycle",
+                                ":cycleId",
+                                "sleep"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cycleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:46.000Z",
+                          "updatedAt": "2026-07-28T03:29:46.000Z",
+                          "uid": "35240-455ee030-591d-41c6-8c91-c4f649b82bd0"
+                        },
+                        {
+                          "id": "1781e59e-f404-4c33-b5c0-2f8b170c6407",
+                          "name": "No resource found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/cycle/:cycleId/sleep",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "cycle",
+                                ":cycleId",
+                                "sleep"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cycleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:46.000Z",
+                          "updatedAt": "2026-07-28T03:29:46.000Z",
+                          "uid": "35240-1781e59e-f404-4c33-b5c0-2f8b170c6407"
+                        },
+                        {
+                          "id": "1c0c851d-44f4-49d0-9ca4-dd12bf618a9b",
+                          "name": "Request rejected due to rate limiting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/cycle/:cycleId/sleep",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "cycle",
+                                ":cycleId",
+                                "sleep"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cycleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:46.000Z",
+                          "updatedAt": "2026-07-28T03:29:46.000Z",
+                          "uid": "35240-1c0c851d-44f4-49d0-9ca4-dd12bf618a9b"
+                        },
+                        {
+                          "id": "62f25eb9-7bd5-44a6-8ddc-5cc6b69f23c4",
+                          "name": "Server error occurred while making request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/cycle/:cycleId/sleep",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "cycle",
+                                ":cycleId",
+                                "sleep"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "cycleId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:46.000Z",
+                          "updatedAt": "2026-07-28T03:29:46.000Z",
+                          "uid": "35240-62f25eb9-7bd5-44a6-8ddc-5cc6b69f23c4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:29:46.000Z",
+                      "updatedAt": "2026-07-28T03:29:46.000Z",
+                      "uid": "35240-5965fbd1-17ba-487a-aeb1-6ba619fa9e1c"
+                    }
+                  ],
+                  "id": "525e138a-39e5-413d-8948-d371b23ec9ec",
+                  "createdAt": "2026-07-28T03:29:46.000Z",
+                  "updatedAt": "2026-07-28T03:29:46.000Z",
+                  "uid": "35240-525e138a-39e5-413d-8948-d371b23ec9ec"
+                },
+                {
+                  "name": "Get Cycle",
+                  "id": "fe4af683-7cc8-4c18-ac81-41f566fc58e8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/cycle/:cycleId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "cycle",
+                        ":cycleId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "438b33b1-bc78-4fe8-9e4e-0841e20e2d66",
+                          "key": "cycleId",
+                          "value": "<long>",
+                          "description": "(Required) ID of the cycle to retrieve"
+                        }
+                      ]
+                    },
+                    "description": "Get the cycle for the specified ID"
+                  },
+                  "response": [
+                    {
+                      "id": "19383e5d-2947-4ce4-81c1-3a5d615933af",
+                      "name": "Successful request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/cycle/:cycleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "cycle",
+                            ":cycleId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cycleId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"created_at\": \"<dateTime>\",\n  \"id\": \"<long>\",\n  \"score_state\": \"UNSCORABLE\",\n  \"start\": \"<dateTime>\",\n  \"timezone_offset\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"user_id\": \"<long>\",\n  \"end\": \"<dateTime>\",\n  \"score\": {\n    \"average_heart_rate\": \"<integer>\",\n    \"kilojoule\": \"<float>\",\n    \"max_heart_rate\": \"<integer>\",\n    \"strain\": \"<float>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:29:46.000Z",
+                      "updatedAt": "2026-07-28T03:29:46.000Z",
+                      "uid": "35240-19383e5d-2947-4ce4-81c1-3a5d615933af"
+                    },
+                    {
+                      "id": "87190839-0ba3-4361-9e79-f3b39ed92349",
+                      "name": "Client error constructing the request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/cycle/:cycleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "cycle",
+                            ":cycleId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cycleId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:46.000Z",
+                      "updatedAt": "2026-07-28T03:29:46.000Z",
+                      "uid": "35240-87190839-0ba3-4361-9e79-f3b39ed92349"
+                    },
+                    {
+                      "id": "954b83e1-cdff-4d18-86a8-8e4d4a9ace3e",
+                      "name": "Invalid authorization",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/cycle/:cycleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "cycle",
+                            ":cycleId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cycleId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:46.000Z",
+                      "updatedAt": "2026-07-28T03:29:46.000Z",
+                      "uid": "35240-954b83e1-cdff-4d18-86a8-8e4d4a9ace3e"
+                    },
+                    {
+                      "id": "bd3cb003-9cf8-4f6d-8f5c-7813f425c08d",
+                      "name": "No resource found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/cycle/:cycleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "cycle",
+                            ":cycleId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cycleId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:46.000Z",
+                      "updatedAt": "2026-07-28T03:29:46.000Z",
+                      "uid": "35240-bd3cb003-9cf8-4f6d-8f5c-7813f425c08d"
+                    },
+                    {
+                      "id": "800fbfdb-d00c-4311-acaf-5ad24b285f5d",
+                      "name": "Request rejected due to rate limiting",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/cycle/:cycleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "cycle",
+                            ":cycleId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cycleId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:46.000Z",
+                      "updatedAt": "2026-07-28T03:29:46.000Z",
+                      "uid": "35240-800fbfdb-d00c-4311-acaf-5ad24b285f5d"
+                    },
+                    {
+                      "id": "1dfb914b-c2d2-4406-bbe4-9b6449ea7b4e",
+                      "name": "Server error occurred while making request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/cycle/:cycleId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "cycle",
+                            ":cycleId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "cycleId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:46.000Z",
+                      "updatedAt": "2026-07-28T03:29:46.000Z",
+                      "uid": "35240-1dfb914b-c2d2-4406-bbe4-9b6449ea7b4e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:46.000Z",
+                  "updatedAt": "2026-07-28T03:29:46.000Z",
+                  "uid": "35240-fe4af683-7cc8-4c18-ac81-41f566fc58e8"
+                }
+              ],
+              "id": "2bd10a2f-6e4e-4264-94a2-de0a574695bf",
+              "createdAt": "2026-07-28T03:29:46.000Z",
+              "updatedAt": "2026-07-28T03:29:46.000Z",
+              "uid": "35240-2bd10a2f-6e4e-4264-94a2-de0a574695bf"
+            },
+            {
+              "name": "List Cycle",
+              "id": "41f01bb5-8963-4d7d-8c4a-a393771cbd3d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "oauth2",
+                  "oauth2": [
+                    {
+                      "key": "scope",
+                      "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                      "type": "string"
+                    },
+                    {
+                      "key": "accessTokenUrl",
+                      "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                      "type": "string"
+                    },
+                    {
+                      "key": "authUrl",
+                      "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                      "type": "string"
+                    },
+                    {
+                      "key": "grant_type",
+                      "value": "authorization_code",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v2/cycle?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v2",
+                    "cycle"
+                  ],
+                  "query": [
+                    {
+                      "description": "Limit on the number of cycles returned",
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "description": "Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time.",
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                      "key": "nextToken",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Get all physiological cycles for a user, paginated. Results are sorted by start time in descending order."
+              },
+              "response": [
+                {
+                  "id": "c3c1b642-262a-429a-a77e-c1b81339b00f",
+                  "name": "Successful request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/cycle?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "cycle"
+                      ],
+                      "query": [
+                        {
+                          "description": "Limit on the number of cycles returned",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time.",
+                          "key": "start",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                          "key": "end",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"records\": [\n    {\n      \"created_at\": \"<dateTime>\",\n      \"id\": \"<long>\",\n      \"score_state\": \"SCORED\",\n      \"start\": \"<dateTime>\",\n      \"timezone_offset\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"user_id\": \"<long>\",\n      \"end\": \"<dateTime>\",\n      \"score\": {\n        \"average_heart_rate\": \"<integer>\",\n        \"kilojoule\": \"<float>\",\n        \"max_heart_rate\": \"<integer>\",\n        \"strain\": \"<float>\"\n      }\n    },\n    {\n      \"created_at\": \"<dateTime>\",\n      \"id\": \"<long>\",\n      \"score_state\": \"UNSCORABLE\",\n      \"start\": \"<dateTime>\",\n      \"timezone_offset\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"user_id\": \"<long>\",\n      \"end\": \"<dateTime>\",\n      \"score\": {\n        \"average_heart_rate\": \"<integer>\",\n        \"kilojoule\": \"<float>\",\n        \"max_heart_rate\": \"<integer>\",\n        \"strain\": \"<float>\"\n      }\n    }\n  ],\n  \"next_token\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:29:46.000Z",
+                  "updatedAt": "2026-07-28T03:29:46.000Z",
+                  "uid": "35240-c3c1b642-262a-429a-a77e-c1b81339b00f"
+                },
+                {
+                  "id": "33303e37-d391-40c1-9e73-65025feb2071",
+                  "name": "Client error constructing the request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/cycle?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "cycle"
+                      ],
+                      "query": [
+                        {
+                          "description": "Limit on the number of cycles returned",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time.",
+                          "key": "start",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                          "key": "end",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:29:46.000Z",
+                  "updatedAt": "2026-07-28T03:29:46.000Z",
+                  "uid": "35240-33303e37-d391-40c1-9e73-65025feb2071"
+                },
+                {
+                  "id": "cbccd670-2dd5-4eb8-b9ea-fbc11b4d352a",
+                  "name": "Invalid authorization",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/cycle?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "cycle"
+                      ],
+                      "query": [
+                        {
+                          "description": "Limit on the number of cycles returned",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time.",
+                          "key": "start",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                          "key": "end",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:29:46.000Z",
+                  "updatedAt": "2026-07-28T03:29:46.000Z",
+                  "uid": "35240-cbccd670-2dd5-4eb8-b9ea-fbc11b4d352a"
+                },
+                {
+                  "id": "2c96e37a-a812-42a0-aac5-0a28f456757b",
+                  "name": "Request rejected due to rate limiting",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/cycle?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "cycle"
+                      ],
+                      "query": [
+                        {
+                          "description": "Limit on the number of cycles returned",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time.",
+                          "key": "start",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                          "key": "end",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:29:46.000Z",
+                  "updatedAt": "2026-07-28T03:29:46.000Z",
+                  "uid": "35240-2c96e37a-a812-42a0-aac5-0a28f456757b"
+                },
+                {
+                  "id": "4ae1f9d6-ec16-45b6-a5e3-71f279803fea",
+                  "name": "Server error occurred while making request",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/cycle?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "cycle"
+                      ],
+                      "query": [
+                        {
+                          "description": "Limit on the number of cycles returned",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Return cycles that occurred after or during (inclusive) this time. If not specified, the response will not filter cycles by a minimum time.",
+                          "key": "start",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Return cycles that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                          "key": "end",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-07-28T03:29:46.000Z",
+                  "updatedAt": "2026-07-28T03:29:46.000Z",
+                  "uid": "35240-4ae1f9d6-ec16-45b6-a5e3-71f279803fea"
+                }
+              ],
+              "createdAt": "2026-07-28T03:29:46.000Z",
+              "updatedAt": "2026-07-28T03:29:46.000Z",
+              "uid": "35240-41f01bb5-8963-4d7d-8c4a-a393771cbd3d"
+            }
+          ],
+          "id": "7fcae920-db73-4eeb-9098-56923a1317dd",
+          "createdAt": "2026-07-28T03:29:46.000Z",
+          "updatedAt": "2026-07-28T03:29:46.000Z",
+          "uid": "35240-7fcae920-db73-4eeb-9098-56923a1317dd"
+        }
+      ],
+      "id": "67e5bea4-f281-433a-93b8-013c7e1e562a",
+      "createdAt": "2026-07-28T03:29:46.000Z",
+      "updatedAt": "2026-07-28T03:29:46.000Z",
+      "uid": "35240-67e5bea4-f281-433a-93b8-013c7e1e562a"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.whoop.com/developer"
+    }
+  ]
+}

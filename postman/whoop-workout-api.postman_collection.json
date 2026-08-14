@@ -1,0 +1,752 @@
+{
+  "info": {
+    "_postman_id": "fc2b03bf-a00a-4652-afa2-4af5f4ddd3d3",
+    "name": "WHOOP Activity ID Mapping Workout API",
+    "description": "The WHOOP API exposes member fitness, strain, recovery, sleep, workout, and body measurement data captured by the WHOOP wrist-worn wearable. OAuth 2.0 protected; v2 endpoints use UUID identifiers and webhook notifications keep integrations current.\n\nContact Support:\n Name: WHOOP Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:51.000Z",
+    "updatedAt": "2026-07-28T03:29:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fc2b03bf-a00a-4652-afa2-4af5f4ddd3d3"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "activity",
+          "item": [
+            {
+              "name": "workout",
+              "item": [
+                {
+                  "name": "{workoutId}",
+                  "item": [
+                    {
+                      "name": "Get Workout",
+                      "id": "8ca0146c-2db8-483f-b3a4-fc27e81beb72",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/workout/:workoutId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "workout",
+                            ":workoutId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "06381177-bb26-4148-9bc2-794592a92e9b",
+                              "key": "workoutId",
+                              "value": "<uuid>",
+                              "description": "(Required) ID of the workout to retrieve"
+                            }
+                          ]
+                        },
+                        "description": "Get the workout for the specified ID"
+                      },
+                      "response": [
+                        {
+                          "id": "005dff76-7ce9-4a4f-9b5a-00f919870cf0",
+                          "name": "Successful request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/workout/:workoutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "workout",
+                                ":workoutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workoutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"created_at\": \"<dateTime>\",\n  \"end\": \"<dateTime>\",\n  \"id\": \"<uuid>\",\n  \"score_state\": \"UNSCORABLE\",\n  \"sport_name\": \"<string>\",\n  \"start\": \"<dateTime>\",\n  \"timezone_offset\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"user_id\": \"<long>\",\n  \"v1_id\": \"<long>\",\n  \"score\": {\n    \"average_heart_rate\": \"<integer>\",\n    \"kilojoule\": \"<float>\",\n    \"max_heart_rate\": \"<integer>\",\n    \"percent_recorded\": \"<float>\",\n    \"strain\": \"<float>\",\n    \"zone_durations\": {\n      \"zone_five_milli\": \"<long>\",\n      \"zone_four_milli\": \"<long>\",\n      \"zone_one_milli\": \"<long>\",\n      \"zone_three_milli\": \"<long>\",\n      \"zone_two_milli\": \"<long>\",\n      \"zone_zero_milli\": \"<long>\"\n    },\n    \"distance_meter\": \"<float>\",\n    \"altitude_gain_meter\": \"<float>\",\n    \"altitude_change_meter\": \"<float>\"\n  },\n  \"sport_id\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T03:29:51.000Z",
+                          "updatedAt": "2026-07-28T03:29:51.000Z",
+                          "uid": "35240-005dff76-7ce9-4a4f-9b5a-00f919870cf0"
+                        },
+                        {
+                          "id": "bbe744ec-51d0-4f12-be6b-d9c8ca7ed60e",
+                          "name": "Client error constructing the request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/workout/:workoutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "workout",
+                                ":workoutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workoutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:51.000Z",
+                          "updatedAt": "2026-07-28T03:29:51.000Z",
+                          "uid": "35240-bbe744ec-51d0-4f12-be6b-d9c8ca7ed60e"
+                        },
+                        {
+                          "id": "7d47fabc-25bf-4a3b-bdad-3be3c7c017fc",
+                          "name": "Invalid authorization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/workout/:workoutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "workout",
+                                ":workoutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workoutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:51.000Z",
+                          "updatedAt": "2026-07-28T03:29:51.000Z",
+                          "uid": "35240-7d47fabc-25bf-4a3b-bdad-3be3c7c017fc"
+                        },
+                        {
+                          "id": "ea497f66-be47-4f1e-bf65-a2071a6c512c",
+                          "name": "No resource found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/workout/:workoutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "workout",
+                                ":workoutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workoutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:51.000Z",
+                          "updatedAt": "2026-07-28T03:29:51.000Z",
+                          "uid": "35240-ea497f66-be47-4f1e-bf65-a2071a6c512c"
+                        },
+                        {
+                          "id": "f48f771c-5c8f-43d0-9e41-7d5d6fe57588",
+                          "name": "Request rejected due to rate limiting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/workout/:workoutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "workout",
+                                ":workoutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workoutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:51.000Z",
+                          "updatedAt": "2026-07-28T03:29:51.000Z",
+                          "uid": "35240-f48f771c-5c8f-43d0-9e41-7d5d6fe57588"
+                        },
+                        {
+                          "id": "5059dba1-aab3-4eab-8063-6f86aeb89233",
+                          "name": "Server error occurred while making request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/workout/:workoutId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "workout",
+                                ":workoutId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "workoutId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:51.000Z",
+                          "updatedAt": "2026-07-28T03:29:51.000Z",
+                          "uid": "35240-5059dba1-aab3-4eab-8063-6f86aeb89233"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:29:51.000Z",
+                      "updatedAt": "2026-07-28T03:29:51.000Z",
+                      "uid": "35240-8ca0146c-2db8-483f-b3a4-fc27e81beb72"
+                    }
+                  ],
+                  "id": "9bc9ed0a-2709-4f94-b3f3-2f0ff85ab37c",
+                  "createdAt": "2026-07-28T03:29:51.000Z",
+                  "updatedAt": "2026-07-28T03:29:51.000Z",
+                  "uid": "35240-9bc9ed0a-2709-4f94-b3f3-2f0ff85ab37c"
+                },
+                {
+                  "name": "List Workout",
+                  "id": "9c856107-0ec2-4336-a304-eb05662ee99c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/activity/workout?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "activity",
+                        "workout"
+                      ],
+                      "query": [
+                        {
+                          "description": "Limit on the number of workouts returned",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Return workouts that occurred after or during (inclusive) this time. If not specified, the response will not filter workouts by a minimum time.",
+                          "key": "start",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Return workouts that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                          "key": "end",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Get all workouts for a user, paginated. Results are sorted by start time in descending order."
+                  },
+                  "response": [
+                    {
+                      "id": "b258cb24-4ab4-4100-8eef-30f255a92703",
+                      "name": "Successful request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/workout?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "workout"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of workouts returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return workouts that occurred after or during (inclusive) this time. If not specified, the response will not filter workouts by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return workouts that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"records\": [\n    {\n      \"created_at\": \"<dateTime>\",\n      \"end\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"score_state\": \"SCORED\",\n      \"sport_name\": \"<string>\",\n      \"start\": \"<dateTime>\",\n      \"timezone_offset\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"user_id\": \"<long>\",\n      \"v1_id\": \"<long>\",\n      \"score\": {\n        \"average_heart_rate\": \"<integer>\",\n        \"kilojoule\": \"<float>\",\n        \"max_heart_rate\": \"<integer>\",\n        \"percent_recorded\": \"<float>\",\n        \"strain\": \"<float>\",\n        \"zone_durations\": {\n          \"zone_five_milli\": \"<long>\",\n          \"zone_four_milli\": \"<long>\",\n          \"zone_one_milli\": \"<long>\",\n          \"zone_three_milli\": \"<long>\",\n          \"zone_two_milli\": \"<long>\",\n          \"zone_zero_milli\": \"<long>\"\n        },\n        \"distance_meter\": \"<float>\",\n        \"altitude_gain_meter\": \"<float>\",\n        \"altitude_change_meter\": \"<float>\"\n      },\n      \"sport_id\": \"<integer>\"\n    },\n    {\n      \"created_at\": \"<dateTime>\",\n      \"end\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"score_state\": \"SCORED\",\n      \"sport_name\": \"<string>\",\n      \"start\": \"<dateTime>\",\n      \"timezone_offset\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"user_id\": \"<long>\",\n      \"v1_id\": \"<long>\",\n      \"score\": {\n        \"average_heart_rate\": \"<integer>\",\n        \"kilojoule\": \"<float>\",\n        \"max_heart_rate\": \"<integer>\",\n        \"percent_recorded\": \"<float>\",\n        \"strain\": \"<float>\",\n        \"zone_durations\": {\n          \"zone_five_milli\": \"<long>\",\n          \"zone_four_milli\": \"<long>\",\n          \"zone_one_milli\": \"<long>\",\n          \"zone_three_milli\": \"<long>\",\n          \"zone_two_milli\": \"<long>\",\n          \"zone_zero_milli\": \"<long>\"\n        },\n        \"distance_meter\": \"<float>\",\n        \"altitude_gain_meter\": \"<float>\",\n        \"altitude_change_meter\": \"<float>\"\n      },\n      \"sport_id\": \"<integer>\"\n    }\n  ],\n  \"next_token\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:51.000Z",
+                      "updatedAt": "2026-07-28T03:29:51.000Z",
+                      "uid": "35240-b258cb24-4ab4-4100-8eef-30f255a92703"
+                    },
+                    {
+                      "id": "a0395f80-96bc-4a68-a832-b6676f8835f5",
+                      "name": "Client error constructing the request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/workout?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "workout"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of workouts returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return workouts that occurred after or during (inclusive) this time. If not specified, the response will not filter workouts by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return workouts that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:51.000Z",
+                      "updatedAt": "2026-07-28T03:29:51.000Z",
+                      "uid": "35240-a0395f80-96bc-4a68-a832-b6676f8835f5"
+                    },
+                    {
+                      "id": "52dc5991-223b-445f-94f4-8ad7e76c127d",
+                      "name": "Invalid authorization",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/workout?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "workout"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of workouts returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return workouts that occurred after or during (inclusive) this time. If not specified, the response will not filter workouts by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return workouts that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:51.000Z",
+                      "updatedAt": "2026-07-28T03:29:51.000Z",
+                      "uid": "35240-52dc5991-223b-445f-94f4-8ad7e76c127d"
+                    },
+                    {
+                      "id": "c0efd624-5bc8-4cfc-99b7-5351d42d82a8",
+                      "name": "Request rejected due to rate limiting",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/workout?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "workout"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of workouts returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return workouts that occurred after or during (inclusive) this time. If not specified, the response will not filter workouts by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return workouts that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:51.000Z",
+                      "updatedAt": "2026-07-28T03:29:51.000Z",
+                      "uid": "35240-c0efd624-5bc8-4cfc-99b7-5351d42d82a8"
+                    },
+                    {
+                      "id": "15523a0a-c325-4a6d-ac49-3284f722f328",
+                      "name": "Server error occurred while making request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/workout?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "workout"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of workouts returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return workouts that occurred after or during (inclusive) this time. If not specified, the response will not filter workouts by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return workouts that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:51.000Z",
+                      "updatedAt": "2026-07-28T03:29:51.000Z",
+                      "uid": "35240-15523a0a-c325-4a6d-ac49-3284f722f328"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:51.000Z",
+                  "updatedAt": "2026-07-28T03:29:51.000Z",
+                  "uid": "35240-9c856107-0ec2-4336-a304-eb05662ee99c"
+                }
+              ],
+              "id": "e95b2f6d-89f8-4f7b-bbb1-800812eb28cd",
+              "createdAt": "2026-07-28T03:29:51.000Z",
+              "updatedAt": "2026-07-28T03:29:51.000Z",
+              "uid": "35240-e95b2f6d-89f8-4f7b-bbb1-800812eb28cd"
+            }
+          ],
+          "id": "fdd11d7e-d886-417a-9b12-24b39f0f0934",
+          "createdAt": "2026-07-28T03:29:51.000Z",
+          "updatedAt": "2026-07-28T03:29:51.000Z",
+          "uid": "35240-fdd11d7e-d886-417a-9b12-24b39f0f0934"
+        }
+      ],
+      "id": "ffc5d3cf-681d-4b96-90e8-531d2b668fe8",
+      "createdAt": "2026-07-28T03:29:51.000Z",
+      "updatedAt": "2026-07-28T03:29:51.000Z",
+      "uid": "35240-ffc5d3cf-681d-4b96-90e8-531d2b668fe8"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.whoop.com/developer"
+    }
+  ]
+}

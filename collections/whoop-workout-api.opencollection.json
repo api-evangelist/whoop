@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "WHOOP Activity ID Mapping Workout API",
+    "version": "2.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Workout",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Workout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.whoop.com/developer/v2/activity/workout/:workoutId",
+            "params": [
+              {
+                "name": "workoutId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the workout to retrieve"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://api.prod.whoop.com/oauth/oauth2/auth",
+              "accessTokenUrl": "https://api.prod.whoop.com/oauth/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get the workout for the specified ID"
+        },
+        {
+          "info": {
+            "name": "List Workout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.prod.whoop.com/developer/v2/activity/workout",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limit on the number of workouts returned"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Return workouts that occurred after or during (inclusive) this time. If not specified, the response will not filter workouts by a minimum time."
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Return workouts that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`."
+              },
+              {
+                "name": "nextToken",
+                "value": "",
+                "type": "query",
+                "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned"
+              }
+            ],
+            "auth": {
+              "type": "oauth2",
+              "flow": "authorization_code",
+              "authorizationUrl": "https://api.prod.whoop.com/oauth/oauth2/auth",
+              "accessTokenUrl": "https://api.prod.whoop.com/oauth/oauth2/token",
+              "credentials": {
+                "clientId": "{{clientId}}",
+                "clientSecret": "{{clientSecret}}"
+              }
+            }
+          },
+          "docs": "Get all workouts for a user, paginated. Results are sorted by start time in descending order."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

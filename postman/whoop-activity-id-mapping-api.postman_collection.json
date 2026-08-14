@@ -1,0 +1,200 @@
+{
+  "info": {
+    "_postman_id": "c7c086d6-aeb7-4b62-8cdf-a4eaae96624e",
+    "name": "WHOOP Activity ID Mapping API",
+    "description": "The WHOOP API exposes member fitness, strain, recovery, sleep, workout, and body measurement data captured by the WHOOP wrist-worn wearable. OAuth 2.0 protected; v2 endpoints use UUID identifiers and webhook notifications keep integrations current.\n\nContact Support:\n Name: WHOOP Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:44.000Z",
+    "updatedAt": "2026-07-28T03:29:45.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c7c086d6-aeb7-4b62-8cdf-a4eaae96624e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "activity-mapping",
+          "item": [
+            {
+              "name": "{activityV1Id}",
+              "item": [
+                {
+                  "name": "Get V2 UUID for V1 Activity ID",
+                  "id": "4b265545-346d-471f-820b-72e5b63c3643",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/activity-mapping/:activityV1Id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "activity-mapping",
+                        ":activityV1Id"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4cdcdcb3-aa1a-4218-82ed-7c4e12958620",
+                          "key": "activityV1Id",
+                          "value": "<long>",
+                          "description": "(Required) V1 Activity ID"
+                        }
+                      ]
+                    },
+                    "description": "Lookup the V2 UUID for a given V1 activity ID"
+                  },
+                  "response": [
+                    {
+                      "id": "dc9c4bc6-53c4-44a6-8d0a-dfd3f3ba9c0b",
+                      "name": "Successfully retrieved mapping",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/activity-mapping/:activityV1Id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "activity-mapping",
+                            ":activityV1Id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "activityV1Id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"v2_activity_id\": \"<uuid>\"\n}",
+                      "createdAt": "2026-07-28T03:29:45.000Z",
+                      "updatedAt": "2026-07-28T03:29:45.000Z",
+                      "uid": "35240-dc9c4bc6-53c4-44a6-8d0a-dfd3f3ba9c0b"
+                    },
+                    {
+                      "id": "b74821a5-5790-4ab5-bd4a-c236b6d1d524",
+                      "name": "Activity mapping not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/activity-mapping/:activityV1Id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "activity-mapping",
+                            ":activityV1Id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "activityV1Id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:45.000Z",
+                      "updatedAt": "2026-07-28T03:29:45.000Z",
+                      "uid": "35240-b74821a5-5790-4ab5-bd4a-c236b6d1d524"
+                    },
+                    {
+                      "id": "e7e707e8-a102-4b88-8b42-ff86b0222c7f",
+                      "name": "Server error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/activity-mapping/:activityV1Id",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "activity-mapping",
+                            ":activityV1Id"
+                          ],
+                          "variable": [
+                            {
+                              "key": "activityV1Id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:45.000Z",
+                      "updatedAt": "2026-07-28T03:29:45.000Z",
+                      "uid": "35240-e7e707e8-a102-4b88-8b42-ff86b0222c7f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:45.000Z",
+                  "updatedAt": "2026-07-28T03:29:45.000Z",
+                  "uid": "35240-4b265545-346d-471f-820b-72e5b63c3643"
+                }
+              ],
+              "id": "1ac33590-f5f9-489b-a112-0f77d0c4e62c",
+              "createdAt": "2026-07-28T03:29:45.000Z",
+              "updatedAt": "2026-07-28T03:29:45.000Z",
+              "uid": "35240-1ac33590-f5f9-489b-a112-0f77d0c4e62c"
+            }
+          ],
+          "id": "8e21682b-2177-4c1f-b26f-b7025de9e449",
+          "createdAt": "2026-07-28T03:29:45.000Z",
+          "updatedAt": "2026-07-28T03:29:45.000Z",
+          "uid": "35240-8e21682b-2177-4c1f-b26f-b7025de9e449"
+        }
+      ],
+      "id": "b9c1b4ee-be3c-4378-b3ce-d4689a06a61f",
+      "createdAt": "2026-07-28T03:29:45.000Z",
+      "updatedAt": "2026-07-28T03:29:45.000Z",
+      "uid": "35240-b9c1b4ee-be3c-4378-b3ce-d4689a06a61f"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.whoop.com/developer"
+    }
+  ]
+}

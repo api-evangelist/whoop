@@ -1,0 +1,752 @@
+{
+  "info": {
+    "_postman_id": "cc0e4daa-6f5c-430c-bb91-d26f3af8c015",
+    "name": "WHOOP Activity ID Mapping Sleep API",
+    "description": "The WHOOP API exposes member fitness, strain, recovery, sleep, workout, and body measurement data captured by the WHOOP wrist-worn wearable. OAuth 2.0 protected; v2 endpoints use UUID identifiers and webhook notifications keep integrations current.\n\nContact Support:\n Name: WHOOP Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:29:49.000Z",
+    "updatedAt": "2026-07-28T03:29:49.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cc0e4daa-6f5c-430c-bb91-d26f3af8c015"
+  },
+  "item": [
+    {
+      "name": "v2",
+      "item": [
+        {
+          "name": "activity",
+          "item": [
+            {
+              "name": "sleep",
+              "item": [
+                {
+                  "name": "{sleepId}",
+                  "item": [
+                    {
+                      "name": "Get Sleep",
+                      "id": "be0139dc-0853-4873-9958-62af569e6eec",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "auth": {
+                          "type": "oauth2",
+                          "oauth2": [
+                            {
+                              "key": "scope",
+                              "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                              "type": "string"
+                            },
+                            {
+                              "key": "accessTokenUrl",
+                              "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                              "type": "string"
+                            },
+                            {
+                              "key": "authUrl",
+                              "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                              "type": "string"
+                            },
+                            {
+                              "key": "grant_type",
+                              "value": "authorization_code",
+                              "type": "string"
+                            }
+                          ]
+                        },
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/sleep/:sleepId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "sleep",
+                            ":sleepId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3eb813a3-6872-4884-8cdc-f2843fb03a31",
+                              "key": "sleepId",
+                              "value": "<uuid>",
+                              "description": "(Required) ID of the sleep to retrieve"
+                            }
+                          ]
+                        },
+                        "description": "Get the sleep for the specified ID"
+                      },
+                      "response": [
+                        {
+                          "id": "32cc7c90-d91e-42b4-bffc-809b171afa1c",
+                          "name": "Successful request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/sleep/:sleepId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "sleep",
+                                ":sleepId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sleepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"created_at\": \"<dateTime>\",\n  \"cycle_id\": \"<long>\",\n  \"end\": \"<dateTime>\",\n  \"id\": \"<uuid>\",\n  \"nap\": \"<boolean>\",\n  \"score_state\": \"SCORED\",\n  \"start\": \"<dateTime>\",\n  \"timezone_offset\": \"<string>\",\n  \"updated_at\": \"<dateTime>\",\n  \"user_id\": \"<long>\",\n  \"v1_id\": \"<long>\",\n  \"score\": {\n    \"sleep_needed\": {\n      \"baseline_milli\": \"<long>\",\n      \"need_from_recent_nap_milli\": \"<long>\",\n      \"need_from_recent_strain_milli\": \"<long>\",\n      \"need_from_sleep_debt_milli\": \"<long>\"\n    },\n    \"stage_summary\": {\n      \"disturbance_count\": \"<integer>\",\n      \"sleep_cycle_count\": \"<integer>\",\n      \"total_awake_time_milli\": \"<integer>\",\n      \"total_in_bed_time_milli\": \"<integer>\",\n      \"total_light_sleep_time_milli\": \"<integer>\",\n      \"total_no_data_time_milli\": \"<integer>\",\n      \"total_rem_sleep_time_milli\": \"<integer>\",\n      \"total_slow_wave_sleep_time_milli\": \"<integer>\"\n    },\n    \"respiratory_rate\": \"<float>\",\n    \"sleep_performance_percentage\": \"<float>\",\n    \"sleep_consistency_percentage\": \"<float>\",\n    \"sleep_efficiency_percentage\": \"<float>\"\n  }\n}",
+                          "createdAt": "2026-07-28T03:29:49.000Z",
+                          "updatedAt": "2026-07-28T03:29:49.000Z",
+                          "uid": "35240-32cc7c90-d91e-42b4-bffc-809b171afa1c"
+                        },
+                        {
+                          "id": "5d359f29-1282-49c9-be8a-e582d4d6dd7b",
+                          "name": "Client error constructing the request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/sleep/:sleepId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "sleep",
+                                ":sleepId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sleepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:49.000Z",
+                          "updatedAt": "2026-07-28T03:29:49.000Z",
+                          "uid": "35240-5d359f29-1282-49c9-be8a-e582d4d6dd7b"
+                        },
+                        {
+                          "id": "00d6fbd2-a55d-49e6-9ac0-9f13cedaffde",
+                          "name": "Invalid authorization",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/sleep/:sleepId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "sleep",
+                                ":sleepId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sleepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:49.000Z",
+                          "updatedAt": "2026-07-28T03:29:49.000Z",
+                          "uid": "35240-00d6fbd2-a55d-49e6-9ac0-9f13cedaffde"
+                        },
+                        {
+                          "id": "6d4cbf69-216a-4945-9d19-f24f7ddafba1",
+                          "name": "No resource found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/sleep/:sleepId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "sleep",
+                                ":sleepId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sleepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:49.000Z",
+                          "updatedAt": "2026-07-28T03:29:49.000Z",
+                          "uid": "35240-6d4cbf69-216a-4945-9d19-f24f7ddafba1"
+                        },
+                        {
+                          "id": "f8c92a83-165b-48fa-94d7-ff6e3f8cd050",
+                          "name": "Request rejected due to rate limiting",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/sleep/:sleepId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "sleep",
+                                ":sleepId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sleepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:49.000Z",
+                          "updatedAt": "2026-07-28T03:29:49.000Z",
+                          "uid": "35240-f8c92a83-165b-48fa-94d7-ff6e3f8cd050"
+                        },
+                        {
+                          "id": "e165e6d8-7d9f-4e93-b38c-dd3b83039e2b",
+                          "name": "Server error occurred while making request",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v2/activity/sleep/:sleepId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v2",
+                                "activity",
+                                "sleep",
+                                ":sleepId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "sleepId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T03:29:49.000Z",
+                          "updatedAt": "2026-07-28T03:29:49.000Z",
+                          "uid": "35240-e165e6d8-7d9f-4e93-b38c-dd3b83039e2b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:29:49.000Z",
+                      "updatedAt": "2026-07-28T03:29:49.000Z",
+                      "uid": "35240-be0139dc-0853-4873-9958-62af569e6eec"
+                    }
+                  ],
+                  "id": "55a2f149-f864-4813-a082-7b091cc4fd07",
+                  "createdAt": "2026-07-28T03:29:49.000Z",
+                  "updatedAt": "2026-07-28T03:29:49.000Z",
+                  "uid": "35240-55a2f149-f864-4813-a082-7b091cc4fd07"
+                },
+                {
+                  "name": "List Sleep",
+                  "id": "e1348230-8054-472f-9617-24e34a8f8892",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "auth": {
+                      "type": "oauth2",
+                      "oauth2": [
+                        {
+                          "key": "scope",
+                          "value": "read:recovery read:cycles read:workout read:sleep read:profile read:body_measurement",
+                          "type": "string"
+                        },
+                        {
+                          "key": "accessTokenUrl",
+                          "value": "https://api.prod.whoop.com/oauth/oauth2/token",
+                          "type": "string"
+                        },
+                        {
+                          "key": "authUrl",
+                          "value": "https://api.prod.whoop.com/oauth/oauth2/auth",
+                          "type": "string"
+                        },
+                        {
+                          "key": "grant_type",
+                          "value": "authorization_code",
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v2/activity/sleep?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v2",
+                        "activity",
+                        "sleep"
+                      ],
+                      "query": [
+                        {
+                          "description": "Limit on the number of sleeps returned",
+                          "key": "limit",
+                          "value": "10"
+                        },
+                        {
+                          "description": "Return sleeps that occurred after or during (inclusive) this time. If not specified, the response will not filter sleeps by a minimum time.",
+                          "key": "start",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Return sleeps that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                          "key": "end",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                          "key": "nextToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Get all sleeps for a user, paginated. Results are sorted by start time in descending order."
+                  },
+                  "response": [
+                    {
+                      "id": "902ff341-46a2-4cd9-a9e9-3271a4b5dda4",
+                      "name": "Successful request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/sleep?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "sleep"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of sleeps returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return sleeps that occurred after or during (inclusive) this time. If not specified, the response will not filter sleeps by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return sleeps that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"records\": [\n    {\n      \"created_at\": \"<dateTime>\",\n      \"cycle_id\": \"<long>\",\n      \"end\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"nap\": \"<boolean>\",\n      \"score_state\": \"PENDING_SCORE\",\n      \"start\": \"<dateTime>\",\n      \"timezone_offset\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"user_id\": \"<long>\",\n      \"v1_id\": \"<long>\",\n      \"score\": {\n        \"sleep_needed\": {\n          \"baseline_milli\": \"<long>\",\n          \"need_from_recent_nap_milli\": \"<long>\",\n          \"need_from_recent_strain_milli\": \"<long>\",\n          \"need_from_sleep_debt_milli\": \"<long>\"\n        },\n        \"stage_summary\": {\n          \"disturbance_count\": \"<integer>\",\n          \"sleep_cycle_count\": \"<integer>\",\n          \"total_awake_time_milli\": \"<integer>\",\n          \"total_in_bed_time_milli\": \"<integer>\",\n          \"total_light_sleep_time_milli\": \"<integer>\",\n          \"total_no_data_time_milli\": \"<integer>\",\n          \"total_rem_sleep_time_milli\": \"<integer>\",\n          \"total_slow_wave_sleep_time_milli\": \"<integer>\"\n        },\n        \"respiratory_rate\": \"<float>\",\n        \"sleep_performance_percentage\": \"<float>\",\n        \"sleep_consistency_percentage\": \"<float>\",\n        \"sleep_efficiency_percentage\": \"<float>\"\n      }\n    },\n    {\n      \"created_at\": \"<dateTime>\",\n      \"cycle_id\": \"<long>\",\n      \"end\": \"<dateTime>\",\n      \"id\": \"<uuid>\",\n      \"nap\": \"<boolean>\",\n      \"score_state\": \"SCORED\",\n      \"start\": \"<dateTime>\",\n      \"timezone_offset\": \"<string>\",\n      \"updated_at\": \"<dateTime>\",\n      \"user_id\": \"<long>\",\n      \"v1_id\": \"<long>\",\n      \"score\": {\n        \"sleep_needed\": {\n          \"baseline_milli\": \"<long>\",\n          \"need_from_recent_nap_milli\": \"<long>\",\n          \"need_from_recent_strain_milli\": \"<long>\",\n          \"need_from_sleep_debt_milli\": \"<long>\"\n        },\n        \"stage_summary\": {\n          \"disturbance_count\": \"<integer>\",\n          \"sleep_cycle_count\": \"<integer>\",\n          \"total_awake_time_milli\": \"<integer>\",\n          \"total_in_bed_time_milli\": \"<integer>\",\n          \"total_light_sleep_time_milli\": \"<integer>\",\n          \"total_no_data_time_milli\": \"<integer>\",\n          \"total_rem_sleep_time_milli\": \"<integer>\",\n          \"total_slow_wave_sleep_time_milli\": \"<integer>\"\n        },\n        \"respiratory_rate\": \"<float>\",\n        \"sleep_performance_percentage\": \"<float>\",\n        \"sleep_consistency_percentage\": \"<float>\",\n        \"sleep_efficiency_percentage\": \"<float>\"\n      }\n    }\n  ],\n  \"next_token\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:29:49.000Z",
+                      "updatedAt": "2026-07-28T03:29:49.000Z",
+                      "uid": "35240-902ff341-46a2-4cd9-a9e9-3271a4b5dda4"
+                    },
+                    {
+                      "id": "d30824de-7e81-4923-ad45-e74b8635b4b8",
+                      "name": "Client error constructing the request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/sleep?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "sleep"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of sleeps returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return sleeps that occurred after or during (inclusive) this time. If not specified, the response will not filter sleeps by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return sleeps that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:49.000Z",
+                      "updatedAt": "2026-07-28T03:29:49.000Z",
+                      "uid": "35240-d30824de-7e81-4923-ad45-e74b8635b4b8"
+                    },
+                    {
+                      "id": "973cbeb5-6179-4413-af5a-db394055a8da",
+                      "name": "Invalid authorization",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/sleep?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "sleep"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of sleeps returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return sleeps that occurred after or during (inclusive) this time. If not specified, the response will not filter sleeps by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return sleeps that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:49.000Z",
+                      "updatedAt": "2026-07-28T03:29:49.000Z",
+                      "uid": "35240-973cbeb5-6179-4413-af5a-db394055a8da"
+                    },
+                    {
+                      "id": "9ad06a87-4f4f-405a-9de0-eac832a66e35",
+                      "name": "Request rejected due to rate limiting",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/sleep?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "sleep"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of sleeps returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return sleeps that occurred after or during (inclusive) this time. If not specified, the response will not filter sleeps by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return sleeps that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:49.000Z",
+                      "updatedAt": "2026-07-28T03:29:49.000Z",
+                      "uid": "35240-9ad06a87-4f4f-405a-9de0-eac832a66e35"
+                    },
+                    {
+                      "id": "74c2eef8-86dc-4e09-ad1b-cea892bcdff2",
+                      "name": "Server error occurred while making request",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v2/activity/sleep?limit=10&start=<dateTime>&end=<dateTime>&nextToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v2",
+                            "activity",
+                            "sleep"
+                          ],
+                          "query": [
+                            {
+                              "description": "Limit on the number of sleeps returned",
+                              "key": "limit",
+                              "value": "10"
+                            },
+                            {
+                              "description": "Return sleeps that occurred after or during (inclusive) this time. If not specified, the response will not filter sleeps by a minimum time.",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Return sleeps that intersect this time or ended before (exclusive) this time. If not specified, `end` will be set to `now`.",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Optional next token from the previous response to get the next page. If not provided, the first page in the collection is returned",
+                              "key": "nextToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T03:29:49.000Z",
+                      "updatedAt": "2026-07-28T03:29:49.000Z",
+                      "uid": "35240-74c2eef8-86dc-4e09-ad1b-cea892bcdff2"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:29:49.000Z",
+                  "updatedAt": "2026-07-28T03:29:49.000Z",
+                  "uid": "35240-e1348230-8054-472f-9617-24e34a8f8892"
+                }
+              ],
+              "id": "f3d05025-d5cd-4b3c-b976-75e292a9e319",
+              "createdAt": "2026-07-28T03:29:49.000Z",
+              "updatedAt": "2026-07-28T03:29:49.000Z",
+              "uid": "35240-f3d05025-d5cd-4b3c-b976-75e292a9e319"
+            }
+          ],
+          "id": "15eeaa9c-dacc-4ccd-8acc-b10ae3a35206",
+          "createdAt": "2026-07-28T03:29:49.000Z",
+          "updatedAt": "2026-07-28T03:29:49.000Z",
+          "uid": "35240-15eeaa9c-dacc-4ccd-8acc-b10ae3a35206"
+        }
+      ],
+      "id": "e2fa1f19-0dc5-4c39-a4ce-151d12a59a93",
+      "createdAt": "2026-07-28T03:29:49.000Z",
+      "updatedAt": "2026-07-28T03:29:49.000Z",
+      "uid": "35240-e2fa1f19-0dc5-4c39-a4ce-151d12a59a93"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.prod.whoop.com/developer"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "description": "Example WHOOP webhook delivery for a sleep.updated event. The subscribed app receives a POST to its registered HTTPS endpoint with HMAC-SHA256 signature headers.",
+  "request": {
+    "method": "POST",
+    "url": "https://example.com/whoop/webhook",
+    "headers": {
+      "Content-Type": "application/json",
+      "X-WHOOP-Signature": "Y3Jhd2ZvcmRzLW5pZ2h0LWdvbGYtanVtcGVy...",
+      "X-WHOOP-Signature-Timestamp": "1748241241000"
+    },
+    "body": {
+      "user_id": 10129,
+      "id": "ecfc6a15-4661-442f-a9a4-f160dd7afae8",
+      "type": "sleep.updated",
+      "trace_id": "e369c784-5100-49e8-8098-75d35c47b31b"
+    }
+  },
+  "verification": {
+    "algorithm": "HMAC-SHA256",
+    "formula": "base64Encode(HMACSHA256(timestamp_header + raw_http_request_body, client_secret))",
+    "compareAgainst": "X-WHOOP-Signature"
+  },
+  "expectedResponse": {
+    "status": 200,
+    "note": "Respond 2xx within 10 seconds; WHOOP retries on non-2xx with exponential backoff."
+  }
+}

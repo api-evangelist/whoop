@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api-evangelist.com/schemas/whoop-co/whoop-workout-schema.json",
+  "title": "WHOOP Workout",
+  "description": "Schema for a WHOOP Workout (v2). A Workout represents a discrete bout of activity tagged with a sport name, with Strain, heart-rate, and heart-rate-zone summaries.",
+  "type": "object",
+  "required": ["id", "user_id", "created_at", "updated_at", "start", "end", "timezone_offset", "sport_name", "score_state"],
+  "properties": {
+    "id": {"type": "string", "format": "uuid"},
+    "v1_id": {"type": "integer", "format": "int64", "description": "Legacy v1 numeric ID (deprecated)."},
+    "user_id": {"type": "integer", "format": "int64"},
+    "created_at": {"type": "string", "format": "date-time"},
+    "updated_at": {"type": "string", "format": "date-time"},
+    "start": {"type": "string", "format": "date-time"},
+    "end": {"type": "string", "format": "date-time"},
+    "timezone_offset": {"type": "string"},
+    "sport_name": {"type": "string", "description": "Sport classification (e.g. running, cycling, weightlifting)."},
+    "score_state": {"type": "string", "enum": ["SCORED", "PENDING_SCORE", "UNSCORABLE"]},
+    "score": {
+      "type": "object",
+      "required": ["strain", "average_heart_rate", "max_heart_rate", "kilojoule", "percent_recorded", "zone_durations"],
+      "properties": {
+        "strain": {"type": "number", "format": "float", "minimum": 0, "maximum": 21},
+        "average_heart_rate": {"type": "integer"},
+        "max_heart_rate": {"type": "integer"},
+        "kilojoule": {"type": "number", "format": "float"},
+        "percent_recorded": {"type": "number", "format": "float", "minimum": 0, "maximum": 100},
+        "distance_meter": {"type": "number", "format": "float"},
+        "altitude_gain_meter": {"type": "number", "format": "float"},
+        "altitude_change_meter": {"type": "number", "format": "float"},
+        "zone_durations": {
+          "type": "object",
+          "required": ["zone_zero_milli", "zone_one_milli", "zone_two_milli", "zone_three_milli", "zone_four_milli", "zone_five_milli"],
+          "properties": {
+            "zone_zero_milli": {"type": "integer"},
+            "zone_one_milli": {"type": "integer"},
+            "zone_two_milli": {"type": "integer"},
+            "zone_three_milli": {"type": "integer"},
+            "zone_four_milli": {"type": "integer"},
+            "zone_five_milli": {"type": "integer"}
+          }
+        }
+      }
+    }
+  }
+}
