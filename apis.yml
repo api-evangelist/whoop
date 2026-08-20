@@ -30,6 +30,16 @@ tags:
 - Health
 - Recovery
 - Sleep
+- Workouts
+- Strain
+- Heart Rate
+- Performance
+tags_raw:
+- Fitness
+- Wearables
+- Health
+- Recovery
+- Sleep
 - Workout
 - Strain
 - Heart Rate
@@ -209,6 +219,8 @@ apis:
   humanURL: https://developer.whoop.com/api/
   baseURL: https://api.prod.whoop.com
   tags:
+  - Workouts
+  tags_raw:
   - Workout
   properties:
   - type: OpenAPI
