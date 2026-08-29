@@ -1,0 +1,28 @@
+slug: whoop
+provider: WHOOP
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Healthcare Providers
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Partner
+  spec_file: whoop-partner-api-openapi.yml
+  capability_id: BC-2860
+  capability_id_l1: BC-2860
+  capability_name: Diagnostic Services Management
+  confidence: 0.7
+  evidence: '"Get a lab requisition by ID", "Update lab requisition service request statuses", "Create
+    diagnostic report results for a service request"; schemas LabRequisition, ServiceRequest, DiagnosticReportCreateRequest,
+    Patient'
+  reason: Beyond the partner token plumbing, the substantive operations manage laboratory requisitions,
+    service-request status and upload of diagnostic report results for patients — diagnostic services/lab
+    order-and-result operations. Left at L1 because the surface spans both requisition (order) handling
+    and results creation, so no single L2 clearly dominates.

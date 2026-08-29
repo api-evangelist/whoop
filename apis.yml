@@ -256,6 +256,9 @@ apis:
   - type: GraphQL
     url: graphql/whoop-graphql.md
 common:
+- type: CapabilityMap
+  url: capabilities/whoop-capability-edges.yml
+  name: WHOOP Business Capability Map
 - type: AgenticAccess
   url: agentic-access/whoop-agentic-access.yml
 - type: DomainSecurity
