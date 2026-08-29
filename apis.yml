@@ -6,6 +6,18 @@ description: WHOOP is a fitness and recovery wearable platform providing a REST 
   data including physiological cycles, sleep stages, recovery scores, strain, heart rate, body measurements,
   and workout records.
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
