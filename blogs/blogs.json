@@ -2,15 +2,6 @@
   "repo": "whoop",
   "feeds": [
     {
-      "source": "https://engineering.prod.whoop.com/atom.xml",
-      "feed_url": "https://engineering.prod.whoop.com/atom.xml",
-      "title": "",
-      "saved": 0,
-      "method": "feed",
-      "nature": "undetermined",
-      "nature_basis": null
-    },
-    {
       "source": "https://www.linkedin.com/company/whoop",
       "feed_url": "https://www.linkedin.com/company/whoop",
       "title": "",
@@ -20,9 +11,16 @@
     {
       "source": "https://www.whoop.com/us/en/thelocker/",
       "error": "HTTPError"
+    },
+    {
+      "source": "https://engineering.prod.whoop.com/atom.xml",
+      "feed_url": "https://engineering.prod.whoop.com/atom.xml",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
     }
   ],
-  "fetched": "2026-08-30T22:33:40Z",
+  "fetched": "2026-09-06T19:17:18Z",
   "post_count": 36,
   "feed_nature": "undetermined",
   "feed_nature_basis": null,
