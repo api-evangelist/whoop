@@ -119,6 +119,8 @@ apis:
   humanURL: https://developer.whoop.com/api/
   baseURL: https://api.prod.whoop.com
   tags:
+  - Partners
+  tags_raw:
   - Partner
   properties:
   - type: OpenAPI
