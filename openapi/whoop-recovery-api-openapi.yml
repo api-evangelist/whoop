@@ -1,7 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WHOOP Activity ID Mapping Recovery API
-  description: Utility endpoints for activity ID mapping
+  title: WHOOP Recovery API
 servers:
 - url: https://api.prod.whoop.com/developer
 tags:
@@ -57,6 +56,8 @@ paths:
       security:
       - OAuth:
         - read:recovery
+      summary: Get recovery collection
+      x-summary-source: derived
   /v2/cycle/{cycleId}/recovery:
     get:
       tags:
@@ -91,6 +92,8 @@ paths:
       security:
       - OAuth:
         - read:recovery
+      summary: Get recovery for cycle
+      x-summary-source: derived
 components:
   schemas:
     RecoveryCollection:
@@ -106,47 +109,6 @@ components:
           description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
           example: MTIzOjEyMzEyMw
       description: Paginated collection of recovery activities with next token for pagination
-    RecoveryScore:
-      required:
-      - hrv_rmssd_milli
-      - recovery_score
-      - resting_heart_rate
-      - user_calibrating
-      type: object
-      properties:
-        user_calibrating:
-          type: boolean
-          description: True if the user is still calibrating and not enough data is available in WHOOP to provide an accurate recovery.
-          example: false
-        recovery_score:
-          type: number
-          description: Percentage (0-100%) that reflects how well prepared the user's body is to take on Strain. The Recovery score is a measure of the user body's "return to baseline" after a stressor.
-          format: float
-          example: 44.0
-          externalDocs:
-            description: WHOOP Recovery
-            url: https://api.prod.whoop.com/url-mapping-service/v1/RECOVERY
-        resting_heart_rate:
-          type: number
-          description: The user's resting heart rate.
-          format: float
-          example: 64.0
-        hrv_rmssd_milli:
-          type: number
-          description: The user's Heart Rate Variability measured using Root Mean Square of Successive Differences (RMSSD), in milliseconds.
-          format: float
-          example: 31.813562
-        spo2_percentage:
-          type: number
-          description: The percentage of oxygen in the user's blood. Only present if the user is on 4.0 or greater.
-          format: float
-          example: 95.6875
-        skin_temp_celsius:
-          type: number
-          description: The user's skin temperature, in Celsius. Only present if the user is on 4.0 or greater.
-          format: float
-          example: 33.7
-      description: WHOOP's measurements and evaluation of the recovery. Only present if the Recovery State is `SCORED`
     Recovery:
       required:
       - created_at
@@ -192,6 +154,47 @@ components:
           - UNSCORABLE
         score:
           $ref: '#/components/schemas/RecoveryScore'
+    RecoveryScore:
+      required:
+      - hrv_rmssd_milli
+      - recovery_score
+      - resting_heart_rate
+      - user_calibrating
+      type: object
+      properties:
+        user_calibrating:
+          type: boolean
+          description: True if the user is still calibrating and not enough data is available in WHOOP to provide an accurate recovery.
+          example: false
+        recovery_score:
+          type: number
+          description: Percentage (0-100%) that reflects how well prepared the user's body is to take on Strain. The Recovery score is a measure of the user body's "return to baseline" after a stressor.
+          format: float
+          example: 44.0
+          externalDocs:
+            description: WHOOP Recovery
+            url: https://api.prod.whoop.com/url-mapping-service/v1/RECOVERY
+        resting_heart_rate:
+          type: number
+          description: The user's resting heart rate.
+          format: float
+          example: 64.0
+        hrv_rmssd_milli:
+          type: number
+          description: The user's Heart Rate Variability measured using Root Mean Square of Successive Differences (RMSSD), in milliseconds.
+          format: float
+          example: 31.813562
+        spo2_percentage:
+          type: number
+          description: The percentage of oxygen in the user's blood. Only present if the user is on 4.0 or greater.
+          format: float
+          example: 95.6875
+        skin_temp_celsius:
+          type: number
+          description: The user's skin temperature, in Celsius. Only present if the user is on 4.0 or greater.
+          format: float
+          example: 33.7
+      description: WHOOP's measurements and evaluation of the recovery. Only present if the Recovery State is `SCORED`
   securitySchemes:
     OAuth:
       type: oauth2
@@ -206,7 +209,7 @@ components:
             read:sleep: Read sleep data, including performance % and duration per sleep stage.
             read:profile: Read profile data, including name and email.
             read:body_measurement: Read body measurements data, including height, weight, and max heart rate.
-    Trusted Partner:
+    Trusted_Partner:
       type: oauth2
       flows:
         clientCredentials:

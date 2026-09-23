@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WHOOP Activity ID Mapping Partner API
-  description: Utility endpoints for activity ID mapping
+  title: WHOOP Partner API
+  description: Endpoints for trusted WHOOP partner operations
 servers:
 - url: https://api.prod.whoop.com/developer
 tags:
@@ -184,156 +184,6 @@ paths:
       - Trusted Partner: []
 components:
   schemas:
-    Appointment:
-      required:
-      - service_request_ids
-      - start_time
-      type: object
-      properties:
-        service_request_ids:
-          type: array
-          description: The service request IDs associated with this appointment
-          items:
-            type: string
-            description: The service request IDs associated with this appointment
-            format: uuid
-        start_time:
-          type: string
-          description: The start time of the appointment
-          format: date-time
-      description: Appointment information
-      oneOf:
-      - $ref: '#/components/schemas/UnilabsAppointment'
-    Patient:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the patient
-          format: uuid
-    PartnerTokenResponse:
-      type: object
-      properties:
-        access_token:
-          type: string
-        expires_in:
-          type: integer
-          format: int32
-        token_type:
-          type: string
-    UnilabsAppointment:
-      required:
-      - service_request_ids
-      - start_time
-      type: object
-      properties:
-        slot_id:
-          type: string
-          description: External slot identifier used when booking the appointment
-        collection_address:
-          $ref: '#/components/schemas/UnilabsCollectionAddress'
-        service_request_ids:
-          type: array
-          description: The service request IDs associated with this appointment
-          items:
-            type: string
-            description: The service request IDs associated with this appointment
-            format: uuid
-        start_time:
-          type: string
-          description: The start time of the appointment
-          format: date-time
-    ServiceRequestStatusRequest:
-      type: object
-      properties:
-        task_business_status:
-          type: string
-          description: Task business status for workflow tracking (e.g., 'Specimen collected', 'Results pending')
-        reason:
-          type: string
-          description: Optional reason for the task business status change
-    PartnerTokenRequest:
-      required:
-      - client_id
-      - client_secret
-      type: object
-      properties:
-        client_id:
-          type: string
-          description: client id for this partner
-        client_secret:
-          type: string
-        scope:
-          type: string
-          description: scope for this token request
-        grant_type:
-          type: string
-          description: grant type for this token request
-    ServiceRequest:
-      required:
-      - code
-      - id
-      - intent
-      - status
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the service request
-          format: uuid
-        status:
-          type: string
-          description: FHIR status of the service request
-        intent:
-          type: string
-          description: FHIR intent of the service request
-        code:
-          type: string
-          description: Code identifying the specific service or procedure requested
-        task_business_status:
-          type: string
-          description: Task business status for workflow tracking (e.g., 'Specimen collected', 'Results pending')
-        task_description:
-          type: string
-          description: Task description - free text explanation of what needs to be performed
-    UnilabsCollectionAddress:
-      required:
-      - area
-      - building
-      - emirate
-      type: object
-      properties:
-        building:
-          type: string
-          description: Building name or number
-        area:
-          type: string
-          description: Area or district
-        emirate:
-          type: string
-          description: Emirate
-        landmark:
-          type: string
-          description: Nearby landmark
-        flat_no:
-          type: string
-          description: Flat or apartment number
-      description: The collection address for this appointment
-    PatientCore:
-      required:
-      - id
-      type: object
-      properties:
-        id:
-          type: string
-          description: Unique identifier for the patient
-          format: uuid
-      description: Patient information
-      oneOf:
-      - $ref: '#/components/schemas/Patient'
-      - $ref: '#/components/schemas/UnilabsPatient'
     UnilabsPatient:
       required:
       - birth_date
@@ -374,6 +224,144 @@ components:
         passport_no:
           type: string
           description: Passport number of the patient
+    Patient:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the patient
+          format: uuid
+    UnilabsAppointment:
+      required:
+      - service_request_ids
+      - start_time
+      type: object
+      properties:
+        slot_id:
+          type: string
+          description: External slot identifier used when booking the appointment
+        collection_address:
+          $ref: '#/components/schemas/UnilabsCollectionAddress'
+        service_request_ids:
+          type: array
+          description: The service request IDs associated with this appointment
+          items:
+            type: string
+            description: The service request IDs associated with this appointment
+            format: uuid
+        start_time:
+          type: string
+          description: The start time of the appointment
+          format: date-time
+    ServiceRequest:
+      required:
+      - code
+      - id
+      - intent
+      - status
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the service request
+          format: uuid
+        status:
+          type: string
+          description: FHIR status of the service request
+        intent:
+          type: string
+          description: FHIR intent of the service request
+        code:
+          type: string
+          description: Code identifying the specific service or procedure requested
+        task_business_status:
+          type: string
+          description: Task business status for workflow tracking (e.g., 'Specimen collected', 'Results pending')
+        task_description:
+          type: string
+          description: Task description - free text explanation of what needs to be performed
+    DiagnosticReportCreateRequest:
+      type: object
+      properties:
+        status:
+          type: string
+          description: the status of the diagnostic report
+        observations:
+          type: array
+          description: optional list of observations to attach to the diagnostic report
+          items:
+            $ref: '#/components/schemas/CreateObservationRequest'
+    PartnerTokenRequest:
+      required:
+      - client_id
+      - client_secret
+      type: object
+      properties:
+        client_id:
+          type: string
+          description: client id for this partner
+        client_secret:
+          type: string
+        scope:
+          type: string
+          description: scope for this token request
+        grant_type:
+          type: string
+          description: grant type for this token request
+    ServiceRequestStatusRequest:
+      type: object
+      properties:
+        task_business_status:
+          type: string
+          description: Task business status for workflow tracking (e.g., 'Specimen collected', 'Results pending')
+        reason:
+          type: string
+          description: Optional reason for the task business status change
+    UnilabsCollectionAddress:
+      required:
+      - area
+      - building
+      - emirate
+      type: object
+      properties:
+        building:
+          type: string
+          description: Building name or number
+        area:
+          type: string
+          description: Area or district
+        emirate:
+          type: string
+          description: Emirate
+        landmark:
+          type: string
+          description: Nearby landmark
+        flat_no:
+          type: string
+          description: Flat or apartment number
+      description: The collection address for this appointment
+    Appointment:
+      required:
+      - service_request_ids
+      - start_time
+      type: object
+      properties:
+        service_request_ids:
+          type: array
+          description: The service request IDs associated with this appointment
+          items:
+            type: string
+            description: The service request IDs associated with this appointment
+            format: uuid
+        start_time:
+          type: string
+          description: The start time of the appointment
+          format: date-time
+      description: Appointment information
+      oneOf:
+      - $ref: '#/components/schemas/UnilabsAppointment'
     CreateObservationRequest:
       type: object
       properties:
@@ -428,17 +416,29 @@ components:
           description: The appointments associated with this lab requisition
           items:
             $ref: '#/components/schemas/Appointment'
-    DiagnosticReportCreateRequest:
+    PartnerTokenResponse:
       type: object
       properties:
-        status:
+        access_token:
           type: string
-          description: the status of the diagnostic report
-        observations:
-          type: array
-          description: optional list of observations to attach to the diagnostic report
-          items:
-            $ref: '#/components/schemas/CreateObservationRequest'
+        expires_in:
+          type: integer
+          format: int32
+        token_type:
+          type: string
+    PatientCore:
+      required:
+      - id
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the patient
+          format: uuid
+      description: Patient information
+      oneOf:
+      - $ref: '#/components/schemas/Patient'
+      - $ref: '#/components/schemas/UnilabsPatient'
   securitySchemes:
     OAuth:
       type: oauth2
@@ -453,7 +453,7 @@ components:
             read:sleep: Read sleep data, including performance % and duration per sleep stage.
             read:profile: Read profile data, including name and email.
             read:body_measurement: Read body measurements data, including height, weight, and max heart rate.
-    Trusted Partner:
+    Trusted_Partner:
       type: oauth2
       flows:
         clientCredentials:

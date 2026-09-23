@@ -1,13 +1,7 @@
 {
   "provider": "whoop",
   "sources": [
-    "whoop-activity-id-mapping-api-openapi.yml",
-    "whoop-cycle-api-openapi.yml",
-    "whoop-partner-api-openapi.yml",
-    "whoop-recovery-api-openapi.yml",
-    "whoop-sleep-api-openapi.yml",
-    "whoop-user-api-openapi.yml",
-    "whoop-workout-api-openapi.yml"
+    "_original/whoop-openapi.yml"
   ],
   "outputs": [
     "whoop-activity-id-mapping-api-openapi.yml",
@@ -21,14 +15,26 @@
   "archived": [],
   "errors": [],
   "warnings": [
-    "whoop-activity-id-mapping-api-openapi.yml: info.version missing",
-    "whoop-cycle-api-openapi.yml: info.version missing",
-    "whoop-partner-api-openapi.yml: info.version missing",
-    "whoop-recovery-api-openapi.yml: info.version missing",
-    "whoop-sleep-api-openapi.yml: info.version missing",
-    "whoop-user-api-openapi.yml: info.version missing",
-    "whoop-workout-api-openapi.yml: info.version missing"
+    "whoop-openapi.yml: info.version missing"
   ],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "whoop-openapi.yml: upgraded openapi 3.0.1 -> OpenAPI 3.2.0; renamed 1 component key(s) illegal in 3.x (e.g. Trusted Partner)",
+    "whoop-openapi.yml: declared missing tag: Cycle",
+    "whoop-openapi.yml: declared missing tag: Recovery",
+    "whoop-openapi.yml: declared missing tag: Sleep",
+    "whoop-openapi.yml: declared missing tag: Workout",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "_original/whoop-api-openapi.yml: archived document superseded by a larger archived document",
+    "whoop-activity-id-mapping-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "whoop-cycle-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "whoop-partner-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "whoop-recovery-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "whoop-sleep-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "whoop-user-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "whoop-workout-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

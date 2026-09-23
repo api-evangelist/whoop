@@ -1,7 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: WHOOP Activity ID Mapping Workout API
-  description: Utility endpoints for activity ID mapping
+  title: WHOOP Workout API
 servers:
 - url: https://api.prod.whoop.com/developer
 tags:
@@ -41,6 +40,8 @@ paths:
       security:
       - OAuth:
         - read:workout
+      summary: Get workout by id
+      x-summary-source: derived
   /v2/activity/workout:
     get:
       tags:
@@ -91,52 +92,79 @@ paths:
       security:
       - OAuth:
         - read:workout
+      summary: Get workout collection
+      x-summary-source: derived
 components:
   schemas:
-    ZoneDurations:
+    WorkoutScore:
       required:
-      - zone_five_milli
-      - zone_four_milli
-      - zone_one_milli
-      - zone_three_milli
-      - zone_two_milli
-      - zone_zero_milli
+      - average_heart_rate
+      - kilojoule
+      - max_heart_rate
+      - percent_recorded
+      - strain
+      - zone_durations
       type: object
       properties:
-        zone_zero_milli:
+        strain:
+          type: number
+          description: WHOOP metric of the cardiovascular load - the level of strain the workout had on the user's cardiovascular system based on the user's heart rate. Strain is scored on a scale from 0 to 21.
+          format: float
+          example: 8.2463
+          externalDocs:
+            description: WHOOP Strain
+            url: https://api.prod.whoop.com/url-mapping-service/v1/STRAIN
+        average_heart_rate:
           type: integer
-          description: Duration in milliseconds spent in Zone 0 (very light activity)
-          format: int64
-          example: 300000
-        zone_one_milli:
+          description: The user's average heart rate (beats per minute) during the workout.
+          format: int32
+          example: 123
+        max_heart_rate:
           type: integer
-          description: Duration in milliseconds spent in Zone 1 (light activity)
-          format: int64
-          example: 600000
-        zone_two_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 2 (moderate activity)
-          format: int64
-          example: 900000
-        zone_three_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 3 (hard activity)
-          format: int64
-          example: 900000
-        zone_four_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 4 (very hard activity)
-          format: int64
-          example: 600000
-        zone_five_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 5 (maximum effort)
-          format: int64
-          example: 300000
-      description: Breakdown of time spent in each heart rate zone during the workout.
-      externalDocs:
-        description: WHOOP Locker - Training with Heart Rate Zones
-        url: https://www.whoop.com/thelocker/max-heart-rate-training-zones/
+          description: The user's max heart rate (beats per minute) during the workout.
+          format: int32
+          example: 146
+        kilojoule:
+          type: number
+          description: Kilojoules the user expended during the workout.
+          format: float
+          example: 1569.34033203125
+        percent_recorded:
+          type: number
+          description: Percentage (0-100%) of heart rate data WHOOP received during the workout.
+          format: float
+          example: 100.0
+        distance_meter:
+          type: number
+          description: The distance the user travelled during the workout. Only present if distance data sent to WHOOP
+          format: float
+          example: 1772.77035916
+        altitude_gain_meter:
+          type: number
+          description: The altitude gained during the workout. This measurement does not account for downward travel - it is strictly a measure of altitude climbed. If a member climbed up and down a 1,000 meter mountain, ending at the same altitude, this measurement would be 1,000 meters. Only present if altitude data is included as part of the workout
+          format: float
+          example: 46.64384460449
+        altitude_change_meter:
+          type: number
+          description: The altitude difference between the start and end points of the workout. If a member climbed up and down a mountain, ending at the same altitude, this measurement would be 0. Only present if altitude data is included as part of the workout
+          format: float
+          example: -0.781372010707855
+        zone_durations:
+          $ref: '#/components/schemas/ZoneDurations'
+      description: WHOOP's measurements and evaluation of the workout activity. Only present if the Workout State is `SCORED`
+    WorkoutCollection:
+      type: object
+      properties:
+        records:
+          type: array
+          description: The collection of records in this page.
+          items:
+            $ref: '#/components/schemas/WorkoutV2'
+        next_token:
+          type: string
+          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
+          example: MTIzOjEyMzEyMw
+      description: Paginated collection of workout activities with next token for pagination
     WorkoutV2:
       required:
       - created_at
@@ -212,75 +240,50 @@ components:
           format: int32
           example: 1
       description: A WHOOP workout activity with full details and scoring information
-    WorkoutCollection:
-      type: object
-      properties:
-        records:
-          type: array
-          description: The collection of records in this page.
-          items:
-            $ref: '#/components/schemas/WorkoutV2'
-        next_token:
-          type: string
-          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
-          example: MTIzOjEyMzEyMw
-      description: Paginated collection of workout activities with next token for pagination
-    WorkoutScore:
+    ZoneDurations:
       required:
-      - average_heart_rate
-      - kilojoule
-      - max_heart_rate
-      - percent_recorded
-      - strain
-      - zone_durations
+      - zone_five_milli
+      - zone_four_milli
+      - zone_one_milli
+      - zone_three_milli
+      - zone_two_milli
+      - zone_zero_milli
       type: object
       properties:
-        strain:
-          type: number
-          description: WHOOP metric of the cardiovascular load - the level of strain the workout had on the user's cardiovascular system based on the user's heart rate. Strain is scored on a scale from 0 to 21.
-          format: float
-          example: 8.2463
-          externalDocs:
-            description: WHOOP Strain
-            url: https://api.prod.whoop.com/url-mapping-service/v1/STRAIN
-        average_heart_rate:
+        zone_zero_milli:
           type: integer
-          description: The user's average heart rate (beats per minute) during the workout.
-          format: int32
-          example: 123
-        max_heart_rate:
+          description: Duration in milliseconds spent in Zone 0 (very light activity)
+          format: int64
+          example: 300000
+        zone_one_milli:
           type: integer
-          description: The user's max heart rate (beats per minute) during the workout.
-          format: int32
-          example: 146
-        kilojoule:
-          type: number
-          description: Kilojoules the user expended during the workout.
-          format: float
-          example: 1569.34033203125
-        percent_recorded:
-          type: number
-          description: Percentage (0-100%) of heart rate data WHOOP received during the workout.
-          format: float
-          example: 100.0
-        distance_meter:
-          type: number
-          description: The distance the user travelled during the workout. Only present if distance data sent to WHOOP
-          format: float
-          example: 1772.77035916
-        altitude_gain_meter:
-          type: number
-          description: The altitude gained during the workout. This measurement does not account for downward travel - it is strictly a measure of altitude climbed. If a member climbed up and down a 1,000 meter mountain, ending at the same altitude, this measurement would be 1,000 meters. Only present if altitude data is included as part of the workout
-          format: float
-          example: 46.64384460449
-        altitude_change_meter:
-          type: number
-          description: The altitude difference between the start and end points of the workout. If a member climbed up and down a mountain, ending at the same altitude, this measurement would be 0. Only present if altitude data is included as part of the workout
-          format: float
-          example: -0.781372010707855
-        zone_durations:
-          $ref: '#/components/schemas/ZoneDurations'
-      description: WHOOP's measurements and evaluation of the workout activity. Only present if the Workout State is `SCORED`
+          description: Duration in milliseconds spent in Zone 1 (light activity)
+          format: int64
+          example: 600000
+        zone_two_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 2 (moderate activity)
+          format: int64
+          example: 900000
+        zone_three_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 3 (hard activity)
+          format: int64
+          example: 900000
+        zone_four_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 4 (very hard activity)
+          format: int64
+          example: 600000
+        zone_five_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 5 (maximum effort)
+          format: int64
+          example: 300000
+      description: Breakdown of time spent in each heart rate zone during the workout.
+      externalDocs:
+        description: WHOOP Locker - Training with Heart Rate Zones
+        url: https://www.whoop.com/thelocker/max-heart-rate-training-zones/
   securitySchemes:
     OAuth:
       type: oauth2
@@ -295,7 +298,7 @@ components:
             read:sleep: Read sleep data, including performance % and duration per sleep stage.
             read:profile: Read profile data, including name and email.
             read:body_measurement: Read body measurements data, including height, weight, and max heart rate.
-    Trusted Partner:
+    Trusted_Partner:
       type: oauth2
       flows:
         clientCredentials:

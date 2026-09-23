@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: WHOOP Activity ID Mapping API
   description: Utility endpoints for activity ID mapping
@@ -61,7 +61,7 @@ components:
             read:sleep: Read sleep data, including performance % and duration per sleep stage.
             read:profile: Read profile data, including name and email.
             read:body_measurement: Read body measurements data, including height, weight, and max heart rate.
-    Trusted Partner:
+    Trusted_Partner:
       type: oauth2
       flows:
         clientCredentials:
