@@ -46,6 +46,7 @@ tags:
 - Strain
 - Heart Rate
 - Performance
+- Wellness
 tags_raw:
 - Fitness
 - Wearables
@@ -83,8 +84,6 @@ apis:
     url: https://developer.whoop.com/docs/developing/rate-limiting/
   - type: GettingStarted
     url: https://developer.whoop.com/docs/developing/getting-started/
-  - type: GraphQL
-    url: graphql/whoop-graphql.md
 - aid: whoop:whoop-cycle-api
   name: WHOOP Cycle API
   description: The Cycle API from WHOOP — 3 operation(s) for cycle.
@@ -111,8 +110,6 @@ apis:
     url: https://developer.whoop.com/docs/developing/rate-limiting/
   - type: GettingStarted
     url: https://developer.whoop.com/docs/developing/getting-started/
-  - type: GraphQL
-    url: graphql/whoop-graphql.md
 - aid: whoop:whoop-partner-api
   name: WHOOP Partner API
   description: Endpoints for trusted WHOOP partner operations
@@ -141,8 +138,6 @@ apis:
     url: https://developer.whoop.com/docs/developing/rate-limiting/
   - type: GettingStarted
     url: https://developer.whoop.com/docs/developing/getting-started/
-  - type: GraphQL
-    url: graphql/whoop-graphql.md
 - aid: whoop:whoop-recovery-api
   name: WHOOP Recovery API
   description: The Recovery API from WHOOP — 2 operation(s) for recovery.
@@ -169,8 +164,6 @@ apis:
     url: https://developer.whoop.com/docs/developing/rate-limiting/
   - type: GettingStarted
     url: https://developer.whoop.com/docs/developing/getting-started/
-  - type: GraphQL
-    url: graphql/whoop-graphql.md
 - aid: whoop:whoop-sleep-api
   name: WHOOP Sleep API
   description: The Sleep API from WHOOP — 3 operation(s) for sleep.
@@ -197,8 +190,6 @@ apis:
     url: https://developer.whoop.com/docs/developing/rate-limiting/
   - type: GettingStarted
     url: https://developer.whoop.com/docs/developing/getting-started/
-  - type: GraphQL
-    url: graphql/whoop-graphql.md
 - aid: whoop:whoop-user-api
   name: WHOOP User API
   description: Endpoints for retrieving user profile and measurement data.
@@ -225,8 +216,6 @@ apis:
     url: https://developer.whoop.com/docs/developing/rate-limiting/
   - type: GettingStarted
     url: https://developer.whoop.com/docs/developing/getting-started/
-  - type: GraphQL
-    url: graphql/whoop-graphql.md
 - aid: whoop:whoop-workout-api
   name: WHOOP Workout API
   description: The Workout API from WHOOP — 2 operation(s) for workout.
@@ -255,8 +244,6 @@ apis:
     url: https://developer.whoop.com/docs/developing/rate-limiting/
   - type: GettingStarted
     url: https://developer.whoop.com/docs/developing/getting-started/
-  - type: GraphQL
-    url: graphql/whoop-graphql.md
 common:
 - type: CapabilityMap
   url: capabilities/whoop-capability-edges.yml
