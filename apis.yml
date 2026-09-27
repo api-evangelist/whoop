@@ -57,6 +57,7 @@ tags_raw:
 - Strain
 - Heart Rate
 - Performance
+- Wellness
 apis:
 - aid: whoop:whoop-activity-id-mapping-api
   name: WHOOP Activity ID Mapping API

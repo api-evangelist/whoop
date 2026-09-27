@@ -221,60 +221,6 @@ components:
         score:
           $ref: '#/components/schemas/SleepScore'
       description: The collection of records in this page.
-    SleepNeeded:
-      required:
-      - baseline_milli
-      - need_from_recent_nap_milli
-      - need_from_recent_strain_milli
-      - need_from_sleep_debt_milli
-      type: object
-      properties:
-        baseline_milli:
-          type: integer
-          description: The amount of sleep a user needed based on historical trends
-          format: int64
-          example: 27395716
-        need_from_sleep_debt_milli:
-          type: integer
-          description: The difference between the amount of sleep the user's body required and the amount the user actually got
-          format: int64
-          example: 352230
-          externalDocs:
-            description: WHOOP Locker - What is Sleep Debt & How Do You Catch Up on Sleep?
-            url: https://www.whoop.com/thelocker/what-is-sleep-debt-catch-up/
-        need_from_recent_strain_milli:
-          type: integer
-          description: Additional sleep need accrued based on the user's strain
-          format: int64
-          example: 208595
-        need_from_recent_nap_milli:
-          type: integer
-          description: Reduction in sleep need accrued based on the user's recent nap activity (negative value or zero)
-          format: int64
-          example: -12312
-      description: Breakdown of the amount of sleep a user needed before the sleep activity. Summing all individual components results in the amount of sleep the user needed prior to this sleep activity
-    SleepStreamDataPoint:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        hr:
-          type: integer
-          format: int32
-        skin_temp:
-          type: number
-          format: float
-        board_temp:
-          type: number
-          format: float
-        battery_temp:
-          type: number
-          format: float
-        is_sleeping:
-          type: boolean
-        is_charging:
-          type: boolean
     SleepScore:
       required:
       - sleep_needed
@@ -312,27 +258,6 @@ components:
             description: 'WHOOP Locker - Sleep Efficiency: What is It, How Do You Stack Up & How Can You Improve?'
             url: https://www.whoop.com/thelocker/app-feature-improve-sleep-efficiency/
       description: WHOOP's measurements and evaluation of the sleep activity. Only present if the Sleep State is `SCORED`
-    SleepStreamResponse:
-      type: object
-      properties:
-        stream:
-          type: array
-          items:
-            $ref: '#/components/schemas/SleepStreamDataPoint'
-        algorithm_version:
-          type: string
-    PaginatedSleepResponse:
-      type: object
-      properties:
-        records:
-          type: array
-          description: The collection of records in this page.
-          items:
-            $ref: '#/components/schemas/Sleep'
-        next_token:
-          type: string
-          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
-          example: MTIzOjEyMzEyMw
     SleepStageSummary:
       required:
       - disturbance_count
@@ -389,6 +314,81 @@ components:
       externalDocs:
         description: Sleep Consistency and Sleep Stages
         url: https://support.whoop.com/hc/en-us/articles/360019623493-Sleep-Consistency-and-Sleep-Stages
+    PaginatedSleepResponse:
+      type: object
+      properties:
+        records:
+          type: array
+          description: The collection of records in this page.
+          items:
+            $ref: '#/components/schemas/Sleep'
+        next_token:
+          type: string
+          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
+          example: MTIzOjEyMzEyMw
+    SleepNeeded:
+      required:
+      - baseline_milli
+      - need_from_recent_nap_milli
+      - need_from_recent_strain_milli
+      - need_from_sleep_debt_milli
+      type: object
+      properties:
+        baseline_milli:
+          type: integer
+          description: The amount of sleep a user needed based on historical trends
+          format: int64
+          example: 27395716
+        need_from_sleep_debt_milli:
+          type: integer
+          description: The difference between the amount of sleep the user's body required and the amount the user actually got
+          format: int64
+          example: 352230
+          externalDocs:
+            description: WHOOP Locker - What is Sleep Debt & How Do You Catch Up on Sleep?
+            url: https://www.whoop.com/thelocker/what-is-sleep-debt-catch-up/
+        need_from_recent_strain_milli:
+          type: integer
+          description: Additional sleep need accrued based on the user's strain
+          format: int64
+          example: 208595
+        need_from_recent_nap_milli:
+          type: integer
+          description: Reduction in sleep need accrued based on the user's recent nap activity (negative value or zero)
+          format: int64
+          example: -12312
+      description: Breakdown of the amount of sleep a user needed before the sleep activity. Summing all individual components results in the amount of sleep the user needed prior to this sleep activity
+    SleepStreamDataPoint:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        hr:
+          type: integer
+          format: int32
+        skin_temp:
+          type: number
+          format: float
+        board_temp:
+          type: number
+          format: float
+        battery_temp:
+          type: number
+          format: float
+        is_sleeping:
+          type: boolean
+        is_charging:
+          type: boolean
+    SleepStreamResponse:
+      type: object
+      properties:
+        stream:
+          type: array
+          items:
+            $ref: '#/components/schemas/SleepStreamDataPoint'
+        algorithm_version:
+          type: string
   securitySchemes:
     OAuth:
       type: oauth2

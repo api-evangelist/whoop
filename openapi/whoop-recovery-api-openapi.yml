@@ -96,19 +96,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    RecoveryCollection:
-      type: object
-      properties:
-        records:
-          type: array
-          description: The collection of records in this page.
-          items:
-            $ref: '#/components/schemas/Recovery'
-        next_token:
-          type: string
-          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
-          example: MTIzOjEyMzEyMw
-      description: Paginated collection of recovery activities with next token for pagination
     Recovery:
       required:
       - created_at
@@ -154,6 +141,19 @@ components:
           - UNSCORABLE
         score:
           $ref: '#/components/schemas/RecoveryScore'
+    RecoveryCollection:
+      type: object
+      properties:
+        records:
+          type: array
+          description: The collection of records in this page.
+          items:
+            $ref: '#/components/schemas/Recovery'
+        next_token:
+          type: string
+          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
+          example: MTIzOjEyMzEyMw
+      description: Paginated collection of recovery activities with next token for pagination
     RecoveryScore:
       required:
       - hrv_rmssd_milli

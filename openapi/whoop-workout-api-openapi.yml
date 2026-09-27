@@ -152,6 +152,50 @@ components:
         zone_durations:
           $ref: '#/components/schemas/ZoneDurations'
       description: WHOOP's measurements and evaluation of the workout activity. Only present if the Workout State is `SCORED`
+    ZoneDurations:
+      required:
+      - zone_five_milli
+      - zone_four_milli
+      - zone_one_milli
+      - zone_three_milli
+      - zone_two_milli
+      - zone_zero_milli
+      type: object
+      properties:
+        zone_zero_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 0 (very light activity)
+          format: int64
+          example: 300000
+        zone_one_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 1 (light activity)
+          format: int64
+          example: 600000
+        zone_two_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 2 (moderate activity)
+          format: int64
+          example: 900000
+        zone_three_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 3 (hard activity)
+          format: int64
+          example: 900000
+        zone_four_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 4 (very hard activity)
+          format: int64
+          example: 600000
+        zone_five_milli:
+          type: integer
+          description: Duration in milliseconds spent in Zone 5 (maximum effort)
+          format: int64
+          example: 300000
+      description: Breakdown of time spent in each heart rate zone during the workout.
+      externalDocs:
+        description: WHOOP Locker - Training with Heart Rate Zones
+        url: https://www.whoop.com/thelocker/max-heart-rate-training-zones/
     WorkoutCollection:
       type: object
       properties:
@@ -240,50 +284,6 @@ components:
           format: int32
           example: 1
       description: A WHOOP workout activity with full details and scoring information
-    ZoneDurations:
-      required:
-      - zone_five_milli
-      - zone_four_milli
-      - zone_one_milli
-      - zone_three_milli
-      - zone_two_milli
-      - zone_zero_milli
-      type: object
-      properties:
-        zone_zero_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 0 (very light activity)
-          format: int64
-          example: 300000
-        zone_one_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 1 (light activity)
-          format: int64
-          example: 600000
-        zone_two_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 2 (moderate activity)
-          format: int64
-          example: 900000
-        zone_three_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 3 (hard activity)
-          format: int64
-          example: 900000
-        zone_four_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 4 (very hard activity)
-          format: int64
-          example: 600000
-        zone_five_milli:
-          type: integer
-          description: Duration in milliseconds spent in Zone 5 (maximum effort)
-          format: int64
-          example: 300000
-      description: Breakdown of time spent in each heart rate zone during the workout.
-      externalDocs:
-        description: WHOOP Locker - Training with Heart Rate Zones
-        url: https://www.whoop.com/thelocker/max-heart-rate-training-zones/
   securitySchemes:
     OAuth:
       type: oauth2
