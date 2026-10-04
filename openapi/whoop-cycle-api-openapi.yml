@@ -129,87 +129,38 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    SleepNeeded:
+    CycleScore:
       required:
-      - baseline_milli
-      - need_from_recent_nap_milli
-      - need_from_recent_strain_milli
-      - need_from_sleep_debt_milli
+      - average_heart_rate
+      - kilojoule
+      - max_heart_rate
+      - strain
       type: object
       properties:
-        baseline_milli:
-          type: integer
-          description: The amount of sleep a user needed based on historical trends
-          format: int64
-          example: 27395716
-        need_from_sleep_debt_milli:
-          type: integer
-          description: The difference between the amount of sleep the user's body required and the amount the user actually got
-          format: int64
-          example: 352230
+        strain:
+          type: number
+          description: WHOOP metric of the cardiovascular load - the level of strain  on the user's cardiovascular system based on the user's heart rate during the cycle. Strain is scored on a scale from 0 to 21.
+          format: float
+          example: 5.2951527
           externalDocs:
-            description: WHOOP Locker - What is Sleep Debt & How Do You Catch Up on Sleep?
-            url: https://www.whoop.com/thelocker/what-is-sleep-debt-catch-up/
-        need_from_recent_strain_milli:
+            description: WHOOP Strain
+            url: https://api.prod.whoop.com/url-mapping-service/v1/STRAIN
+        kilojoule:
+          type: number
+          description: Kilojoules the user expended during the cycle.
+          format: float
+          example: 8288.297
+        average_heart_rate:
           type: integer
-          description: Additional sleep need accrued based on the user's strain
-          format: int64
-          example: 208595
-        need_from_recent_nap_milli:
+          description: The user's average heart rate during the cycle.
+          format: int32
+          example: 68
+        max_heart_rate:
           type: integer
-          description: Reduction in sleep need accrued based on the user's recent nap activity (negative value or zero)
-          format: int64
-          example: -12312
-      description: Breakdown of the amount of sleep a user needed before the sleep activity. Summing all individual components results in the amount of sleep the user needed prior to this sleep activity
-    PaginatedCycleResponse:
-      type: object
-      properties:
-        records:
-          type: array
-          description: The collection of records in this page.
-          items:
-            $ref: '#/components/schemas/Cycle'
-        next_token:
-          type: string
-          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
-          example: MTIzOjEyMzEyMw
-    SleepScore:
-      required:
-      - sleep_needed
-      - stage_summary
-      type: object
-      properties:
-        stage_summary:
-          $ref: '#/components/schemas/SleepStageSummary'
-        sleep_needed:
-          $ref: '#/components/schemas/SleepNeeded'
-        respiratory_rate:
-          type: number
-          description: The user's respiratory rate during the sleep.
-          format: float
-          example: 16.11328125
-        sleep_performance_percentage:
-          type: number
-          description: A percentage (0-100%) of the time a user is asleep over the amount of sleep the user needed. May not be reported if WHOOP does not have enough data about a user yet to calculate Sleep Need.
-          format: float
-          example: 98.0
-        sleep_consistency_percentage:
-          type: number
-          description: Percentage (0-100%) of how similar this sleep and wake times compared to the previous day. May not be reported if WHOOP does not have enough sleep data about a user yet to understand consistency.
-          format: float
-          example: 90.0
-          externalDocs:
-            description: WHOOP Locker - What is Sleep Consistency?
-            url: https://www.whoop.com/thelocker/new-feature-sleep-consistency-why-we-track-it/
-        sleep_efficiency_percentage:
-          type: number
-          description: A percentage (0-100%) of the time you spend in bed that you are actually asleep.
-          format: float
-          example: 91.69533848
-          externalDocs:
-            description: 'WHOOP Locker - Sleep Efficiency: What is It, How Do You Stack Up & How Can You Improve?'
-            url: https://www.whoop.com/thelocker/app-feature-improve-sleep-efficiency/
-      description: WHOOP's measurements and evaluation of the sleep activity. Only present if the Sleep State is `SCORED`
+          description: The user's max heart rate during the cycle.
+          format: int32
+          example: 141
+      description: WHOOP's measurements and evaluation of the cycle. Only present if the score state is `SCORED`
     Cycle:
       required:
       - created_at
@@ -269,6 +220,43 @@ components:
         score:
           $ref: '#/components/schemas/CycleScore'
       description: The collection of records in this page.
+    SleepScore:
+      required:
+      - sleep_needed
+      - stage_summary
+      type: object
+      properties:
+        stage_summary:
+          $ref: '#/components/schemas/SleepStageSummary'
+        sleep_needed:
+          $ref: '#/components/schemas/SleepNeeded'
+        respiratory_rate:
+          type: number
+          description: The user's respiratory rate during the sleep.
+          format: float
+          example: 16.11328125
+        sleep_performance_percentage:
+          type: number
+          description: A percentage (0-100%) of the time a user is asleep over the amount of sleep the user needed. May not be reported if WHOOP does not have enough data about a user yet to calculate Sleep Need.
+          format: float
+          example: 98.0
+        sleep_consistency_percentage:
+          type: number
+          description: Percentage (0-100%) of how similar this sleep and wake times compared to the previous day. May not be reported if WHOOP does not have enough sleep data about a user yet to understand consistency.
+          format: float
+          example: 90.0
+          externalDocs:
+            description: WHOOP Locker - What is Sleep Consistency?
+            url: https://www.whoop.com/thelocker/new-feature-sleep-consistency-why-we-track-it/
+        sleep_efficiency_percentage:
+          type: number
+          description: A percentage (0-100%) of the time you spend in bed that you are actually asleep.
+          format: float
+          example: 91.69533848
+          externalDocs:
+            description: 'WHOOP Locker - Sleep Efficiency: What is It, How Do You Stack Up & How Can You Improve?'
+            url: https://www.whoop.com/thelocker/app-feature-improve-sleep-efficiency/
+      description: WHOOP's measurements and evaluation of the sleep activity. Only present if the Sleep State is `SCORED`
     SleepStageSummary:
       required:
       - disturbance_count
@@ -325,38 +313,50 @@ components:
       externalDocs:
         description: Sleep Consistency and Sleep Stages
         url: https://support.whoop.com/hc/en-us/articles/360019623493-Sleep-Consistency-and-Sleep-Stages
-    CycleScore:
-      required:
-      - average_heart_rate
-      - kilojoule
-      - max_heart_rate
-      - strain
+    PaginatedCycleResponse:
       type: object
       properties:
-        strain:
-          type: number
-          description: WHOOP metric of the cardiovascular load - the level of strain  on the user's cardiovascular system based on the user's heart rate during the cycle. Strain is scored on a scale from 0 to 21.
-          format: float
-          example: 5.2951527
+        records:
+          type: array
+          description: The collection of records in this page.
+          items:
+            $ref: '#/components/schemas/Cycle'
+        next_token:
+          type: string
+          description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
+          example: MTIzOjEyMzEyMw
+    SleepNeeded:
+      required:
+      - baseline_milli
+      - need_from_recent_nap_milli
+      - need_from_recent_strain_milli
+      - need_from_sleep_debt_milli
+      type: object
+      properties:
+        baseline_milli:
+          type: integer
+          description: The amount of sleep a user needed based on historical trends
+          format: int64
+          example: 27395716
+        need_from_sleep_debt_milli:
+          type: integer
+          description: The difference between the amount of sleep the user's body required and the amount the user actually got
+          format: int64
+          example: 352230
           externalDocs:
-            description: WHOOP Strain
-            url: https://api.prod.whoop.com/url-mapping-service/v1/STRAIN
-        kilojoule:
-          type: number
-          description: Kilojoules the user expended during the cycle.
-          format: float
-          example: 8288.297
-        average_heart_rate:
+            description: WHOOP Locker - What is Sleep Debt & How Do You Catch Up on Sleep?
+            url: https://www.whoop.com/thelocker/what-is-sleep-debt-catch-up/
+        need_from_recent_strain_milli:
           type: integer
-          description: The user's average heart rate during the cycle.
-          format: int32
-          example: 68
-        max_heart_rate:
+          description: Additional sleep need accrued based on the user's strain
+          format: int64
+          example: 208595
+        need_from_recent_nap_milli:
           type: integer
-          description: The user's max heart rate during the cycle.
-          format: int32
-          example: 141
-      description: WHOOP's measurements and evaluation of the cycle. Only present if the score state is `SCORED`
+          description: Reduction in sleep need accrued based on the user's recent nap activity (negative value or zero)
+          format: int64
+          example: -12312
+      description: Breakdown of the amount of sleep a user needed before the sleep activity. Summing all individual components results in the amount of sleep the user needed prior to this sleep activity
     Sleep:
       required:
       - created_at

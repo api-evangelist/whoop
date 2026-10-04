@@ -81,31 +81,6 @@ paths:
       x-summary-source: derived
 components:
   schemas:
-    UserBodyMeasurement:
-      required:
-      - height_meter
-      - max_heart_rate
-      - weight_kilogram
-      type: object
-      properties:
-        height_meter:
-          type: number
-          description: User's height in meters
-          format: float
-          example: 1.8288
-        weight_kilogram:
-          type: number
-          description: User's weight in kilograms
-          format: float
-          example: 90.7185
-        max_heart_rate:
-          type: integer
-          description: The max heart rate WHOOP calculated for the user
-          format: int32
-          example: 200
-          externalDocs:
-            description: 'WHOOP Locker: Understanding Max Heart Rate and Why It Matters for Training'
-            url: https://www.whoop.com/thelocker/calculating-max-heart-rate/
     UserBasicProfile:
       required:
       - email
@@ -131,6 +106,31 @@ components:
           type: string
           description: User's Last Name
           example: Smith
+    UserBodyMeasurement:
+      required:
+      - height_meter
+      - max_heart_rate
+      - weight_kilogram
+      type: object
+      properties:
+        height_meter:
+          type: number
+          description: User's height in meters
+          format: float
+          example: 1.8288
+        weight_kilogram:
+          type: number
+          description: User's weight in kilograms
+          format: float
+          example: 90.7185
+        max_heart_rate:
+          type: integer
+          description: The max heart rate WHOOP calculated for the user
+          format: int32
+          example: 200
+          externalDocs:
+            description: 'WHOOP Locker: Understanding Max Heart Rate and Why It Matters for Training'
+            url: https://www.whoop.com/thelocker/calculating-max-heart-rate/
   securitySchemes:
     OAuth:
       type: oauth2
