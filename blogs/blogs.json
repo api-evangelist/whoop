@@ -10,7 +10,10 @@
     },
     {
       "source": "https://www.whoop.com/us/en/thelocker/",
-      "error": "HTTPError"
+      "feed_url": "https://www.whoop.com/us/en/thelocker/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     },
     {
       "source": "https://engineering.prod.whoop.com/atom.xml",
@@ -20,8 +23,8 @@
       "method": "feed"
     }
   ],
-  "fetched": "2026-09-19T20:17:39Z",
-  "post_count": 36,
+  "fetched": "2026-10-03T12:30:02Z",
+  "post_count": 38,
   "feed_nature": "undetermined",
   "feed_nature_basis": null,
   "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
