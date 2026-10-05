@@ -1,0 +1,12 @@
+{
+ "url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+ "requested_url": "https://api.prod.whoop.com/developer/doc/openapi.json",
+ "status": 200,
+ "content_type": "application/json",
+ "bytes": 77417,
+ "sha256": "b40986e62c85067188fa01b23cbb3d5eec67c0f424b8b9d7c9e8b5bacee99892",
+ "fetched_at": "2026-10-04",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "equivalent",
+ "note": "Re-fetched from the provider by verify-openapi-sources.py; the provider's current document describes the same operations (Jaccard 0.909), but the bytes differ, so the archive is an earlier or reformatted copy."
+}
