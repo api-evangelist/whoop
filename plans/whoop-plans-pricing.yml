@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: WHOOP API Plans and Pricing
 description: >-
   The WHOOP Developer Platform API access is currently free of charge. Developers
@@ -33,3 +37,16 @@ plans:
       Developer Platform. Rate limit increases are available upon request
       by submitting a use-case description via the provided Typeform link.
       Apps must be submitted for approval before public launch.
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Developer (Free)
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
