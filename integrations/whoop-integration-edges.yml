@@ -14,6 +14,63 @@ edges:
     property: components.schemas.Providers
     detected_by: detect-payment-method-edges.py
     detected: '2026-10-12'
+- partner_name: Terra
+  partner: terra-api
+  partner_match: aggregator
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+  category: health data source
+  contract_reference:
+    list: Terra supported integrations (docs.tryterra.co)
+    spec_file: null
+    listed_name: Whoop
+    listed_id: WHOOP
+    listed_names:
+    - Whoop
+    matched_domain: whoop.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    delivery_mode:
+    - Event-Driven
+    developer_access:
+    - Required
+  detected_by: sweep-health-wellness.py
+  first_seen: '2026-10-15'
+- partner_name: Junction (Vital)
+  partner: vital-io
+  partner_match: aggregator
+  channel: partner-built
+  direction: partner-built
+  type: coverage
+  relationship: system-coverage
+  evidence: https://docs.junction.com/wearables/providers/introduction
+  category: health data source
+  contract_reference:
+    list: Junction (Vital) supported providers (docs.junction.com)
+    spec_file: null
+    listed_name: WHOOP
+    listed_id: whoop_v2
+    listed_names:
+    - WHOOP
+    matched_domain: whoop.com
+    matched_by: domain
+    signal_note: delivery mode / access model / table section are context, never counted
+    detected_by: sweep-health-wellness.py
+    detected: '2026-10-15'
+    table_section:
+    - oauth
+  detected_by: sweep-health-wellness.py
+  first_seen: '2026-10-15'
 generated: '2026-10-12'
 method: searched
-checked: []
+checked:
+- https://docs.junction.com/wearables/providers/introduction
+- https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+source:
+- https://docs.junction.com/wearables/providers/introduction
+- https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
