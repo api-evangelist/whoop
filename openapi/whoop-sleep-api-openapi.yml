@@ -182,62 +182,6 @@ components:
             description: 'WHOOP Locker - Sleep Efficiency: What is It, How Do You Stack Up & How Can You Improve?'
             url: https://www.whoop.com/thelocker/app-feature-improve-sleep-efficiency/
       description: WHOOP's measurements and evaluation of the sleep activity. Only present if the Sleep State is `SCORED`
-    SleepStageSummary:
-      required:
-      - disturbance_count
-      - sleep_cycle_count
-      - total_awake_time_milli
-      - total_in_bed_time_milli
-      - total_light_sleep_time_milli
-      - total_no_data_time_milli
-      - total_rem_sleep_time_milli
-      - total_slow_wave_sleep_time_milli
-      type: object
-      properties:
-        total_in_bed_time_milli:
-          type: integer
-          description: Total time the user spent in bed, in milliseconds
-          format: int32
-          example: 30272735
-        total_awake_time_milli:
-          type: integer
-          description: Total time the user spent awake, in milliseconds
-          format: int32
-          example: 1403507
-        total_no_data_time_milli:
-          type: integer
-          description: Total time WHOOP did not receive data from the user during the sleep, in milliseconds
-          format: int32
-          example: 0
-        total_light_sleep_time_milli:
-          type: integer
-          description: Total time the user spent in light sleep, in milliseconds
-          format: int32
-          example: 14905851
-        total_slow_wave_sleep_time_milli:
-          type: integer
-          description: Total time the user spent in Slow Wave Sleep (SWS), in milliseconds
-          format: int32
-          example: 6630370
-        total_rem_sleep_time_milli:
-          type: integer
-          description: Total time the user spent in Rapid Eye Movement (REM) sleep, in milliseconds
-          format: int32
-          example: 5879573
-        sleep_cycle_count:
-          type: integer
-          description: Number of sleep cycles during the user's sleep
-          format: int32
-          example: 3
-        disturbance_count:
-          type: integer
-          description: Number of times the user was disturbed during sleep
-          format: int32
-          example: 12
-      description: Summary of the sleep stages
-      externalDocs:
-        description: Sleep Consistency and Sleep Stages
-        url: https://support.whoop.com/hc/en-us/articles/360019623493-Sleep-Consistency-and-Sleep-Stages
     SleepStreamResponse:
       type: object
       properties:
@@ -247,38 +191,28 @@ components:
             $ref: '#/components/schemas/SleepStreamDataPoint'
         algorithm_version:
           type: string
-    SleepNeeded:
-      required:
-      - baseline_milli
-      - need_from_recent_nap_milli
-      - need_from_recent_strain_milli
-      - need_from_sleep_debt_milli
+    SleepStreamDataPoint:
       type: object
       properties:
-        baseline_milli:
+        timestamp:
+          type: string
+          format: date-time
+        hr:
           type: integer
-          description: The amount of sleep a user needed based on historical trends
-          format: int64
-          example: 27395716
-        need_from_sleep_debt_milli:
-          type: integer
-          description: The difference between the amount of sleep the user's body required and the amount the user actually got
-          format: int64
-          example: 352230
-          externalDocs:
-            description: WHOOP Locker - What is Sleep Debt & How Do You Catch Up on Sleep?
-            url: https://www.whoop.com/thelocker/what-is-sleep-debt-catch-up/
-        need_from_recent_strain_milli:
-          type: integer
-          description: Additional sleep need accrued based on the user's strain
-          format: int64
-          example: 208595
-        need_from_recent_nap_milli:
-          type: integer
-          description: Reduction in sleep need accrued based on the user's recent nap activity (negative value or zero)
-          format: int64
-          example: -12312
-      description: Breakdown of the amount of sleep a user needed before the sleep activity. Summing all individual components results in the amount of sleep the user needed prior to this sleep activity
+          format: int32
+        skin_temp:
+          type: number
+          format: float
+        board_temp:
+          type: number
+          format: float
+        battery_temp:
+          type: number
+          format: float
+        is_sleeping:
+          type: boolean
+        is_charging:
+          type: boolean
     Sleep:
       required:
       - created_at
@@ -355,6 +289,94 @@ components:
         score:
           $ref: '#/components/schemas/SleepScore'
       description: The collection of records in this page.
+    SleepStageSummary:
+      required:
+      - disturbance_count
+      - sleep_cycle_count
+      - total_awake_time_milli
+      - total_in_bed_time_milli
+      - total_light_sleep_time_milli
+      - total_no_data_time_milli
+      - total_rem_sleep_time_milli
+      - total_slow_wave_sleep_time_milli
+      type: object
+      properties:
+        total_in_bed_time_milli:
+          type: integer
+          description: Total time the user spent in bed, in milliseconds
+          format: int32
+          example: 30272735
+        total_awake_time_milli:
+          type: integer
+          description: Total time the user spent awake, in milliseconds
+          format: int32
+          example: 1403507
+        total_no_data_time_milli:
+          type: integer
+          description: Total time WHOOP did not receive data from the user during the sleep, in milliseconds
+          format: int32
+          example: 0
+        total_light_sleep_time_milli:
+          type: integer
+          description: Total time the user spent in light sleep, in milliseconds
+          format: int32
+          example: 14905851
+        total_slow_wave_sleep_time_milli:
+          type: integer
+          description: Total time the user spent in Slow Wave Sleep (SWS), in milliseconds
+          format: int32
+          example: 6630370
+        total_rem_sleep_time_milli:
+          type: integer
+          description: Total time the user spent in Rapid Eye Movement (REM) sleep, in milliseconds
+          format: int32
+          example: 5879573
+        sleep_cycle_count:
+          type: integer
+          description: Number of sleep cycles during the user's sleep
+          format: int32
+          example: 3
+        disturbance_count:
+          type: integer
+          description: Number of times the user was disturbed during sleep
+          format: int32
+          example: 12
+      description: Summary of the sleep stages
+      externalDocs:
+        description: Sleep Consistency and Sleep Stages
+        url: https://support.whoop.com/hc/en-us/articles/360019623493-Sleep-Consistency-and-Sleep-Stages
+    SleepNeeded:
+      required:
+      - baseline_milli
+      - need_from_recent_nap_milli
+      - need_from_recent_strain_milli
+      - need_from_sleep_debt_milli
+      type: object
+      properties:
+        baseline_milli:
+          type: integer
+          description: The amount of sleep a user needed based on historical trends
+          format: int64
+          example: 27395716
+        need_from_sleep_debt_milli:
+          type: integer
+          description: The difference between the amount of sleep the user's body required and the amount the user actually got
+          format: int64
+          example: 352230
+          externalDocs:
+            description: WHOOP Locker - What is Sleep Debt & How Do You Catch Up on Sleep?
+            url: https://www.whoop.com/thelocker/what-is-sleep-debt-catch-up/
+        need_from_recent_strain_milli:
+          type: integer
+          description: Additional sleep need accrued based on the user's strain
+          format: int64
+          example: 208595
+        need_from_recent_nap_milli:
+          type: integer
+          description: Reduction in sleep need accrued based on the user's recent nap activity (negative value or zero)
+          format: int64
+          example: -12312
+      description: Breakdown of the amount of sleep a user needed before the sleep activity. Summing all individual components results in the amount of sleep the user needed prior to this sleep activity
     PaginatedSleepResponse:
       type: object
       properties:
@@ -367,28 +389,6 @@ components:
           type: string
           description: A token that can be used on the next request to access the next page of records. If the token is not present, there are no more records in the collection.
           example: MTIzOjEyMzEyMw
-    SleepStreamDataPoint:
-      type: object
-      properties:
-        timestamp:
-          type: string
-          format: date-time
-        hr:
-          type: integer
-          format: int32
-        skin_temp:
-          type: number
-          format: float
-        board_temp:
-          type: number
-          format: float
-        battery_temp:
-          type: number
-          format: float
-        is_sleeping:
-          type: boolean
-        is_charging:
-          type: boolean
   securitySchemes:
     OAuth:
       type: oauth2
