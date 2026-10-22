@@ -66,11 +66,52 @@ edges:
     - oauth
   detected_by: sweep-health-wellness.py
   first_seen: '2026-10-15'
+- partner_name: Health Canada (Medical Device Licence)
+  partner: null
+  partner_match: register
+  type: contract
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://health-products.canada.ca/api/medical-devices/company/?id=188167&lang=en&type=json
+  category: Canadian medical device licence
+  contract_reference:
+    register: Health Canada Medical Devices Active Licence Listing (MDALL) public API (health-products.canada.ca/api/medical-devices)
+    standard: Canada Medical Devices Regulations (SOR/98-282), Medical Device Licence
+    spec_file: null
+    role: licence-holder
+    registered_name: WHOOP, INC.
+    register_country: US
+    register_id: https://health-products.canada.ca/api/medical-devices/company/?id=188167&lang=en&type=json
+    company_status: A
+    matched_domain: whoop.com
+    matched_by: domain
+    certified_products:
+    - product: Health Canada Medical Device Licence, Class II
+      product_type: Class II
+      risk_class: 2
+      lapsed: false
+      first_issued: '2025-04-30'
+      conditional: false
+      licences_sample:
+      - WHOOP ECG FEATURE
+      - WHOOP IRREGULAR HEART RHYTHM NOTIFICATION (HRN)
+    signal_note: certified_products = one entry per device RISK CLASS licensed by Health Canada, lapsed when no
+      licence of that class is still issued (status I / D, no end date); licence names are a sample, licence and
+      device counts are context, never counted
+    detected_by: sweep-canada-medical-device-licensing.py
+    detected: '2026-10-22'
+    identity: wikidata Q108907426 'WHOOP' P856 https://whoop.com/
+    identity_source: wikidata P856 (labelled provenance step; Kin 2026-10-15 decision 1)
+  detected_by: sweep-canada-medical-device-licensing.py
+  first_seen: '2026-10-22'
 generated: '2026-10-12'
 method: searched
 checked:
 - https://docs.junction.com/wearables/providers/introduction
 - https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
+- https://health-products.canada.ca/api/medical-devices/company/?lang=en&type=json
+- https://health-products.canada.ca/api/medical-devices/licence/?lang=en&type=json
 source:
 - https://docs.junction.com/wearables/providers/introduction
 - https://docs.tryterra.co/reference/health-and-fitness-api/supported-integrations
