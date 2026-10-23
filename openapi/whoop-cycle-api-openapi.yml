@@ -454,3 +454,9 @@ components:
           tokenUrl: https://api.prod.whoop.com/developer/v2/partner/token
           scopes:
             whoop-partner/token: Read service requests and upload results.
+x-provenance:
+  method: harvested
+  publisher: WHOOP
+  source: https://api.prod.whoop.com/developer/doc/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
